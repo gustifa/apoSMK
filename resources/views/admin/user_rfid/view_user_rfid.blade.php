@@ -25,10 +25,12 @@
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import</button>
 												<ul class="dropdown-menu" style="margin: 0px;">
-													<li><a class="dropdown-item" href="{{route('template.excel.user_rfid')}}">Download Template</a>
+													<li><a class="dropdown-item" href="{{route('download.template.user.rfid')}}">Download Template</a>
 													</li>
-													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{route('lihat.import.userrfid')}}">Import Siswa</a>
+													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Import Siswa</a>
 													</li>
+
+													
 												</ul>
 											</div>
 										</div>
@@ -36,6 +38,16 @@
 									<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
 												<a href="{{route('export.userrfid')}}"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Download</button></a>
+												
+											</div>
+
+											
+										</div>
+
+
+
+											<div class="btn-group" role="group">
+												<a href="{{route('all.delete.user.rfid')}}"><button type="button" class="btn btn-primary" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download" id="delete"></i> Kosongkan Table</button></a>
 												
 											</div>
 										</div>
@@ -48,7 +60,7 @@
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<div class="modal-body">
-				<form action="{{ route('import.userrfid') }}" method="POST" enctype="multipart/form-data">
+				<form action="{{ route('import.user.rfid') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
 									<div class="mb-3">
@@ -77,7 +89,8 @@
 							<table id="example2" class="table table-striped table-bordered">
 								<thead>
 									<th style="width: 8px;">No</th>
-										<th>Name</th>
+										<th>Nama</th>
+										<th>NIS</th>
 										<th>Kelas</th>
 										<th>Jurusan</th>
 										<th>Group</th>
@@ -89,13 +102,14 @@
 									<tr>
 										<td>{{$key+1}}</td>
 										<td>{{$item->Nama}}</td>
-										<td>{{$item['kelas']['nama']}}</td>
-										<td>{{$item['jurusan']['nama']}}</td>
-										<td>{{$item['group']['nama']}}</td>
+										<td>{{$item->Nis}}</td>
+										<td>{{$item->kelas->nama}}</td>
+										<td>{{$item->jurusan->kode}}</td>
+										<td>{{$item->group->nama}}</td>
 										<td>{{$item->RFID_ID}}</td>
 										<td style="width: 20px;">
-											<a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<a class="btn btn-info" href="{{route('user.rfid.edit', $item->id)}}"><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-danger" href="{{route('user.rfid.delete',$item->id )}}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 										</td>
 									</tr>
 									@endforeach

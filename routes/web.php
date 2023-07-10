@@ -71,8 +71,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth','role:admin'])->group(function(){
-        //Route Dahboard
-    //Route::get('/admin/dashboard',[DahboardController::class,'AdminDashboard'])->name('admin.dashboard');
     Route::prefix('admin')->group(function(){
         Route::get('/dashboard', [AdminController::class,'AdminDashboard'])->name('admin.dashboard');
         Route::get('/logout', [AdminController::class,'AdminDestroy'])->name('admin.logout');
@@ -89,11 +87,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
         //Route ExportUser
         Route::get('/user/export',[UserController::class,'ExportUser'])->name('export.user');
         Route::get('/userrfid/export',[UserController::class,'ExportUserRfid'])->name('export.userrfid');
-        Route::get('/template/userrfid/excel', [UserRfidController::class,'template_excel_userrfid'])->name('template.excel.user_rfid');
+        Route::get('/download/template/user-rfid', [UserRfidController::class,'DownloadTemplateUserRfid'])->name('download.template.user.rfid');
 
         //Route Import
         Route::get('/userrfid/lihat',[ImportController::class,'LihatImportUserRfid'])->name('lihat.import.userrfid');
-        Route::post('/userrfid/import',[ImportController::class,'ImportUserRfid'])->name('import.userrfid');
+        Route::post('/import/user-id',[ImportController::class,'ImportUserRfid'])->name('import.user.rfid');
 
         Route::get('/guru/lihat',[ImportController::class,'LihatImportGuru'])->name('lihat.import.guru');
         
@@ -113,7 +111,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/agama/simpan',[AgamaController::class,'SimpanAgama'])->name('simpan.agama');
         Route::get('/agama/hapus/{id}',[AgamaController::class,'HapusAgama'])->name('hapus.agama');
 
-        Route::get('/user/lihat',[UserRfidController::class,'Index'])->name('lihat.user');
+        Route::get('/user/lihat',[UserRfidController::class,'Index'])->name('lihat.user');Route::get('/user/delete',[UserRfidController::class,'AllDeleteUserRfid'])->name('all.delete.user.rfid');
+        Route::get('/user/rfid/delete/{id}',[UserRfidController::class,'UserRfidDelete'])->name('user.rfid.delete');
+        Route::get('/user/rfid/edit/{id}',[UserRfidController::class,'UserRfidEdit'])->name('user.rfid.edit');
+        Route::post('/user/rfid/update',[UserRfidController::class,'UserRfidUpdate'])->name('user.rfid.update');
 
         //Route Guru
         Route::get('/guru/lihat',[GuruController::class,'Index'])->name('lihat.guru');

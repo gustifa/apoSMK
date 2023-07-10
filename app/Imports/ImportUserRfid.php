@@ -4,15 +4,10 @@ namespace App\Imports;
 
 use App\Models\UserRfid;
 use Maatwebsite\Excel\Concerns\ToModel;
+// use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class ImportUserRfid implements ToModel
 {
-    //use Importable, SkipsErrors,SkipsFailures;
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
     public function model(array $row)
     {
         return new UserRfid([
@@ -21,18 +16,8 @@ class ImportUserRfid implements ToModel
             'Kelas' => $row[2],
             'Jurusan' => $row[3],
             'Group' => $row[4],
-            // 'RFID_ID' => $row[4],
+            'RFID_ID' => $row[5],
         ]);
     }
-
-    //     public function rules(): array
-    // {
-    //     return [
-    //         // '*.nipd' => ['unique:siswa,nipd','unique:users.username'],
-    //         '*.Nis' => ['unique:user,Nis'],
-
-    //     ];
-    // }
-
 
 }
