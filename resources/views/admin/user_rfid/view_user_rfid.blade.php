@@ -47,7 +47,7 @@
 
 
 											<div class="btn-group" role="group">
-												<a href="{{route('all.delete.user.rfid')}}"><button type="button" class="btn btn-primary" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download" id="delete"></i> Kosongkan Table</button></a>
+												<a href="{{route('all.delete.user.rfid')}}" id="delete"><button type="button" class="btn btn-primary" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Kosongkan Table</button></a>
 												
 											</div>
 										</div>
