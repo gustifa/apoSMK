@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Kelas;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 
-class KelasController extends Controller
+class SetupKelasController extends Controller
 {
     public function LihatKelas(){
     	// $dataKelas = Kelas::all();
     	$dataKelas = Kelas::orderBy('id','asc')->get();
-    	return view('admin.kelas.lihat_kelas', compact('dataKelas'));
+    	return view('backend.setup.kelas.lihat_kelas', compact('dataKelas'));
     }
 
     public function TambahKelas(){
         
-        return view('admin.kelas.tambah_kelas');
+        return view('backend.setup.kelas.tambah_kelas');
     }
 
     public function SimpanKelas(Request $request){
@@ -40,7 +40,7 @@ class KelasController extends Controller
 
 	    public function EditKelas($id){
 	        $editKelas = Kelas::find($id);
-	        return view('admin.kelas.edit_kelas', compact('editKelas'));
+	        return view('backend.setup.kelas.edit_kelas', compact('editKelas'));
     	}
 
     	public function UpdateKelas(Request $request, $id){

@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Jurusan;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jurusan;
 
-class JurusanController extends Controller
+class SetupJurusanController extends Controller
 {
     public function LihatJurusan(){
     	// $dataJurusan = Jurusan::all();
     	$dataJurusan = Jurusan::orderBy('id','asc')->get();
-    	return view('admin.jurusan.lihat_jurusan', compact('dataJurusan'));
+    	return view('backend.setup.jurusan.lihat_jurusan', compact('dataJurusan'));
     }
 
     public function TambahJurusan(){
         
-        return view('admin.jurusan.tambah_jurusan');
+        return view('backend.setup.jurusan.tambah_jurusan');
     }
 
     public function SimpanJurusan(Request $request){
@@ -41,7 +41,7 @@ class JurusanController extends Controller
 
 	    public function EditJurusan($id){
 	        $editJurusan = Jurusan::find($id);
-	        return view('admin.jurusan.edit_jurusan', compact('editJurusan'));
+	        return view('backend.setup.jurusan.edit_jurusan', compact('editJurusan'));
     	}
 
     	public function UpdateJurusan(Request $request, $id){

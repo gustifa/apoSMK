@@ -4,33 +4,13 @@
 <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
-				<!--breadcrumb-->
-				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Kelas</div>
-					<div class="ps-3">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-								</li>
-								<li class="breadcrumb-item active" aria-current="page">Data Kelas</li>
-							</ol>
-						</nav>
-					</div>
-
-				</div>
-				<!--end breadcrumb-->
-				<!--end breadcrumb-->
+				
 				
 				<!-- Awal Moodal -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-primary mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-plus-square'></i> Kelas</button>
-												<!-- <ul class="dropdown-menu" style="margin: 0px;">
-													<li><a class="dropdown-item" href="{{route('template.excel.user_rfid')}}">Download Template</a>
-													</li>
-													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{route('lihat.import.userrfid')}}">Import Siswa</a>
-													</li>
-												</ul> -->
+										
 											</div>
 										</div>
 

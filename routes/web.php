@@ -8,20 +8,23 @@ use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AgamaController;
-use App\Http\Controllers\UserRfidController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Jurusan\JurusanController;
-use App\Http\Controllers\Kelas\KelasController;
 use App\Http\Controllers\TahunAjaran\TahunAjaranController;
 use App\Http\Controllers\Rombel\RombelController;
-use App\Http\Controllers\Group\GroupController;
+
+use App\Http\Controllers\Backend\SetupGroupController;
+use App\Http\Controllers\Backend\SetupJurusanController;
+use App\Http\Controllers\Backend\SetupKelasController;
+use App\Http\Controllers\Backend\SetupUserRfidController;
+use App\Http\Controllers\Backend\SetupAgamaController;
 
 use App\Http\Controllers\Import\ImportController;
 use App\Http\Controllers\Import\ImportGuruController;
 use App\Http\Controllers\Import\ImportMapelController;
 use App\Http\Controllers\Export\ExportGuruController;
+
 
 
 use App\Http\Controllers\Frontend\FrontendController;
@@ -72,6 +75,8 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth','role:admin'])->group(function(){
     Route::prefix('admin')->group(function(){
+            
+
         Route::get('/dashboard', [AdminController::class,'AdminDashboard'])->name('admin.dashboard');
         Route::get('/logout', [AdminController::class,'AdminDestroy'])->name('admin.logout');
         Route::get('/profile', [AdminController::class,'AdminProfile'])->name('admin.profile');
@@ -98,24 +103,63 @@ Route::middleware(['auth','role:admin'])->group(function(){
     }); //End Group
 
     Route::prefix('setup')->group(function(){
+        Route::controller(SetupGroupController::class)->group(function(){
+            //Route Group
+            Route::get('/group/lihat', 'LihatGroup')->name('lihat.group');
+            Route::get('/group/tambah','TambahGroup')->name('tambah.group');
+            Route::post('/group/edit/{id}','EditGroup')->name('edit.group');
+            Route::post('/group/simpan','SimpanGroup')->name('simpan.group');
+            Route::get('/group/update/{id}','UpdateGroup')->name('update.group');
+            Route::get('/group/hapus/{id}','HapusGroup')->name('hapus.group');
+        });
 
+        Route::controller(SetupJurusanController::class)->group(function(){
+             //Route Jurusan
+            Route::get('/jurusan/lihat','LihatJurusan')->name('lihat.jurusan');
+            Route::get('/jurusan/tambah','TambahJurusan')->name('tambah.jurusan');
+            Route::get('/jurusan/edit/{id}','EditJurusan')->name('edit.jurusan');
+            Route::post('/jurusan/update/{id}','UpdateJurusan')->name('update.jurusan');
+            Route::post('/jurusan/simpan','SimpanJurusan')->name('simpan.jurusan');
+            Route::get('/jurusan/hapus/{id}','HapusJurusan')->name('hapus.jurusan');
+        });
+
+        Route::controller(SetupKelasController::class)->group(function(){
+             //Route Kelas
+            Route::get('/kelas/lihat','LihatKelas')->name('lihat.kelas');
+            Route::get('/kelas/tambah','TambahKelas')->name('tambah.kelas');
+            Route::get('/kelas/edit/{id}','EditKelas')->name('edit.kelas');
+            Route::post('/kelas/update/{id}','UpdateKelas')->name('update.kelas');
+            Route::post('/kelas/simpan','SimpanKelas')->name('simpan.kelas');
+            Route::get('/kelas/hapus/{id}','HapusKelas')->name('hapus.kelas');
+        });
+
+        Route::controller(SetupUserRfidController::class)->group(function(){
+            Route::get('/user/lihat','Index')->name('lihat.user');Route::get('/user/delete',[UserRfidController::class,'AllDeleteUserRfid'])->name('all.delete.user.rfid');
+            Route::get('/user/rfid/delete/{id}','UserRfidDelete')->name('user.rfid.delete');
+            Route::get('/user/rfid/edit/{id}','UserRfidEdit')->name('user.rfid.edit');
+            Route::post('/user/rfid/update','UserRfidUpdate')->name('user.rfid.update');
+        });
+
+        Route::controller(SetupAgamaController::class)->group(function(){
+            Route::get('/agama/lihat','Agama')->name('lihat.agama');
+            Route::get('/agama/tambah','TambahAgama')->name('tambah.agama');
+            Route::get('/agama/edit/{id}','EditAgama')->name('edit.agama');
+            Route::post('/agama/update/{id}','UpdateAgama')->name('update.agama');
+            Route::post('/agama/simpan','SimpanAgama')->name('simpan.agama');
+            Route::get('/agama/hapus/{id}','HapusAgama')->name('hapus.agama');
+    
+        });
+
+        
+       
+       
         //Route Sekolah
         Route::get('/sekolah',[SekolahController::class,'Sekolah'])->name('sekolah');
         Route::post('/update/sekolah/',[SekolahController::class,'UpdateSekolah'])->name('update.sekolah');
 
 
-        Route::get('/agama/lihat',[AgamaController::class,'Agama'])->name('lihat.agama');
-        Route::get('/agama/tambah',[AgamaController::class,'TambahAgama'])->name('tambah.agama');
-        Route::get('/agama/edit/{id}',[AgamaController::class,'EditAgama'])->name('edit.agama');
-        Route::post('/agama/update/{id}',[AgamaController::class,'UpdateAgama'])->name('update.agama');
-        Route::post('/agama/simpan',[AgamaController::class,'SimpanAgama'])->name('simpan.agama');
-        Route::get('/agama/hapus/{id}',[AgamaController::class,'HapusAgama'])->name('hapus.agama');
-
-        Route::get('/user/lihat',[UserRfidController::class,'Index'])->name('lihat.user');Route::get('/user/delete',[UserRfidController::class,'AllDeleteUserRfid'])->name('all.delete.user.rfid');
-        Route::get('/user/rfid/delete/{id}',[UserRfidController::class,'UserRfidDelete'])->name('user.rfid.delete');
-        Route::get('/user/rfid/edit/{id}',[UserRfidController::class,'UserRfidEdit'])->name('user.rfid.edit');
-        Route::post('/user/rfid/update',[UserRfidController::class,'UserRfidUpdate'])->name('user.rfid.update');
-
+       
+        
         //Route Guru
         Route::get('/guru/lihat',[GuruController::class,'Index'])->name('lihat.guru');
         Route::get('/guru/tambah',[GuruController::class,'TambahGuru'])->name('tambah.guru');
@@ -129,22 +173,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/mapel/lihat',[MapelController::class,'Index'])->name('lihat.mapel');
         Route::get('/template/mapel/excel', [MapelController::class,'template_excel_mapel'])->name('template.excel.mapel');
 
-        //Route Jurusan
-        Route::get('/jurusan/lihat',[JurusanController::class,'LihatJurusan'])->name('lihat.jurusan');
-        Route::get('/jurusan/tambah',[JurusanController::class,'TambahJurusan'])->name('tambah.jurusan');
-        Route::get('/jurusan/edit/{id}',[JurusanController::class,'EditJurusan'])->name('edit.jurusan');
-        Route::post('/jurusan/update/{id}',[JurusanController::class,'UpdateJurusan'])->name('update.jurusan');
-        Route::post('/jurusan/simpan',[JurusanController::class,'SimpanJurusan'])->name('simpan.jurusan');
-        Route::get('/jurusan/hapus/{id}',[JurusanController::class,'HapusJurusan'])->name('hapus.jurusan');
-
-        //Route Kelas
-        Route::get('/kelas/lihat',[KelasController::class,'LihatKelas'])->name('lihat.kelas');
-        Route::get('/kelas/tambah',[KelasController::class,'TambahKelas'])->name('tambah.kelas');
-        Route::get('/kelas/edit/{id}',[KelasController::class,'EditKelas'])->name('edit.kelas');
-        Route::post('/kelas/update/{id}',[KelasController::class,'UpdateKelas'])->name('update.kelas');
-        Route::post('/kelas/simpan',[KelasController::class,'SimpanKelas'])->name('simpan.kelas');
-        Route::get('/kelas/hapus/{id}',[KelasController::class,'HapusKelas'])->name('hapus.kelas');
-
+        
+        
         //Route Tahun Ajaran
         Route::get('/kelas/pembelajaran',[TahunAjaranController::class,'LihatTahunAjaran'])->name('lihat.tahunajaran');
 
@@ -156,15 +186,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/rombel/update/{id}',[RombelController::class,'UpdateRombel'])->name('update.rombel');
         Route::get('/rombel/hapus/{id}',[RombelController::class,'HapusRombel'])->name('hapus.rombel');
 
-        //Route Group
-        Route::get('/group/lihat',[GroupController::class,'LihatGroup'])->name('lihat.group');
-        Route::get('/group/tambah',[GroupController::class,'TambahGroup'])->name('tambah.group');
-        Route::post('/group/edit/{id}',[GroupController::class,'EditGroup'])->name('edit.group');
-        Route::post('/group/simpan',[GroupController::class,'SimpanGroup'])->name('simpan.group');
-        Route::get('/group/update/{id}',[GroupController::class,'UpdateGroup'])->name('update.group');
-        Route::get('/group/hapus/{id}',[GroupController::class,'HapusGroup'])->name('hapus.group');
-
-
+        
         
 
     }); //End Group

@@ -6,31 +6,26 @@
 			<div class="page-content">
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Group</div>
+					<div class="breadcrumb-title pe-3">Jurusan</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Data Group</li>
+								<li class="breadcrumb-item active" aria-current="page">Data Jurusan</li>
 							</ol>
 						</nav>
 					</div>
 
-
 				</div>
 				<!--end breadcrumb-->
-				
+
+
 				<!-- Awal Moodal -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-primary mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-plus-square'></i> Group</button>
-												<!-- <ul class="dropdown-menu" style="margin: 0px;">
-													<li><a class="dropdown-item" href="{{route('template.excel.user_rfid')}}">Download Template</a>
-													</li>
-													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{route('lihat.import.userrfid')}}">Import Siswa</a>
-													</li>
-												</ul> -->
+												<button type="button" class="btn btn-primary mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-plus-square'></i> Jurusan</button>
+												
 											</div>
 										</div>
 
@@ -38,24 +33,29 @@
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Tambah Group</h5>
+														<h5 class="modal-title" id="exampleModalLabel">Upload Template User</h5>
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<div class="modal-body">
-				<form action="{{ route('simpan.group') }}" method="POST">
+				<form action="{{ route('simpan.jurusan') }}" method="POST">
             @csrf
 
 									<div class="mb-3">
-										<label class="form-label">Group:</label>
-										<input type="text" name="nama" class="form-control" placeholder="Inputkan Nama Group">
+										<label class="form-label">Nama:</label>
+										<input type="text" name="nama" class="form-control" placeholder="Inputkan Nama Jurusan">
 										@error('nama')
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
 									</div>
+
+									<div class="mb-3">
+										<label class="form-label">Kode:</label>
+										<input type="text" name="kode" class="form-control" placeholder="Inputkan Kode Jurusan">
+										@error('kode')
+	 <span class="text-danger">{{ $message }}</span>
+	 @enderror
+									</div>
 									
-									<!-- <div class="mb-3">
-										<button type="submit" class="btn btn-primary px-5"><i class='bx bx-save mr-1'></i>Simpan</button>
-									</div> -->
 								
 
 													</div>
@@ -69,9 +69,9 @@
 										</div>	<!-- AKhir Moodal -->
 
 
+				
 
 				<hr/>
-
 
 				<div class="card">
 					<div class="card-body">
@@ -81,18 +81,21 @@
 									<tr>
 										<th style="width: 8px;">No</th>
 										<th>Name</th>
+										<th>Kode</th>
+										<th>id</th>
 										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($dataGroup as $key => $item)
+									@foreach($dataJurusan as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
 										<td>{{$item->nama}}</td>
+										<td>{{$item->kode}}</td>
+										<td>{{$item->id}}</td>
 										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{ route('edit.group',$item->id) }}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{ route('hapus.group',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
-
+											<a class="btn btn-info" href="{{ route('edit.jurusan',$item->id) }}"><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-danger" href="{{ route('hapus.jurusan',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 										</td>
 									</tr>
 									@endforeach

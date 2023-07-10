@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserRfid;
 use App\Models\Kelas;
@@ -9,12 +10,12 @@ use App\Models\Jurusan;
 use App\Models\Group;
 use DB;
 
-class UserRfidController extends Controller
+class SetupUserRfidController extends Controller
 {
     public function Index(){
         $dataRfid = UserRfid::latest()->get();
         //$dataRfid = UserRfid::all();
-        return view('admin.user_rfid.view_user_rfid', compact('dataRfid'));
+        return view('backend.setup.user_rfid.view_user_rfid', compact('dataRfid'));
     }
 
     public function DownloadTemplateUserRfid()
@@ -69,7 +70,7 @@ class UserRfidController extends Controller
         $kelas = Kelas::latest()->get();
         $group = Group::latest()->get();
 
-        return view('admin.user_rfid.edit_user_rfid', compact('userRfid', 'jurusan', 'kelas', 'group'));
+        return view('backend.setup.user_rfid.edit_user_rfid', compact('userRfid', 'jurusan', 'kelas', 'group'));
     }
 
     public function UserRfidUpdate(Request $request){
@@ -91,6 +92,5 @@ class UserRfidController extends Controller
 
             return redirect()->route('lihat.user')->with($notification);
         }
-
 
 }

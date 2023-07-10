@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Group;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Group;
 
-class GroupController extends Controller
+class SetupGroupController extends Controller
 {
     public function LihatGroup(){
     	$dataGroup = Group::all();
-    	return view('admin.group.lihat_group', compact('dataGroup'));
+    	return view('backend.setup.group.lihat_group', compact('dataGroup'));
     }
 
 
@@ -36,7 +36,7 @@ class GroupController extends Controller
 
 	    public function EditGroup($id){
 	        $editGroup = Kelas::find($id);
-	        return view('admin.group.edit_group', compact('editGroup'));
+	        return view('backend.setup.group.edit_group', compact('editGroup'));
     	}
 
     	public function UpdateGroup(Request $request, $id){
