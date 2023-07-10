@@ -134,7 +134,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
         });
 
         Route::controller(SetupUserRfidController::class)->group(function(){
-            Route::get('/user/lihat','Index')->name('lihat.user');Route::get('/user/delete',[UserRfidController::class,'AllDeleteUserRfid'])->name('all.delete.user.rfid');
+            Route::get('/user/lihat','Index')->name('lihat.user');
+            Route::get('/user/delete','AllDeleteUserRfid')->name('all.delete.user.rfid');
             Route::get('/user/rfid/delete/{id}','UserRfidDelete')->name('user.rfid.delete');
             Route::get('/user/rfid/edit/{id}','UserRfidEdit')->name('user.rfid.edit');
             Route::post('/user/rfid/update','UserRfidUpdate')->name('user.rfid.update');
