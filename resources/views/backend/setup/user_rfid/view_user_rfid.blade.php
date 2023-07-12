@@ -3,23 +3,8 @@
 
 <!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
-				<!--breadcrumb-->
-				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Siswa</div>
-					<div class="ps-3">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-								</li>
-								<li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
-							</ol>
-						</nav>
-					</div>
+			<div class="page-content">	
 
-				</div>
-				<!--end breadcrumb-->
-				
 				<!-- Awal Moodal -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
@@ -33,25 +18,26 @@
 													
 												</ul>
 											</div>
-										</div>
 
-									<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+										</div>	
+										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<a href="{{route('export.userrfid')}}"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Download</button></a>
+												<a href="{{route('export.userrfid')}}"><button type="button" class="btn btn-primary" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Download</button></a>
 												
 											</div>
 
 											
 										</div>
 
-
-
+										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<a href="{{route('all.delete.user.rfid')}}" id="delete"><button type="button" class="btn btn-primary" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Kosongkan Table</button></a>
+												<a href="{{route('all.delete.user.rfid')}}" id="delete"><button type="button" class="btn btn-danger" aria-expanded="false"><i class="fadeIn animated bx bx-x-circle mr-1"></i> Kosongkan Table</button></a>
 												
 											</div>
-										</div>
 
+											
+										</div>
 										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -60,29 +46,27 @@
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<div class="modal-body">
-				<form action="{{ route('import.user.rfid') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+														<form action="{{ route('import.user.rfid') }}" method="POST" enctype="multipart/form-data">
+										            	@csrf
 
-									<div class="mb-3">
-										<!-- <label class="form-label">Agama:</label> -->
-										<input type="file" name="file" class="form-control" placeholder="Inputkan Agama">
-									</div>
-									
-									<!-- <div class="mb-3">
-										<button type="submit" class="btn btn-primary px-5"><i class='bx bx-save mr-1'></i>Simpan</button>
-									</div> -->
-								
-
+														<div class="mb-3">
+															<!-- <label class="form-label">Agama:</label> -->
+															<input type="file" name="file" class="form-control" placeholder="Inputkan Agama">
+														</div>
 													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-														<button type="submit" class="btn btn-primary">Simpan</button>
-													</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+															<button type="submit" class="btn btn-primary">Simpan</button>
+														</div>
 													</form>
 												</div>
 											</div>
 										</div>	<!-- AKhir Moodal -->
+
+
 				<hr/>
+
+
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">

@@ -75,7 +75,6 @@ class SetupUserRfidController extends Controller
 
     public function UserRfidUpdate(Request $request){
             $id = $request->id;
-            
             UserRfid::findOrfail($id)->update([
                 'Nama' => $request->Nama,
                 'Nis' => $request->Nis,

@@ -30,6 +30,12 @@
 						</div>
 						<div class="menu-title">Setting Data</div>
 					</a>
+					<ul>
+						</li>
+						<li> <a href="{{route('lihat.tahunajaran')}}"><i class="bx bx-right-arrow-alt"></i>Tahun Ajaran</a>
+						</li>
+						
+					</ul>
 					
 					<ul>
 						</li>
@@ -99,12 +105,7 @@
 						<li> <a href="{{route('sekolah')}}"><i class="bx bx-right-arrow-alt"></i>Sekolah</a>
 						</li>
 					</ul>
-					<ul>
-						</li>
-						<li> <a href="{{route('lihat.tahunajaran')}}"><i class="bx bx-right-arrow-alt"></i>Tahun Ajaran</a>
-						</li>
-						
-					</ul>
+					
 					<ul>
 						</li>
 						<li> <a href="{{route('lihat.tahunajaran')}}"><i class="bx bx-right-arrow-alt"></i>Hak Akses</a>
@@ -204,9 +205,9 @@
 						<div class="menu-title">Presensi Sholat</div>
 					</a>
 					<ul>
-						<li> <a href="{{route('lihat.presensi')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Presensi</a>
+						<li> <a href="{{route('lihat.presensi.sholat')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Presensi</a>
 						</li>
-						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i> Presensi Manual</a>
+						<li> <a href="{{route('tambah.presensi.sholat')}}"><i class="bx bx-right-arrow-alt"></i> Presensi Manual</a>
 						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i> Presensi Barcode</a>
 						</li>
 						<li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>Export</a>
