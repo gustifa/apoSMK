@@ -1,31 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\UserRfid;
 use App\Models\Presensi;
 use App\Models\tblsholat;
-use App\Models\Sekolah;
+use App\Models\Guru;
+use App\Models\Rombel;
+//use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class GuruController extends Controller
 {
-    public function AdminDashboard(){
+    public function GuruDashboard(){
          // $adminData = User::all();
-         $adminData = User::where('role','admin')->get();;
+         $user = Auth::user()->user_id;
+         $guruData = User::where('role','guru')->where('user_id', $user)->get();
+       
          $dataPresensi = Presensi::all();
-         $dataUserRfid = UserRfid::all();
+         $dataUserRfid = Rombel::all();
+         // dd($dataUserRfid);
          $presensiData = Presensi::all();
          $tabelsholat = tblsholat::all();
-         $sekolah = Sekolah::find(1);
 
-        return view('admin.index',compact('adminData', 'presensiData','tabelsholat','dataUserRfid','dataPresensi','sekolah'));
+        return view('guru.index',compact('guruData', 'presensiData','tabelsholat','dataUserRfid','dataPresensi'));
     }
 
-    public function AdminDestroy(Request $request)
+    public function GuruDestroy(Request $request)
     {
         Auth::guard('web')->logout();
 
@@ -33,21 +38,21 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/guru/login');
     }
 
-    public function AdminLogin(){
-        return view('admin.admin_login');
+    public function GuruLogin(){
+        return view('guru.guru_login');
     }
 
 
-    public function AdminProfile(){
+    public function GuruProfile(){
         $id = Auth::user()->id;
-        $adminData = User::find($id);
-        return view('admin.admin_profile_view',compact('adminData'));
+        $guruData = User::find($id);
+        return view('guru.guru_profile_view',compact('guruData'));
     }
 
-    public function AdminProfileStore(Request $request){
+    public function GuruProfileStore(Request $request){
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
@@ -60,12 +65,12 @@ class AdminController extends Controller
         if ($request->file('photo')) {
             $file = $request->file('photo');
             $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'),$filename);
+            $file->move(public_path('upload/guru_images'),$filename);
             $data['photo'] = $filename;
         }
 
         $notification = array(
-            'message' => 'Admin Profile Update Succesfully',
+            'message' => 'Profile Guru Berhasil diperbaharui',
             'alert-type' => 'success',
         );
 
@@ -78,11 +83,11 @@ class AdminController extends Controller
     }
 
 
-    public function AdminChangePassword(){
-        return view('admin.change_password');
+    public function GuruChangePassword(){
+        return view('guru.ganti_password');
     } //end Method
 
-    public function AdminUpdatePassword(Request $request){
+    public function GuruUpdatePassword(Request $request){
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
@@ -117,7 +122,4 @@ class AdminController extends Controller
 
         return redirect()->route('lihat.user')->with($notification);
     }
-
-
-
 }

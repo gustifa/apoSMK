@@ -1,9 +1,10 @@
-@extends('admin.admin_master')
-@section('admin')
+@extends('guru.guru_master')
+@section('guru')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div class="page-wrapper">
 			<div class="page-content"> 
-				
+
+
 				<div class="container">
 					<div class="main-body">
 						<div class="row">
@@ -11,19 +12,19 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex flex-column align-items-center text-center">
-											<img src="{{(!empty($adminData->logo_sekolah)) ? url('upload/sekolah_images/'.$adminData->logo_sekolah): url('upload/no_image.jpg')}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="100">
+											<img src="{{(!empty($guruData->photo)) ? url('upload/guru_images/'.$guruData->photo): url('upload/no_image.jpg')}}" alt="Guru" class="rounded-circle p-1 bg-primary" width="110">
 											<div class="mt-3">
-												<h4>{{$adminData->nama}}</h4>
-												<p class="text-secondary mb-1">NPSN: {{$adminData->npsn}}</p>
-												<p class="text-muted font-size-sm">NSS: {{$adminData->nss}}</p>
-												
+												<h4>{{$guruData->name}}</h4>
+												<p class="text-secondary mb-1">{{$guruData->email}}</p>
+												<p class="text-muted font-size-sm">{{$guruData->address}}</p>
+												<button class="btn btn-primary">Follow</button>
+												<button class="btn btn-outline-primary">Message</button>
 											</div>
 										</div>
 										<hr class="my-4">
 										<ul class="list-group list-group-flush">
 											<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 												<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
-												
 												<span class="text-secondary">https://codervent.com</span>
 											</li>
 											<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -49,93 +50,57 @@
 							<div class="col-lg-8">
 								<div class="card">
 									<div class="card-body">
-									<form method="post" action="{{route('update.sekolah')}}" enctype="multipart/form-data">
+									<form method="post" action="{{route('guru.profile.store')}}" enctype="multipart/form-data">
 										@csrf
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">Nama Sekolah</h6>
+												<h6 class="mb-0">Username</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" name="nama" class="form-control" value="{{$adminData->nama}}">
+												<input type="text" name="username" class="form-control" value="{{$guruData->username}}">
 											</div>
 										</div>
 
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">NPSN</h6>
+												<h6 class="mb-0">Full Name</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" name="npsn" class="form-control" value="{{$adminData->npsn}}">
+												<input type="text" name="name" class="form-control" value="{{$guruData->name}}">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">NSS</h6>
+												<h6 class="mb-0">Email</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" name="nss" class="form-control" value="{{$adminData->nss}}">
+												<input type="text" name="email" class="form-control" value="{{$guruData->email}}">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">Alamat</h6>
+												<h6 class="mb-0">Phone</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" name="alamat" class="form-control" value="{{$adminData->alamat}}">
+												<input type="text" name="phone" class="form-control" value="{{$guruData->phone}}">
 											</div>
 										</div>
 										
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">Desa / Keluruah</h6>
+												<h6 class="mb-0">Address</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" name="desa_kelurahan" class="form-control" value="{{$adminData->desa_kelurahan}}">
+												<input type="text" name="address" class="form-control" value="{{$guruData->address}}">
 											</div>
 										</div>
 
 										<div class="row mb-3">
 											<div class="col-sm-3">
-												<h6 class="mb-0">Kecamatan</h6>
+												<h6 class="mb-0">Photo</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" name="kecamatan" class="form-control" value="{{$adminData->kecamatan}}">
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Kabupaten</h6>
-											</div>
-											<div class="col-sm-9 text-secondary">
-												<input type="text" name="kabupaten" class="form-control" value="{{$adminData->kabupaten}}">
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Provinsi</h6>
-											</div>
-											<div class="col-sm-9 text-secondary">
-												<input type="text" name="provinsi" class="form-control" value="{{$adminData->provinsi}}">
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Kode Pos</h6>
-											</div>
-											<div class="col-sm-9 text-secondary">
-												<input type="text" name="kode_pos" class="form-control" value="{{$adminData->kode_pos}}">
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<div class="col-sm-3">
-												<h6 class="mb-0">Logo Sekolah</h6>
-											</div>
-											<div class="col-sm-9 text-secondary">
-												<input type="file" name="logo_sekolah" class="form-control" id="image">
+												<input type="file" name="photo" class="form-control" id="image">
 											</div>
 										</div>
 
@@ -143,7 +108,7 @@
 											<div class="col-sm-3">
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<img id ="showImage"src="{{(!empty($adminData->logo_sekolah)) ? url('upload/sekolah_images/'.$adminData->logo_sekolah): url('upload/no_image.jpg')}}" alt="Admin" style="width: 100px; height: 100px;">
+												<img id ="showImage"src="{{(!empty($guruData->photo)) ? url('upload/guru_images/'.$guruData->photo): url('upload/no_image.jpg')}}" alt="Admin" style="width: 100px; height: 100px;">
 											</div>
 										</div>
 										

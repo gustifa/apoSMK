@@ -1,3 +1,9 @@
+
+@php
+    $id = Auth::user()->id;
+    $agentId = App\Models\User::find($id);
+    $status = $agentId->status;
+@endphp
 <ul class="metismenu" id="menu">
 	<li>
 					<a href="{{route('guru.dashboard')}}">
@@ -6,6 +12,7 @@
 						<div class="menu-title">Dashboard</div>
 					</a>
 				</li>
+ @if($status === 'active')
 								
 				<li class="menu-label">Presensi Sholat</li>
 				<li>
@@ -46,6 +53,6 @@
 						</li>
 					</ul>
 				</li>
-
+@endif
 
 			</ul>

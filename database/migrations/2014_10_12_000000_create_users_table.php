@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
+            $table->string('user_id')->unique()->nullable();
             $table->text('address')->nullable();
             $table->enum('role',['admin','wakil','guru','siswa','piket','user'])->default('user');
             $table->enum('status',['active','inactive'])->default('active');

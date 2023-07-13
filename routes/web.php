@@ -176,6 +176,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/template/guru/excel', 'template_excel_guru')->name('template.excel.guru');
             Route::get('/guru/delete','AllDeleteGuru')->name('all.delete.guru');
             Route::get('/guru/generate','GuruGenerate')->name('guru.generate');
+            Route::get('/guru/user/lihat','LihatUserGuru')->name('lihat.user.guru');
+            Route::get('/guru/user/hapus/{id}','HapusUserGuru')->name('hapus.user.guru');
+
         
         });  
 
@@ -242,7 +245,7 @@ Route::middleware(['auth','role:guru'])->group(function(){
         Route::get('/logout','GuruDestroy')->name('guru.logout');
         Route::get('/profile', 'GuruProfile')->name('guru.profile');
         Route::post('/profile/store','GuruProfileStore')->name('guru.profile.store');
-        Route::get('/change/password','AdminChangePassword')->name('guru.change.password');
+        Route::get('/change/password','GuruChangePassword')->name('guru.change.password');
         Route::post('/update/password','GuruUpdatePassword')->name('guru.update.password');
         });
     });

@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Guru;
+use App\Models\User;
 use DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class SetupGuruController extends Controller
 {
@@ -103,9 +106,50 @@ class SetupGuruController extends Controller
         }
     }
 
-    public function GuruGenerate($id){
-       $guru = Guru::where($id)->get();
-       dd($guru);
+    public function GuruGenerate(Request $request){
+       $data = Guru::all();
+
+        foreach($data as $d){
+           $new_password = strtolower(Str::random(8));
+           $user = User::create([
+                        'name' => $d->nama,
+                        'user_id' => $d->id,
+                        'username' => $new_password,
+                        'password' => Hash::make($new_password),
+                        'email' => $new_password.'@smkn1kinali.sch.id',
+                        'role' => 'guru',
+                        'status' => '1',
+                    ]);
+           
+       }
+
+       $notification = array(
+                'message' => 'User Guru Berhasil di Generate',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+    
+       
+
 
     }
+
+    public function LihatUserGuru(){
+        $dataGuru = User::where('role','guru')->get();
+        return view('backend.setup.guru.lihat_user_guru', compact('dataGuru'));
+    }
+
+    public function HapusUserGuru($id){
+        $user = User::find($id);
+            $user->delete();
+
+            $notification = array(
+                'message' => 'User '.$user->name.' Berhasil dihapus',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('lihat.user.guru')->with($notification);
+    }
+
+
 }

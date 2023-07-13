@@ -121,7 +121,7 @@
 					</ul>
 					<ul>
 						</li>
-						<li> <a href="{{route('guru.generate')}}"><i class="bx bx-right-arrow-alt"></i>Generate User</a>
+						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>Hak Akses</a>
 						</li>
 						
 					</ul>

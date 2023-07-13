@@ -19,7 +19,12 @@ class SekolahController extends Controller
         $data->npsn = $request->npsn;
         $data->nss = $request->nss;
         $data->alamat = $request->alamat;
+        $data->desa_kelurahan = $request->desa_kelurahan;
+        $data->kecamatan = $request->kecamatan;
+        $data->kabupaten = $request->kabupaten;
         $data->provinsi = $request->provinsi;
+        $data->website = $request->website;
+        $data->kode_pos = $request->kode_pos;
         
 
         if ($request->file('logo_sekolah')) {
