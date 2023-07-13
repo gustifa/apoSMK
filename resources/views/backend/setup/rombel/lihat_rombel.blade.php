@@ -4,38 +4,13 @@
 <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
-				<!--breadcrumb-->
-				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Rombongan Belajar</div>
-					<div class="ps-3">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-								</li>
-								<li class="breadcrumb-item active" aria-current="page">Data Rombongan Belajar</li>
-							</ol>
-						</nav>
-					</div>
-
-
-				</div>
-				<!--end breadcrumb-->
-				<!-- <div class="col-lg-3 col-xl-2">
-										<a href="{{route('tambah.rombel')}}" class="btn btn-primary mb-3 mb-lg-0"><i class='bx bxs-plus-square'></i>Rombel</a>
-
-										
-				</div> -->
+				
 
 				<!-- Awal Moodal -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-primary mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bxs-plus-square'></i> Rombel</button>
-												<!-- <ul class="dropdown-menu" style="margin: 0px;">
-													<li><a class="dropdown-item" href="{{route('template.excel.user_rfid')}}">Download Template</a>
-													</li>
-													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{route('lihat.import.userrfid')}}">Import Siswa</a>
-													</li>
-												</ul> -->
+												
 											</div>
 										</div>
 
@@ -50,13 +25,7 @@
 				<form action="{{ route('simpan.rombel') }}" method="POST">
             @csrf
 									
-									<!-- <div class="mb-3">
-										<label class="form-label">Nama:</label>
-										<input type="text" name="nama" class="form-control" placeholder="Inputkan Nama">
-										@error('nama')
-										 <span class="text-danger">{{ $message }}</span>
-										 @enderror
-									</div> -->
+									
 
 									<div class="mb-3">
 										<select name="kelas_id" class="form-select mb-3" aria-label="Default select example">
@@ -87,7 +56,7 @@
 
 									<div class="mb-3">
 										<select name="guru_id" class="form-select mb-3" aria-label="Default select example">
-											<option value="" selected="" disabled="">Pilih Nama Guru</option>
+											<option value="" selected="" disabled="">Tentukan Walas</option>
 											@foreach($dataGuru as $item)
 											<option value="{{$item->id}}">{{$item->nama}}</option>
 											@endforeach

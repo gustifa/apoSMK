@@ -13,11 +13,11 @@
 									<tr>
 										<th style="width: 8px;">No</th>
 										<th>Name</th>
-										<th>RFID_ID</th>
-										<th>Kelas</th>
 										<th>Jurusan</th>
-										<th>Status</th>
-										<th>Ket</th>
+										<th>Walas</th>
+										<th>Presensi</th>
+										<th>Waktu Presensi</th>
+
 										
 									</tr>
 								</thead>
@@ -25,17 +25,27 @@
 									@foreach($dataPresensi as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item['presensi']['Nama']}}</td>
-										<td>{{$item['presensi']['RFID_ID']}}</td>
-										<td>{{$item['presensi']['Kelas']}}</td>
-										<td>{{$item['presensi']['Jurusan']}}</td>
-										<td>{{$item->id_peserta_didik}}</td>
-										@if ($item->Zuhur === $item->Zuhur )
-										<td>{{$item->Zuhur}}</td>
-										@else
-										<td>{{$item->Ashar}}</td>
+										<td>{{$item->presensiSholat->Nama}}</td>
+										<td>{{$item->presensiSholat->kelas->nama}} {{$item->presensiSholat->jurusan->kode}} {{$item->presensiSholat->group->nama}}</td>
+										<td>{{$item->presensiSholat->walas->nama}}</td>
+										@if($item->presensi == 0)
+										<td>Tidak Hadir</td>
+										@elseif($item->presensi == 1)
+										<td>Sholat Zhuhur</td>
+										@elseif($item->presensi == 2)
+										<td>Sholat Ashar</td>
+										@elseif($item->presensi == 3)
+										<td>Non Muslim</td>
+										@elseif($item->presensi == 4)
+										<td>Tidak Hadir</td>
+										@elseif($item->presensi == 5)
+										<td>Izin</td>
+										@elseif($item->presensi == 10)
+										<td>Tidak Sholat Zhuhur</td>
+										@elseif($item->presensi == 10)
+										<td>Tidak Sholat Ashar</td>
 										@endif
-										
+										<td>{{$item->created_at}}</td>
 									</tr>
 									@endforeach
 								</tbody>

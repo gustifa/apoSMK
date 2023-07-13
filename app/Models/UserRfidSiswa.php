@@ -5,16 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PresensiSholat extends Model
+class UserRfidSiswa extends Model
 {
     use HasFactory;
-    // protected $table = 'presensi_sholat';
-    // protected $primaryKey = 'id';
     protected $guarded = [];
-
-    public function presensiSholat(){
-        return $this->belongsTo(userrfid::class, 'siswa_id', 'id');
-    }
 
     public function jurusan(){
         return $this->belongsTo(Jurusan::class, 'Jurusan', 'id');
@@ -26,13 +20,5 @@ class PresensiSholat extends Model
 
     public function group(){
         return $this->belongsTo(Group::class, 'Group', 'id');
-    }
-
-    public function walas(){
-        return $this->belongsTo(Guru::class, 'Walas_id', 'id');
-    }
-
-    public function rombel(){
-        return $this->belongsTo(Rombel::class, 'Kelas', 'id');
     }
 }

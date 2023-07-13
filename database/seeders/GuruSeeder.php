@@ -16,7 +16,7 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('guru')->insert([
+        DB::table('gurus')->insert([
             //admin
             [
                 'nama' => 'GUSTIFA FAUZAN',

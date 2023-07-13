@@ -11,7 +11,7 @@ class tblsholat extends Model
     protected $guarded = [];
 
     public function presensi(){
-		return $this->belongsTo(UserRfid::class, 'siswa_id', 'Nis');
+		return $this->belongsTo(userrfid::class, 'siswa_id', 'id');
 	}
 
 	public function jurusan(){
@@ -24,6 +24,10 @@ class tblsholat extends Model
 
 	public function group(){
 		return $this->belongsTo(Group::class, 'Group', 'id');
+	}
+
+	public function walas(){
+		return $this->belongsTo(Guru::class, 'Walas_id', 'id');
 	}
 
 

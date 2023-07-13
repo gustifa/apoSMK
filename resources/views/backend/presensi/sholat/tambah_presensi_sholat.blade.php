@@ -61,7 +61,7 @@
 
 									<div class="mb-3">
 										<label class="form-label">Nama Siswa:</label>
-											<select name="Jurusan" class="form-select" id="exampleFormControlSelect1">
+											<select name="siswa_id" class="form-select" id="exampleFormControlSelect1">
                                                         <option selected="" disabled="">Pilih Siswa</option>
                                                         @foreach($userRfid as $item)
                                                         <option value="{{$item->id}}">{{$item->Nama}}</option>
@@ -71,6 +71,22 @@
 											@error('Jurusan')
 										 	<span class="text-danger">{{ $message }}</span>
 										 	@enderror
+
+									</div>
+									<div class="mb-3">
+										<label class="form-label">Status:</label>
+											<select name="presensi" class="form-select" id="exampleFormControlSelect1">
+                                                        <option selected="" disabled="">Pilih Status</option>
+                                                        
+                                                        <option value="0">Tidak Hadir</option>
+                                                        <option value="1">Sholat Zhuhur</option>
+                                                        <option value="10">Tidak Sholat Zhuhur</option>
+                                                        <option value="2">Sholat Ashar</option>
+                                                        <option value="20">Tidak Sholat Ashar</option>
+													
+                                                       
+                                                    </select>
+											
 
 									</div>
 

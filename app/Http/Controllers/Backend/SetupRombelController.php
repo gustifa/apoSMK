@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Rombel;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,24 +9,27 @@ use App\Models\Kelas;
 use App\Models\Jurusan;
 use App\Models\Group;
 use App\Models\Guru;
+use App\Models\userrfid;
 
-class RombelController extends Controller
+class SetupRombelController extends Controller
 {
     public function LihatRombel(){
-    	$dataRombel = Rombel::all();
+        $dataRombel = Rombel::all();
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
         $dataGroup = Group::all();
         $dataGuru = Guru::all();
-    	return view('admin.rombel.lihat_rombel', compact('dataRombel','dataKelas', 'dataJurusan', 'dataGroup','dataGuru'));
+        $userRfid = userrfid::all();
+        return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','dataKelas', 'dataJurusan', 'dataGroup','dataGuru','userRfid'));
     }
 
     public function TambahRombel(){
-    	$dataKelas = Kelas::all();
-    	$dataJurusan = Jurusan::all();
-    	$dataGroup = Group::all();
+        $dataKelas = Kelas::all();
+        $dataJurusan = Jurusan::all();
+        $dataGroup = Group::all();
         $dataGuru = Guru::all();
-    	return view('admin.rombel.tambah_rombel', compact('dataKelas', 'dataJurusan', 'dataGroup','dataGuru'));
+        $userRfid = userrfid::all();
+        return view('backend.setup.rombel.tambah_rombel', compact('dataKelas', 'dataJurusan', 'dataGroup','dataGuru','userRfid'));
     }
 
     public function SimpanRombel(Request $request){
@@ -54,7 +57,7 @@ class RombelController extends Controller
 
         public function EditRombel($id){
             $editRombel = Rombel::find($id);
-            return view('admin.agama.edit_rombel', compact('editRombel'));
+            return view('backend.setup.rombel.edit_rombel', compact('editRombel'));
         }
 
         public function UpdateRombel(Request $request, $id){

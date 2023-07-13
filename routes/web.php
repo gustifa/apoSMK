@@ -7,11 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AgamaController;
-use App\Http\Controllers\GuruController;
-use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Rombel\RombelController;
 
 use App\Http\Controllers\Backend\SetupGroupController;
 use App\Http\Controllers\Backend\SetupJurusanController;
@@ -19,6 +15,11 @@ use App\Http\Controllers\Backend\SetupKelasController;
 use App\Http\Controllers\Backend\SetupUserRfidController;
 use App\Http\Controllers\Backend\SetupAgamaController;
 use App\Http\Controllers\Backend\SetupTahunAjaranController;
+use App\Http\Controllers\Backend\SetupGuruController;
+use App\Http\Controllers\Backend\SetupRombelController;
+use App\Http\Controllers\Backend\SetupMataPelajaranController;
+
+use App\Http\Controllers\Guru\GuruController;
 
 use App\Http\Controllers\Backend\Presensi\PresensiSholatController;
 
@@ -162,32 +163,49 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/ta/tambah','TahunPelajaranTambah')->name('tahun.pelajaran.tambah');
         Route::post('/ta/simpan','TahunPelajaranSimpan')->name('tahun.pelajaran.simpan');
         Route::get('/ta/hapus/{id}','TahunPelajaranHapus')->name('tahun.pelajaran.Hapus');
+        }); 
+
+        Route::controller(SetupGuruController::class)->group(function(){
+            //Route Guru
+            Route::get('/guru/lihat','Index')->name('lihat.guru');
+            Route::get('/guru/tambah','TambahGuru')->name('tambah.guru');
+            Route::get('/guru/edit/{id}','EditGuru')->name('edit.guru');
+            Route::post('/guru/update/{id}','UpdateGuru')->name('update.guru');
+            Route::post('/guru/simpan','SimpanGuru')->name('simpan.guru');
+            Route::get('/guru/hapus/{id}','HapusGuru')->name('hapus.guru');
+            Route::get('/template/guru/excel', 'template_excel_guru')->name('template.excel.guru');
+            Route::get('/guru/delete','AllDeleteGuru')->name('all.delete.guru');
+        
+        });  
+
+        Route::controller(SetupRombelController::class)->group(function(){
+            //Route Rombongan Belajar
+            Route::get('/rombel/lihat','LihatRombel')->name('lihat.rombel');
+            Route::get('/rombel/tambah','TambahRombel')->name('tambah.rombel');
+            Route::post('/rombel/edit/{id}','EditRombel')->name('edit.rombel');
+            Route::post('/rombel/simpan','SimpanRombel')->name('simpan.rombel');
+            Route::get('/rombel/update/{id}','UpdateRombel')->name('update.rombel');
+            Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
         });   
+
+         Route::controller(SetupMataPelajaranController::class)->group(function(){
+            //Route Mapel
+        Route::get('/mapel/lihat','Index')->name('lihat.mapel');
+        Route::get('/template/mapel/excel', 'template_excel_mapel')->name('template.excel.mapel');
+        });   
+
+
+        
        
         //Route Sekolah
         Route::get('/sekolah',[SekolahController::class,'Sekolah'])->name('sekolah');
         Route::post('/update/sekolah/',[SekolahController::class,'UpdateSekolah'])->name('update.sekolah');
         
-        //Route Guru
-        Route::get('/guru/lihat',[GuruController::class,'Index'])->name('lihat.guru');
-        Route::get('/guru/tambah',[GuruController::class,'TambahGuru'])->name('tambah.guru');
-        Route::get('/guru/edit/{id}',[GuruController::class,'EditGuru'])->name('edit.guru');
-        Route::post('/guru/update/{id}',[GuruController::class,'UpdateGuru'])->name('update.guru');
-        Route::post('/guru/simpan',[GuruController::class,'SimpanGuru'])->name('simpan.guru');
-        Route::get('/guru/hapus/{id}',[GuruController::class,'HapusGuru'])->name('hapus.guru');
-        Route::get('/template/guru/excel', [GuruController::class,'template_excel_guru'])->name('template.excel.guru');
-
-        //Route Mapel
-        Route::get('/mapel/lihat',[MapelController::class,'Index'])->name('lihat.mapel');
-        Route::get('/template/mapel/excel', [MapelController::class,'template_excel_mapel'])->name('template.excel.mapel');  
         
-        //Route Rombongan Belajar
-        Route::get('/rombel/lihat',[RombelController::class,'LihatRombel'])->name('lihat.rombel');
-        Route::get('/rombel/tambah',[RombelController::class,'TambahRombel'])->name('tambah.rombel');
-        Route::post('/rombel/edit/{id}',[RombelController::class,'EditRombel'])->name('edit.rombel');
-        Route::post('/rombel/simpan',[RombelController::class,'SimpanRombel'])->name('simpan.rombel');
-        Route::get('/rombel/update/{id}',[RombelController::class,'UpdateRombel'])->name('update.rombel');
-        Route::get('/rombel/hapus/{id}',[RombelController::class,'HapusRombel'])->name('hapus.rombel');
+
+          
+        
+        
 
     }); //End Group
 
@@ -214,6 +232,18 @@ Route::middleware(['auth','role:user'])->group(function(){
 });
 
 Route::get('/admin/login', [AdminController::class,'AdminLogin'])->name('admin.login');
+Route::get('/guru/login', [GuruController::class,'GuruLogin'])->name('guru.login');
 
-
+Route::middleware(['auth','role:guru'])->group(function(){
+    Route::prefix('guru')->group(function(){
+        Route::controller(GuruController::class)->group(function(){
+        Route::get('/dashboard','GuruDashboard')->name('guru.dashboard');
+        Route::get('/logout','GuruDestroy')->name('guru.logout');
+        Route::get('/profile', 'GuruProfile')->name('guru.profile');
+        Route::post('/profile/store','GuruProfileStore')->name('guru.profile.store');
+        Route::get('/change/password','AdminChangePassword')->name('guru.change.password');
+        Route::post('/update/password','GuruUpdatePassword')->name('guru.update.password');
+        });
+    });
+ });
 

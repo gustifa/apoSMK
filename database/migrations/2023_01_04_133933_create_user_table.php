@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('Jurusan',10);
             $table->string('Group',2);
             $table->string('RFID_ID',15)->nullable();
+            $table->string('Walas_id',15)->nullable();
             //$table->primary('id');
             
             $table->timestamps();
