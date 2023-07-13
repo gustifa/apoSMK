@@ -175,6 +175,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/guru/hapus/{id}','HapusGuru')->name('hapus.guru');
             Route::get('/template/guru/excel', 'template_excel_guru')->name('template.excel.guru');
             Route::get('/guru/delete','AllDeleteGuru')->name('all.delete.guru');
+            Route::get('/guru/generate','GuruGenerate')->name('guru.generate');
         
         });  
 

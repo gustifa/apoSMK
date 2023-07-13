@@ -102,4 +102,10 @@ class SetupGuruController extends Controller
             return redirect()->route('lihat.guru')->with($notification);
         }
     }
+
+    public function GuruGenerate($id){
+       $guru = Guru::where($id)->get();
+       dd($guru);
+
+    }
 }
