@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\SetupGuruController;
 use App\Http\Controllers\Backend\SetupRombelController;
 use App\Http\Controllers\Backend\SetupMataPelajaranController;
 use App\Http\Controllers\Backend\SettingMapingController;
+use App\Http\Controllers\Backend\SetupPeserta_didikController;
 
 use App\Http\Controllers\Guru\GuruController;
 
@@ -99,6 +100,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
         //Route Import
         Route::get('/userrfid/lihat',[ImportController::class,'LihatImportUserRfid'])->name('lihat.import.userrfid');
         Route::post('/import/user-id',[ImportController::class,'ImportUserRfid'])->name('import.user.rfid');
+
+        
         Route::get('/guru/lihat',[ImportController::class,'LihatImportGuru'])->name('lihat.import.guru');
         
         Route::controller(PresensiSholatController::class)->group(function(){
@@ -146,6 +149,15 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/user/rfid/delete/{id}','UserRfidDelete')->name('user.rfid.delete');
             Route::get('/user/rfid/edit/{id}','UserRfidEdit')->name('user.rfid.edit');
             Route::post('/user/rfid/update','UserRfidUpdate')->name('user.rfid.update');
+        });
+
+        Route::controller(SetupPeserta_didikController::class)->group(function(){
+            Route::get('/lihat/peserta-didik','lihatPeserta_didik')->name('lihat.peserta_didik');
+            Route::get('/peserta-didik/delete','AllDeletePeserta_didik')->name('all.delete.user.peserta_didik');
+            Route::get('/peserta-didik/rfid/delete/{id}','Peserta_didikDelete')->name('peserta_didik.delete');
+            Route::get('/peserta-didik/edit/{id}','UserPeserta_didik')->name('peserta_didik.edit');
+            Route::post('/peserta-didik/update','Peserta_didikUpdate')->name('peserta_didik.update');
+            Route::post('/import/peserta-didik','ImportPeserta_didik')->name('import.peserta_didik');
         });
 
         Route::controller(SetupAgamaController::class)->group(function(){

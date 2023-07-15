@@ -137,7 +137,9 @@ class SetupGuruController extends Controller
 
     public function SiswaGenerate(Request $request){
        $data = userrfid::all();
+       $id = userrfid::select('id')->get();
 
+       if($id == !NULL ){
         foreach($data as $d){
            $new_password = strtolower(Str::random(8));
            $user = User::create([
@@ -157,6 +159,15 @@ class SetupGuruController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
+        }else {
+             $notification = array(
+                'message' => 'User Siswa Gagal di Generate',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+        
     
        
 

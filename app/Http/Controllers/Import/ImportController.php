@@ -20,15 +20,7 @@ class ImportController extends Controller
 
     public function importUserRfid(Request $request){
 
-      //   $validatedData = $request->validate([
-	    	// 	'Nis' => 'required|unique:user,Nis',
-	    		
-	    	// ]);
-
-        // $validatedData = $request->validate([
-        //         'Nis' => 'required|unique:user,Nis',
-                
-        //     ]);
+      
     	$notification = array(
 	    		'message' => 'UserRfid Berhasil ditambahkan',
 	    		'alert-type' => 'success'
@@ -39,6 +31,22 @@ class ImportController extends Controller
 
 
     }
+    // public function LihatPeserta_didik(Request $request){
+    //     return view('backend.setup.peserta_didik.lihat_peserta_didik');
+    // }
+
+    // public function ImportPeserta_didik(Request $request){
+
+    //     $notification = array(
+    //             'message' => 'Peserta Didik Berhasil diimport',
+    //             'alert-type' => 'success'
+    //         );
+
+    //     Excel::import(new Peserta_didik, $request->file('file')->store('files'));
+    //     return redirect()->route('lihat.peserta_didik')->with($notification);
+
+
+    // }
 
     // public function importGuru(Request $request){
 

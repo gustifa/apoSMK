@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sekolahs', function (Blueprint $table) {
-            $table->id();
+        Schema::create('sekolah', function (Blueprint $table) {
+            $table->uuid('sekolah_id');
             $table->string('npsn');
             $table->string('nama');
             $table->string('nss')->nullable();
@@ -31,9 +31,12 @@ return new class extends Migration
             $table->string('no_fax')->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
+            $table->uuid('guru_id')->nullable();
             $table->integer('status_sekolah')->nullable();
+            $table->integer('sinkron')->default(0);
             $table->string('logo_sekolah')->nullable();
             $table->timestamps();
+            $table->primary('sekolah_id');
         });
     }
 

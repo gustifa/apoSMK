@@ -8,13 +8,16 @@ use App\Models\Sekolah;
 class SekolahController extends Controller
 {
     public function Sekolah(){
-        $adminData = Sekolah::find(1);
+        // $idsekolah = Sekolah::select('id')->get();
+        $implodeId = Sekolah::select('id')->get()->implode('id');
+        $adminData = Sekolah::find($implodeId);
         return view('sekolah.sekolah_view',compact('adminData'));
     }
 
 
         public function UpdateSekolah(Request $request){
-        $data = Sekolah::find(1);
+        $implodeId = Sekolah::select('id')->get()->implode('id');
+        $data = Sekolah::find($implodeId);
         $data->nama = $request->nama;
         $data->npsn = $request->npsn;
         $data->nss = $request->nss;

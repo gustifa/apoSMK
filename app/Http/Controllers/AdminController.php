@@ -20,7 +20,10 @@ class AdminController extends Controller
          $dataUserRfid = UserRfid::all();
          $presensiData = Presensi::all();
          $tabelsholat = tblsholat::all();
-         $sekolah = Sekolah::find(1);
+         $sek = Sekolah::select('sekolah_id')->get();
+         $implodeSek = $sek->implode('sekolah_id');
+         $sekolah = Sekolah::find($implodeSek);
+         //dd($implodeSek);
 
         return view('admin.index',compact('adminData', 'presensiData','tabelsholat','dataUserRfid','dataPresensi','sekolah'));
     }

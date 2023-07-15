@@ -65,6 +65,13 @@
 					</ul>
 
 					<ul>
+						<li> <a href="{{route('lihat.peserta_didik')}}"><i class="bx bx-right-arrow-alt"></i>Peserta Didik</a>
+						</li>
+						
+	
+					</ul>
+
+					<ul>
 						<li> <a href="{{route('lihat.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Rombongan Belajar</a>
 						</li>
 						
@@ -79,6 +86,8 @@
 						
 	
 					</ul>
+
+					
 
 					<ul>
 						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>User RFID</a>

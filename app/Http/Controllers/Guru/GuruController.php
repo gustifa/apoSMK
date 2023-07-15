@@ -24,8 +24,6 @@ class GuruController extends Controller
     public function GuruDashboard(){
          $user = Auth::user()->guru_id;
          $id = Guru::where('id',$user)->latest()->get();
-         // $walas = Rombel::find($id);
-         //dd($walas);
          $walas = $id->implode('id');
          $rom = Rombel::where('guru_id',$walas)->latest()->get();
          $rombel = $rom->implode('jurusan_id', 'kelas_id', 'group_id');
