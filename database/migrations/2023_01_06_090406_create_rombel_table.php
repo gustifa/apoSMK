@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rombel', function (Blueprint $table) {
+        Schema::create('rombels', function (Blueprint $table) {
             $table->increments('id');
             //$table->string('nama');
             //$table->integer('sekolah_id');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('kelas_id');
             $table->integer('jurusan_id');
             $table->integer('group_id');
-            $table->integer('guru_id');
+            $table->uuid('guru_id')->unique();
             $table->timestamps();
         });
     }

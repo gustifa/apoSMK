@@ -28,7 +28,7 @@
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-data"></i>
 						</div>
-						<div class="menu-title">Setting Data</div>
+						<div class="menu-title">Setup Data</div>
 					</a>
 					<ul>
 						</li>
@@ -108,20 +108,20 @@
 					
 					<ul>
 						</li>
-						<li> <a href="{{route('lihat.tahunajaran')}}"><i class="bx bx-right-arrow-alt"></i>Hak Akses</a>
+						<li> <a href="{{route('lihat.user.siswa')}}"><i class="bx bx-right-arrow-alt"></i>User Siswa</a>
 						</li>
 						
 					</ul>
 
 					<ul>
 						</li>
-						<li> <a href="{{route('generete.user')}}"><i class="bx bx-right-arrow-alt"></i>Maping PBM</a>
+						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>User Guru</a>
 						</li>
 						
 					</ul>
 					<ul>
 						</li>
-						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>Hak Akses</a>
+						<li> <a href="{{route('setting.maping.pembelajaran')}}"><i class="bx bx-right-arrow-alt"></i>Maping PBM</a>
 						</li>
 						
 					</ul>

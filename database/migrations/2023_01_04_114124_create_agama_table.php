@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('agama', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->string('nama');
             $table->timestamps();
         });

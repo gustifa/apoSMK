@@ -1,42 +1,33 @@
 @extends('admin.admin_master')
 @section('admin')
 
+@section('title')
+   Lihat User Guru
+@endsection
+
 <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
 				
 
 				<!-- Awal Moodal -->
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+				
+
+									
+										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<a href="{{route('guru.generate')}}"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Generate Guru</button></a>
-												
-											</div>
-										</div>
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import</button>
+												<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Generate User</button>
 												<ul class="dropdown-menu" style="margin: 0px;">
-													<li><a class="dropdown-item" href="{{route('template.excel.guru')}}">Download Template</a>
+													<li><a class="dropdown-item" href="{{route('guru.generate')}}" id="generate_guru">Guru</a>
 													</li>
-													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Import Guru</a>
+													<!-- <li><a class="dropdown-item" href="{{route('siswa.generate')}}" id="generate_siswa">Siswa</a>
+													</li> -->
+													<li><a class="dropdown-item" href="">Kosongkan</a>
 													</li>
 												</ul>
 											</div>
 										</div>
-										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-											<div class="btn-group" role="group">
-												<a href=""><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Download</button></a>
-												
-											</div>
-										</div>
-
-										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-											<div class="btn-group" role="group">
-												<a href="" id="delete"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Kosongkan Table</button></a>
-												
-											</div>
-										</div>
+					
 
 
 
@@ -117,40 +108,7 @@
 
 
 
-<!-- 				<div class="card">
-					<div class="card-body">
-						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>Nama</th>
-										<th>Mata Pelajaran</th>
-										<th>Kelas</th>
-										<th>Jurusan</th>
-										<th>Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($dataGuru as $key => $item)
-									<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$item->nama}}</td>
-										<td>{{$item->mapel_id}}</td>
-										<td>{{$item->kelas_id}}</td>
-										<td>{{$item->jurusan_id}}</td>
-										<td style="width: 20px;">
-											<a class="btn btn-info" href="">Edit</a>
-											<a class="btn btn-danger" href="" id="delete">Hapus</a>
-										</td>
-									</tr>
-									@endforeach
-								</tbody>
-								
-							</table>
-						</div>
-					</div>
-				</div>
+		
 			</div>
 		</div>
 		<!--end page wrapper -->

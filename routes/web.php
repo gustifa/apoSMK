@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\SetupTahunAjaranController;
 use App\Http\Controllers\Backend\SetupGuruController;
 use App\Http\Controllers\Backend\SetupRombelController;
 use App\Http\Controllers\Backend\SetupMataPelajaranController;
+use App\Http\Controllers\Backend\SettingMapingController;
 
 use App\Http\Controllers\Guru\GuruController;
 
@@ -176,7 +177,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/template/guru/excel', 'template_excel_guru')->name('template.excel.guru');
             Route::get('/guru/delete','AllDeleteGuru')->name('all.delete.guru');
             Route::get('/guru/generate','GuruGenerate')->name('guru.generate');
+            Route::get('/siswa/generate','SiswaGenerate')->name('siswa.generate');
             Route::get('/guru/user/lihat','LihatUserGuru')->name('lihat.user.guru');
+            Route::get('/siswa/user/lihat','LihatUserSiswa')->name('lihat.user.siswa');
             Route::get('/guru/user/hapus/{id}','HapusUserGuru')->name('hapus.user.guru');
 
         
@@ -192,11 +195,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
         });   
 
-         Route::controller(SetupMataPelajaranController::class)->group(function(){
+        Route::controller(SetupMataPelajaranController::class)->group(function(){
             //Route Mapel
         Route::get('/mapel/lihat','Index')->name('lihat.mapel');
         Route::get('/template/mapel/excel', 'template_excel_mapel')->name('template.excel.mapel');
-        });   
+        }); 
+    
 
 
         
@@ -212,6 +216,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
         
 
     }); //End Group
+    Route::prefix('setting')->group(function(){  
+
+        Route::controller(SettingMapingController::class)->group(function(){
+            //Route Mapel
+        Route::get('/maping/pembelajaran','settingMapingPembelajaran')->name('setting.maping.pembelajaran');
+        Route::post('/maping/pembelajaran/simpan','settingMapingPembelajaranSimpan')->name('setting.maping.pembelajaran.simpan');
+
+        Route::get('/maping/pembelajaran/get','getKelasMaping')->name('get.kelas.maping');
+        });  
+    }); 
 
     //Route IMPORT
 
@@ -247,6 +261,7 @@ Route::middleware(['auth','role:guru'])->group(function(){
         Route::post('/profile/store','GuruProfileStore')->name('guru.profile.store');
         Route::get('/change/password','GuruChangePassword')->name('guru.change.password');
         Route::post('/update/password','GuruUpdatePassword')->name('guru.update.password');
+        Route::get('/lihat/presensi/sholat','guruLihatPresensiSholat')->name('guru.lihat.presensi.sholat');
         });
     });
  });

@@ -1,5 +1,8 @@
 @extends('admin.admin_master')
 @section('admin')
+@section('title')
+   Dashboard Admin
+@endsection
 <div class="page-wrapper">
 			<div class="page-content">
 

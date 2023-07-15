@@ -1,5 +1,8 @@
 @extends('admin.admin_master')
 @section('admin')
+@section('title')
+   Lihat Jurusan
+@endsection
 
 <!--start page wrapper -->
 		<div class="page-wrapper">

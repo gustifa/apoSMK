@@ -7,16 +7,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
+use App\Traits\GenUuid;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // public $incrementing = false;
+    // public $keyType = 'string';
+
+    // protected static function boot(){
+    //     parent::boot();
+
+    //     static::creating(function($model){
+    //         if($model->getKey() == NULL){
+    //             $model->setAttribute($model->getKeyName(), Str::uuid()->toString());
+    //         }
+    //     });
+    // }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
+     * 
      */
+    use GenUuid;
+    // protected $primaryKey = 'id';
     protected $guarded = [];
 
     /**

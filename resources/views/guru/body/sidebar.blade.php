@@ -22,7 +22,7 @@
 						<div class="menu-title">Presensi Sholat</div>
 					</a>
 					<ul>
-						<li> <a href="{{route('lihat.presensi.sholat')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Presensi</a>
+						<li> <a href="{{route('guru.lihat.presensi.sholat')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Presensi</a>
 						</li>
 						<li> <a href="{{route('tambah.presensi.sholat')}}"><i class="bx bx-right-arrow-alt"></i> Presensi Manual</a>
 						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i> Presensi Barcode</a>

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('gurus', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->string('nama',80);
             $table->string('nik', 16);
             $table->string('nuptk',16)->nullable();
@@ -34,9 +34,8 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
             $table->string('photo')->nullable();
-            //$table->primary('id');
-            
             $table->timestamps();
+
         });
     }
 

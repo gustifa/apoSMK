@@ -1,6 +1,10 @@
 @extends('admin.admin_master')
 @section('admin')
 
+@section('title')
+   Lihat Tahun Pelajaran
+@endsection
+
 <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">

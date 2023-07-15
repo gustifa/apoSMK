@@ -9,25 +9,33 @@ use App\Models\User;
 use App\Models\UserRfid;
 use App\Models\Presensi;
 use App\Models\tblsholat;
+use App\Models\Jurusan;
+use App\Models\Kelas;
+use App\Models\Group;
 use App\Models\Guru;
 use App\Models\Rombel;
+use App\Models\PresensiSholat;
 //use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class GuruController extends Controller
 {
     public function GuruDashboard(){
-         // $adminData = User::all();
-         $user = Auth::user()->user_id;
-         $guruData = User::where('role','guru')->where('user_id', $user)->get();
-       
-         $dataPresensi = Presensi::all();
-         $dataUserRfid = Rombel::all();
-         // dd($dataUserRfid);
-         $presensiData = Presensi::all();
-         $tabelsholat = tblsholat::all();
-
-        return view('guru.index',compact('guruData', 'presensiData','tabelsholat','dataUserRfid','dataPresensi'));
+         $user = Auth::user()->guru_id;
+         $id = Guru::where('id',$user)->latest()->get();
+         // $walas = Rombel::find($id);
+         //dd($walas);
+         $walas = $id->implode('id');
+         $rom = Rombel::where('guru_id',$walas)->latest()->get();
+         $rombel = $rom->implode('jurusan_id', 'kelas_id', 'group_id');
+         $jur = Jurusan::where('id',$rombel )->latest()->get();
+         $kel = Kelas::where('id',$rombel )->latest()->get();
+         $gr = Group::where('id', $rombel)->latest()->get();
+         $kelas = $kel->implode('nama');
+         $jurusan = $jur->implode('kode');
+         $group = $gr->implode('nama');
+        return view('guru.index', compact('kelas', 'jurusan', 'group'));
     }
 
     public function GuruDestroy(Request $request)
@@ -75,11 +83,7 @@ class GuruController extends Controller
         );
 
         $data->save();
-        return redirect()->back()->with($notification);
-
-
-
-        
+        return redirect()->back()->with($notification);        
     }
 
 
@@ -106,20 +110,18 @@ class GuruController extends Controller
     } //End Method
 
 
-    public function genereteUser(){
-        // $dataUserRfid = UserRfid::all();
-        // $user =  User::create([
-        //         'username' => 'fauzan',
-        //         'role' => 'siswa',
-        //         'password' => Hash::make('password'),
-        //     ]);
-
-        // $user = new App\Models\User();
-        // $user->password = Hash::make('the-password-of-choice');
-        // $user->email = 'the-email@example.com';
-        // //$user->name = 'My Name';
-        // $user->save();
-
-        return redirect()->route('lihat.user')->with($notification);
+    public function guruLihatPresensiSholat(){
+        // $presensiSolat = tblsholat::all();
+        $jurusan = Jurusan::latest()->get();
+        $kelas = Kelas::latest()->get();
+        $group = Group::latest()->get();
+        $userLoginId = Auth::user()->guru_id;
+        $userRfId = DB::table('user')->where('Walas_id', $userLoginId)->get();
+         // $userPresensiSholat = DB::table('user')->where('Walas_id', $userRfId)->get();
+         // dd($userRfId);
+        $dataPresensi = PresensiSholat::all();
+        return view('guru.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi'));
     }
+
+
 }

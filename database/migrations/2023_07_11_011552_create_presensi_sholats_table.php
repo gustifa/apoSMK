@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('presensi_sholats', function (Blueprint $table) {
-            $table->id();
-            $table->integer('siswa_id')->nullable();
+            $table->uuid('id')->primary();
+            // $table->uuid('siswa_id')->nullable();
+            $table->string('siswa_id')->nullable();
             $table->string('presensi')->default(0);
             $table->timestamps();
         });

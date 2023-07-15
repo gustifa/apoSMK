@@ -1,9 +1,5 @@
-@extends('admin.admin_master')
-@section('admin')
-
-@section('title')
-   Lihat Presensi Sholat
-@endsection
+@extends('guru.guru_master')
+@section('guru')
 
 <!--start page wrapper -->
 		<div class="page-wrapper">
@@ -18,9 +14,11 @@
 										<th style="width: 8px;">No</th>
 										<th>Name</th>
 										<th>Jurusan</th>
+										<th>Walas</th>
 										
 										<th>Presensi</th>
 										<th>Waktu Presensi</th>
+										
 
 										
 									</tr>
@@ -31,6 +29,7 @@
 										<td>{{$key+1}}</td>
 										<td>{{$item->presensiSholat->Nama}}</td>
 										<td>{{$item->presensiSholat->kelas->nama}} {{$item->presensiSholat->jurusan->kode}} {{$item->presensiSholat->group->nama}}</td>
+										<td>{{$item->presensiSholat->walas->nama}} {{$item->presensiSholat->jurusan->kode}} {{$item->presensiSholat->group->nama}}</td>
 										
 										@if($item->presensi == 0)
 										<td>Tidak Hadir</td>

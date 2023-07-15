@@ -1,6 +1,10 @@
 @extends('admin.admin_master')
 @section('admin')
 
+@section('title')
+   Tambah Guru
+@endsection
+
 <!--start page wrapper -->
 <div class="page-wrapper">
 	<div class="page-content">

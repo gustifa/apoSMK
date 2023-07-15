@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\userrfid;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -113,7 +114,7 @@ class SetupGuruController extends Controller
            $new_password = strtolower(Str::random(8));
            $user = User::create([
                         'name' => $d->nama,
-                        'user_id' => $d->id,
+                        'guru_id' => $d->id,
                         'username' => $new_password,
                         'password' => Hash::make($new_password),
                         'email' => $new_password.'@smkn1kinali.sch.id',
@@ -134,9 +135,42 @@ class SetupGuruController extends Controller
 
     }
 
+    public function SiswaGenerate(Request $request){
+       $data = userrfid::all();
+
+        foreach($data as $d){
+           $new_password = strtolower(Str::random(8));
+           $user = User::create([
+                        'name' => $d->Nama,
+                        'siswa_id' => $d->id,
+                        'username' => $new_password,
+                        'password' => Hash::make($new_password),
+                        'email' => $new_password.'@smkn1kinali.sch.id',
+                        'role' => 'siswa',
+                        'status' => '1',
+                    ]);
+           
+       }
+
+       $notification = array(
+                'message' => 'User Siswa Berhasil di Generate',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+    
+       
+
+
+    }
+
     public function LihatUserGuru(){
         $dataGuru = User::where('role','guru')->get();
         return view('backend.setup.guru.lihat_user_guru', compact('dataGuru'));
+    }
+
+    public function LihatUserSiswa(){
+        $dataGuru = User::where('role','siswa')->get();
+        return view('backend.setup.guru.lihat_user_siswa', compact('dataGuru'));
     }
 
     public function HapusUserGuru($id){

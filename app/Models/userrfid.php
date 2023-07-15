@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\GenUuid;
 
 class UserRfid extends Model
 {
     use HasFactory;
+    use GenUuid;
     protected $table = 'user';
 	protected $primaryKey = 'id';
     protected $guarded = [];

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rombel extends Model
 {
     use HasFactory;
-    protected $table = 'rombel';
-	protected $primaryKey = 'id';
+ //    protected $table = 'rombel';
+	// protected $primaryKey = 'id';
     protected $guarded = [];
 
     public function walas(){

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\GenUuid;
 
 class PresensiSholat extends Model
 {
     use HasFactory;
+    use GenUuid;
     // protected $table = 'presensi_sholat';
     // protected $primaryKey = 'id';
     protected $guarded = [];
