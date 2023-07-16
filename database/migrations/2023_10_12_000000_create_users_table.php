@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             // $table->uuid('id')->primary();
-            $table->uuid('id');
+            $table->id();
             $table->string('name');
             $table->string('username')->nullable();
             $table->string('email')->unique();
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
             $table->timestamps();
-            $table->primary('id');
+            // $table->primary('id');
             $table->foreign('guru_id')->references('guru_id')->on('guru');
             $table->foreign('siswa_id')->references('id')->on('user');
         });

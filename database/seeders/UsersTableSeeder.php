@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //admin
             [
-                'id' => Str::uuid()->toString(),
+                'id' => '1',
                 'name' => 'admin',
                 'username' => 'admin',
                 'email' => 'fauzangustifa@gmail.com',
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             ],
             //guru
             [
-                'id' => Str::uuid()->toString(),
+                'id' => '2',
                 'name' => 'guru',
                 'username' => 'guru',
                 'email' => 'guru@gmail.com',
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
             ],
             //user
             [
-                'id' => Str::uuid()->toString(),
+                'id' => '3',
                 'name' => 'user',
                 'username' => 'user',
                 'email' => 'user@gmail.com',
