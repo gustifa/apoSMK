@@ -86,7 +86,7 @@
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
 		<!-- social-icon -->
 	<script src="{{asset('adminbackend/assets/social/js/docs.js')}}"></script>
-	<script src="{{asset('adminbackend/assets/social/js/jquery.js')}}"></script>
+	<!-- <script src="{{asset('adminbackend/assets/social/js/jquery.js')}}"></script> -->
 	<script src="{{asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
 	
 	  <script>
