@@ -109,17 +109,5 @@ class SetupRombelController extends Controller
 
     }
 
-    public function ImportAnggota_rombel(Request $request){
-
-        $notification = array(
-                'message' => 'Anggota Rombel Berhasil diimport',
-                'alert-type' => 'success'
-            );
-
-        $import = Excel::import(new ImportAnggota_rombel, $request->file('file')->store('files'));
-        //dd($import);
-        return redirect()->route('lihat.anggota_rombel')->with($notification);
-
-
-    }
+    
 }

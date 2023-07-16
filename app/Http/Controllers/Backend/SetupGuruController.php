@@ -123,7 +123,7 @@ class SetupGuruController extends Controller
                         'password' => Hash::make($new_password),
                         'email' => $new_password.'@smkn1kinali.sch.id',
                         'role' => 'guru',
-                        'status' => '1',
+                        'status' => 'active',
                     ]);
            
        }
@@ -152,7 +152,7 @@ class SetupGuruController extends Controller
                         'password' => Hash::make($new_password),
                         'email' => $new_password.'@smkn1kinali.sch.id',
                         'role' => 'siswa',
-                        'status' => '1',
+                        'status' => 'active',
                     ]);
            
        }
