@@ -42,8 +42,8 @@
 								<div class="d-flex align-items-center">
 									<h5 class="mb-0 text-white">
 
-										@if(count($dataUserRfid) > 0)
-										{{$dataUserRfid->count()}}
+										@if(count($dataPeserta_didik) > 0)
+										{{$dataPeserta_didik->count()}}
 										@else
 										0
 										@endif
@@ -60,7 +60,7 @@
 								</div>
 								<a href="{{route('lihat.user')}}">
 								<div class="d-flex align-items-center text-white">
-									<p class="mb-0">Total User RFID</p>
+									<p class="mb-0">Total Peserta Didik</p>
 								</div>
 								</a>
 							</div>
@@ -71,8 +71,8 @@
 							<div class="card-body">
 								<div class="d-flex align-items-center">
 									<h5 class="mb-0 text-white">
-										@if(count($tabelsholat) > 0)
-										{{$tabelsholat->count()}}
+										@if(count($dataGuru) > 0)
+										{{$dataGuru->count()}}
 										@else
 										0
 										@endif
@@ -88,7 +88,7 @@
 									<div class="progress-bar bg-white" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
 								<div class="d-flex align-items-center text-white">
-									<p class="mb-0">Total Siswa</p>
+									<p class="mb-0">Total Guru</p>
 									
 								</div>
 							</div>
@@ -99,11 +99,7 @@
 							 <div class="card-body">
 								<div class="d-flex align-items-center">
 									<h5 class="mb-0 text-white">
-										@if(count($dataPresensi) > 0)
-										{{$dataPresensi->count()}}
-										@else
 										0
-										@endif
 									</h5>
 									<div class="ms-auto">
                                         <i class='bx bx-envelope fs-3 text-white'></i>
@@ -185,7 +181,7 @@
 						<table class="table table-condensed">
 					<tbody><tr>
 						<td width="30%">Nama Aplikasi</td>
-						<td width="70%">: e-lspSMK</td>
+						<td width="70%">: apoSMK</td>
 					</tr>
 					<tr>
 						<td>Versi Aplikasi</td>
@@ -196,12 +192,12 @@
 						<td>: 4.0.5</td>
 					</tr>
 					<tr>
-						<td>Status Penilaian</td>
+						<td>Status Presensi</td>
 						<td>: <div class="btn-group" id="status" data-toggle="buttons">
 							<label class="btn btn-default btn-on btn-sm">
-							<input class="status" type="radio" value="1" name="status">AKTIF</label>
+							<input class="status" type="radio" value="1" name="status" checked="">AKTIF</label>
 							<label class="btn btn-default btn-off btn-sm active">
-							<input class="status" type="radio" value="0" name="status" checked="">Non AKtif</label>
+							<input class="status" type="radio" value="0" name="status" >Non AKtif</label>
 						  </div>
 						</td>
 					</tr>
@@ -210,73 +206,21 @@
 						<td>: <a href="" target="_blank" class="btn btn-sm btn-social btn-facebook"><i class="fa fa-facebook"></i>FB Group</a> <a href="" target="_blank" class="btn btn-sm btn-social btn-info"><i class="fa fa-paper-plane"></i>Telegram</a></td>
 					</tr>
 					<tr>
-						<td>Tim Helpdesk</td>
-						<td>
-							<a class="btn btn-sm btn-block btn-social btn-success" target="_blank" href="https://api.whatsapp.com/send?phone=6285274817886&amp;text=NPSN:10308183"><i class="fa fa-whatsapp"></i> Gustifa Fauzan [085274817886]</a>
+						<td rowspan="2">Tim Helpdesk</td>
+						<td>: <a class="btn btn-sm btn-block btn-social btn-success" target="_blank" href="https://api.whatsapp.com/send?phone=6285274817886&amp;text=NPSN:10308183"><i class="fa fa-whatsapp"></i> Gustifa Fauzan [085274817886]</a>
+							
+						</td>
+					</tr>
+					<tr>
+
+						<td>: <a class="btn btn-sm btn-block btn-social btn-success" target="_blank" href="https://api.whatsapp.com/send?phone=085264931363&amp;text=NPSN:10308183"><i class="fa fa-whatsapp"></i> Hidayat Putra [085264931363]</a>
 							
 						</td>
 					</tr>
 				</tbody></table>
 			</div>
 		</div> <!--Akhir row-->
-		<!-- ///////////////////////// -->
-				
-
-
-
-					<!-- <div class="card radius-10">
-						<div class="card-body">
-							<div class="d-flex align-items-center">
-								<div>
-									<h5 class="mb-0">
-									Real Time Presensi <span id="time">
-									@php
-										$mytime = Carbon\Carbon::now();
-										$mytime->setTimezone('+7:00');
-
-									@endphp
-									{{$mytime}}
-									</span>
-								</h5>
-								</div>
-								<div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
-								</div>
-							</div>
-							<hr>
-							<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th style="width: 8px;">No</th>
-										<th>Name</th>
-										<th>Zuhur</th>
-										<th>Ashar</th>
-										<th>Status</th>
-										<th>Ket</th>
-										<th>Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($tabelsholat as $key => $item)
-									<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$item->siswa_id}}</td>
-										<td>{{$item->Zuhur}}</td>
-										<td>{{$item->Ashar}}</td>
-										<td>Waktu</td>
-										<td>Status</td>
-										<td style="width: 20px;">
-											<a class="btn btn-info" href="">Edit</a>
-											<a class="btn btn-danger" href="" id="delete">Hapus</a>
-										</td>
-									</tr>
-									@endforeach
-								</tbody>
-								
-							</table>
-						</div>
-						</div>
-					</div> -->
+		
 
 			</div>
 		</div>

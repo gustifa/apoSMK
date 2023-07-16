@@ -5,27 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\UserRfid;
+use App\Models\Guru;
 use App\Models\Presensi;
 use App\Models\tblsholat;
 use App\Models\Sekolah;
+use App\Models\Peserta_didik;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     public function AdminDashboard(){
          // $adminData = User::all();
-         $adminData = User::where('role','admin')->get();;
-         $dataPresensi = Presensi::all();
-         $dataUserRfid = UserRfid::all();
-         $presensiData = Presensi::all();
-         $tabelsholat = tblsholat::all();
+         $adminData = User::all();
+         // dd($adminData);
+         $dataPeserta_didik = Peserta_didik::all();
+         $dataGuru = Guru::all();
+
          $sek = Sekolah::select('sekolah_id')->get();
          $implodeSek = $sek->implode('sekolah_id');
          $sekolah = Sekolah::find($implodeSek);
          //dd($implodeSek);
 
-        return view('admin.index',compact('adminData', 'presensiData','tabelsholat','dataUserRfid','dataPresensi','sekolah'));
+        return view('admin.index',compact('adminData', 'dataPeserta_didik','dataGuru','sekolah'));
     }
 
     public function AdminDestroy(Request $request)
