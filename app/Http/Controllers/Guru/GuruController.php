@@ -22,18 +22,18 @@ use DB;
 class GuruController extends Controller
 {
     public function GuruDashboard(){
-         $user = Auth::user()->guru_id;
-         $id = Guru::where('id',$user)->latest()->get();
-         $walas = $id->implode('id');
-         $rom = Rombel::where('guru_id',$walas)->latest()->get();
-         $rombel = $rom->implode('jurusan_id', 'kelas_id', 'group_id');
-         $jur = Jurusan::where('id',$rombel )->latest()->get();
-         $kel = Kelas::where('id',$rombel )->latest()->get();
-         $gr = Group::where('id', $rombel)->latest()->get();
-         $kelas = $kel->implode('nama');
-         $jurusan = $jur->implode('kode');
-         $group = $gr->implode('nama');
-        return view('guru.index', compact('kelas', 'jurusan', 'group'));
+        //  $user = Auth::user()->guru_id;
+        //  $id = Guru::where('guru_id',$user)->latest()->get();
+        //  $walas = $id->implode('id');
+        //  $rom = Rombel::where('guru_id',$walas)->latest()->get();
+        //  $rombel = $rom->implode('jurusan_id', 'kelas_id', 'group_id');
+        //  $jur = Jurusan::where('id',$rombel )->latest()->get();
+        //  $kel = Kelas::where('id',$rombel )->latest()->get();
+        //  $gr = Group::where('id', $rombel)->latest()->get();
+        //  $kelas = $kel->implode('nama');
+        //  $jurusan = $jur->implode('kode');
+        //  $group = $gr->implode('nama');
+        return view('guru.index');
     }
 
     public function GuruDestroy(Request $request)

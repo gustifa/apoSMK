@@ -16,11 +16,7 @@
 			@if($status === 'active')
 <h6>Penguna {{$user->name}} <span class="text-success">Aktif</span></h6>
 	<hr />
-	@if ($kelas || $jurusan || $group == !NULL )
-<h5>Selamat Datang Aplikasi Presensi Anda Walas {{$kelas}} {{$jurusan}} {{$group}}  </h5>
-	@else
-	<h5>Selamat Datang Aplikasi Presensi Anda Guru</h5>
-	@endif
+	
 @else
 <h4>Pengguna {{$user->name}} <span class="text-danger">Tidak Aktif</span></h4>
 <p class="text-danger"> Silahkan Tunggu Admin untuk mengaktifkan</p>
