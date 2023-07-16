@@ -11,15 +11,15 @@ use Maatwebsite\Excel\Facades\Excel;
 class ImportGuruController extends Controller
 {
 
-    public function importGuru(Request $request){
-    	$notification = array(
-	    		'message' => 'Guru Berhasil diimport',
-	    		'alert-type' => 'success'
-	    	);
+    // public function importGuru(Request $request){
+    // 	$notification = array(
+	   //  		'message' => 'Guru Berhasil diimport',
+	   //  		'alert-type' => 'success'
+	   //  	);
 
-        Excel::import(new ImportGuru, $request->file('file')->store('files'));
-        return redirect()->route('lihat.mapel')->with($notification);
+    //     Excel::import(new ImportGuru, $request->file('file')->store('files'));
+    //     return redirect()->route('lihat.mapel')->with($notification);
 
 
-    }
+    // }
 }

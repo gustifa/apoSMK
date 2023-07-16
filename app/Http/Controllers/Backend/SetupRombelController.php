@@ -10,6 +10,8 @@ use App\Models\Jurusan;
 use App\Models\Group;
 use App\Models\Guru;
 use App\Models\userrfid;
+use App\Imports\ImportRombongan_belajar;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SetupRombelController extends Controller
 {
@@ -92,4 +94,32 @@ class SetupRombelController extends Controller
             return redirect()->route('lihat.rombel')->with($notification);
 
         }
+
+    public function ImportRombel(Request $request){
+
+        $notification = array(
+                'message' => 'Rombongan Belajar Berhasil diimport',
+                'alert-type' => 'success'
+            );
+
+        $import = Excel::import(new ImportRombongan_belajar, $request->file('file')->store('files'));
+        //dd($import);
+        return redirect()->route('lihat.rombel')->with($notification);
+
+
+    }
+
+    public function ImportAnggota_rombel(Request $request){
+
+        $notification = array(
+                'message' => 'Anggota Rombel Berhasil diimport',
+                'alert-type' => 'success'
+            );
+
+        $import = Excel::import(new ImportAnggota_rombel, $request->file('file')->store('files'));
+        //dd($import);
+        return redirect()->route('lihat.anggota_rombel')->with($notification);
+
+
+    }
 }

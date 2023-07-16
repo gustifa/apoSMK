@@ -18,24 +18,24 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('gurus')->insert([
+        DB::table('guru')->insert([
             //admin
             [
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'guru_id' => Str::uuid()->toString(),
                 'nama' => 'GUSTIFA FAUZAN',
                 'nik' => '131204020886002',
                 'created_at' => Carbon::now(),
             ],
 
             [
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'guru_id' => Str::uuid()->toString(),
                 'nama' => 'M. GIBRAN ASKARA',
                 'nik' => '131206020886002',
                 'created_at' => Carbon::now(),
             ],
 
             [
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'guru_id' => Str::uuid()->toString(),
                 'nama' => 'M. ALFATIH RISKI',
                 'nik' => '131207020886002',
                 'created_at' => Carbon::now(),

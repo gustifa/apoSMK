@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\GenUuid;
+use App\Traits\Uuid;
 
 class Peserta_didik extends Model
 {
     use HasFactory;
-    use GenUuid;
+    use Uuid;
 
     protected $table = 'peserta_didik';
     protected $primaryKey = 'peserta_didik_id';

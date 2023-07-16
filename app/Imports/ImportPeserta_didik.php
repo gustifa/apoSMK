@@ -17,7 +17,7 @@ class ImportPeserta_didik implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Peserta_didik([
-            'peserta_didik_id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+            'peserta_didik_id' => $row['peserta_didik_id'],
             'nama' => $row['nama'],
             'no_induk' => $row['no_induk'],
             'nisn' => $row['nisn'],

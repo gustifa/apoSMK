@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
-use App\Traits\GenUuid;
+use App\Traits\Uuid;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -33,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      * 
      */
-    use GenUuid;
+    use Uuid;
     // protected $primaryKey = 'id';
     protected $guarded = [];
 

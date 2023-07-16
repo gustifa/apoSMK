@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Guru;
 use App\Models\User;
 use App\Models\userrfid;
+use App\Models\Peserta_didik;
+
+use App\Imports\ImportGuru;
 use DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 
 class SetupGuruController extends Controller
 {
@@ -114,7 +118,7 @@ class SetupGuruController extends Controller
            $new_password = strtolower(Str::random(8));
            $user = User::create([
                         'name' => $d->nama,
-                        'guru_id' => $d->id,
+                        'guru_id' => $d->guru_id,
                         'username' => $new_password,
                         'password' => Hash::make($new_password),
                         'email' => $new_password.'@smkn1kinali.sch.id',
@@ -136,14 +140,13 @@ class SetupGuruController extends Controller
     }
 
     public function SiswaGenerate(Request $request){
-       $data = userrfid::all();
-       $id = userrfid::select('id')->get();
+       $data = Peserta_didik::all();
+       $id = Peserta_didik::select('peserta_didik_id')->get();
 
-       if($id == !NULL ){
         foreach($data as $d){
            $new_password = strtolower(Str::random(8));
            $user = User::create([
-                        'name' => $d->Nama,
+                        'name' => $d->nama,
                         'siswa_id' => $d->id,
                         'username' => $new_password,
                         'password' => Hash::make($new_password),
@@ -159,17 +162,21 @@ class SetupGuruController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
-        }else {
-             $notification = array(
-                'message' => 'User Siswa Gagal di Generate',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
-        }
-
         
-    
        
+
+
+    }
+
+
+    public function importGuru(Request $request){
+        $notification = array(
+                'message' => 'Guru Berhasil diimport',
+                'alert-type' => 'success'
+            );
+
+        Excel::import(new ImportGuru, $request->file('file')->store('files'));
+        return redirect()->route('lihat.guru')->with($notification);
 
 
     }

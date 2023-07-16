@@ -6,8 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use DB;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
-use App\Traits\GenUuid;
+use File;
 
 class AgamaSeeder extends Seeder
 {
@@ -19,47 +18,19 @@ class AgamaSeeder extends Seeder
      *
      * @return void
      */
-    use GenUuid;
     public function run()
     {
-        DB::table('agama')->insert([
-            //admin
-            [   
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
-                'nama' => 'Islam',
-                'created_at' => Carbon::now(),
-            ],
-
-            // [   
-            //     'id' => Str::uuid()->toString(),
-            //     'nama' => 'Kristen',
-            //     'created_at' => Carbon::now(),
-            // ],
-
-            // [
-            //     'id' => Str::uuid()->toString(),
-            //     'nama' => 'Khatolik',
-            //     'created_at' => Carbon::now(),
-            // ],
-
-            // [
-            //     'id' => Str::uuid()->toString(),
-            //     'nama' => 'Hindu',
-            //     'created_at' => Carbon::now(),
-            // ],
-
-            // [
-            //     'id' => Str::uuid()->toString(),
-            //     'nama' => 'Budha',
-            //     'created_at' => Carbon::now(),
-            // ],
-
-            // [
-            //     'id' => Str::uuid()->toString(),
-            //     'nama' => 'Kong Hu Cu',
-            //     'created_at' => Carbon::now(),
-            // ],
-
-        ]);
+        DB::table('agama')->truncate();
+        $json = File::get('database/data/agama.json');
+        $data = json_decode($json);
+        foreach($data as $obj){
+            DB::table('agama')->insert([
+                'agama_id'  => $obj->id,
+                'nama'      => $obj->nama,
+                'created_at'    => $obj->created_at,
+                'updated_at'    => $obj->updated_at,
+                'deleted_at'    => $obj->deleted_at,
+            ]);
+        }
     }
 }

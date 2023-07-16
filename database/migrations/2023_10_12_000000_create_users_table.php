@@ -35,7 +35,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->primary('id');
-            $table->foreign('guru_id')->references('id')->on('gurus');
+            $table->foreign('guru_id')->references('guru_id')->on('guru');
             $table->foreign('siswa_id')->references('id')->on('user');
         });
     }

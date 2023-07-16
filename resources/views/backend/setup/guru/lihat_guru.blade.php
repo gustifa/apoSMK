@@ -105,7 +105,7 @@
 										<td>{{$item->tanggal_lahir}}</td>
 										<td style="width: 20px;">
 											<a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" href=""><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{ route('hapus.guru',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<a class="btn btn-danger" href="{{ route('hapus.guru',$item->guru_id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 
 										</td>
 									</tr>

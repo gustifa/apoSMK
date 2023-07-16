@@ -104,8 +104,8 @@
 										<td>{{$key+1}}</td>
 										<td>{{$item->nama}}</td>
 										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{ route('edit.agama',$item->id) }}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{ route('hapus.agama',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<a class="btn btn-info" href="{{ route('edit.agama',$item->agama_id) }}"><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-danger" href="{{ route('hapus.agama',$item->agama_id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 
 										</td>
 									</tr>

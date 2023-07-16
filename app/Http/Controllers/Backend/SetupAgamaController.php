@@ -10,7 +10,7 @@ class SetupAgamaController extends Controller
 {
     public function Agama(){
         // $dataAgama = Agama::latest()->get();
-         $dataAgama = Agama::orderBy('id','asc')->get();
+         $dataAgama = Agama::orderBy('agama_id','asc')->get();
         return view('backend.setup.agama.index', compact('dataAgama'));
     }
 

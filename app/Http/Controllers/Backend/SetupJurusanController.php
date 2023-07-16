@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jurusan;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportJurusan;
+
 
 class SetupJurusanController extends Controller
 {
     public function LihatJurusan(){
     	// $dataJurusan = Jurusan::all();
-    	$dataJurusan = Jurusan::orderBy('id','asc')->get();
+    	$dataJurusan = Jurusan::orderBy('jurusan_id','asc')->get();
     	return view('backend.setup.jurusan.lihat_jurusan', compact('dataJurusan'));
     }
 
@@ -77,4 +80,16 @@ class SetupJurusanController extends Controller
 	    	return redirect()->route('lihat.jurusan')->with($notification);
 
 	    }
+
+	    public function ImportJUrusan(Request $request){
+
+        $notification = array(
+                'message' => 'Jurusan diimport',
+                'alert-type' => 'success'
+            );
+
+        $import = Excel::import(new ImportJurusan, $request->file('file')->store('files'));
+        //dd($import);
+        return redirect()->route('lihat.jurusan')->with($notification);
+    }
 }

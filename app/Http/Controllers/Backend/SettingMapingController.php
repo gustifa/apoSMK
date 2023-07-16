@@ -9,6 +9,9 @@ use App\Models\Kelas;
 use App\Models\Jurusan;
 use App\Models\Group;
 use App\Models\userrfid;
+use App\Imports\ImportAnggota_rombel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Anggota_rombel;
 
 
 class SettingMapingController extends Controller
@@ -18,8 +21,8 @@ class SettingMapingController extends Controller
         $jurusan = Jurusan::latest()->get();
         $kelas = Kelas::latest()->get();
         $group = Group::latest()->get();
-        $userRfid = UserRfid::latest()->get();
-        return view('backend.setting.setting_maping_pembelajaran',compact('dataPresensi', 'jurusan', 'kelas', 'group', 'userRfid') );
+        $dataRfid = Anggota_rombel::latest()->get();
+        return view('backend.setting.setting_maping_pembelajaran',compact('dataPresensi', 'jurusan', 'kelas', 'group', 'dataRfid') );
     }
 
     public function settingMapingPembelajaranSimpan(Request $request){
@@ -34,5 +37,19 @@ class SettingMapingController extends Controller
     public function getKelasMaping($id){
         $getKelas = userrfid::where('Kelas', $id)->get();
         return response()->json($getKelas);
+    }
+
+    public function ImportAnggota_rombel(Request $request){
+
+        $notification = array(
+                'message' => 'Anggota Rombel Berhasil diimport',
+                'alert-type' => 'success'
+            );
+
+        $import = Excel::import(new ImportAnggota_rombel, $request->file('file')->store('files'));
+        //dd($import);
+        return redirect()->route('lihat.anggota_rombel')->with($notification);
+
+
     }
 }

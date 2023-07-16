@@ -13,28 +13,31 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gurus', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('nama',80);
-            $table->string('nik', 16);
-            $table->string('nuptk',16)->nullable();
+        Schema::create('guru', function (Blueprint $table) {
+            $table->uuid('guru_id');
+            $table->string('nama');
+            $table->string('nuptk');
             $table->string('nip')->nullable();
-            $table->string('jenis_kelamin')->nullable();
-            $table->string('tempat_lahir',50)->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->integer('mapel_id')->nullable();
-            $table->integer('agama_id')->nullable();
-            $table->integer('jurusan_id')->nullable();
+            $table->string('jenis_kelamin');
+            $table->string('tempat_lahir');
+            $table->string('tanggal_lahir');
+            $table->string('nik', 16)->nullable();
+            $table->integer('jenis_ptk_id');
+            $table->integer('agama_id');
+            $table->integer('status_kepegawaian_id');
             $table->string('alamat')->nullable();
             $table->string('rt')->nullable();
             $table->string('rw')->nullable();
             $table->string('desa_kelurahan')->nullable();
             $table->string('kecamatan')->nullable();
+            $table->string('kode_wilayah');
             $table->string('kode_pos')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->primary('guru_id');
 
         });
     }

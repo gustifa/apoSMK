@@ -131,6 +131,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::post('/jurusan/update/{id}','UpdateJurusan')->name('update.jurusan');
             Route::post('/jurusan/simpan','SimpanJurusan')->name('simpan.jurusan');
             Route::get('/jurusan/hapus/{id}','HapusJurusan')->name('hapus.jurusan');
+            Route::post('/import/jurusan','ImportJurusan')->name('import.jurusan');
         });
 
         Route::controller(SetupKelasController::class)->group(function(){
@@ -163,10 +164,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::controller(SetupAgamaController::class)->group(function(){
             Route::get('/agama/lihat','Agama')->name('lihat.agama');
             Route::get('/agama/tambah','TambahAgama')->name('tambah.agama');
-            Route::get('/agama/edit/{id}','EditAgama')->name('edit.agama');
-            Route::post('/agama/update/{id}','UpdateAgama')->name('update.agama');
+            Route::get('/agama/edit/{agama_id}','EditAgama')->name('edit.agama');
+            Route::post('/agama/update/{agama_id}','UpdateAgama')->name('update.agama');
             Route::post('/agama/simpan','SimpanAgama')->name('simpan.agama');
-            Route::get('/agama/hapus/{id}','HapusAgama')->name('hapus.agama');
+            Route::get('/agama/hapus/{agama_id}','HapusAgama')->name('hapus.agama');
     
         });  
 
@@ -193,6 +194,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/guru/user/lihat','LihatUserGuru')->name('lihat.user.guru');
             Route::get('/siswa/user/lihat','LihatUserSiswa')->name('lihat.user.siswa');
             Route::get('/guru/user/hapus/{id}','HapusUserGuru')->name('hapus.user.guru');
+            Route::post('/import/guru','importGuru')->name('import.guru');
 
         
         });  
@@ -205,6 +207,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::post('/rombel/simpan','SimpanRombel')->name('simpan.rombel');
             Route::get('/rombel/update/{id}','UpdateRombel')->name('update.rombel');
             Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
+            Route::post('/import/rombel','ImportRombel')->name('import.rombel');
         });   
 
         Route::controller(SetupMataPelajaranController::class)->group(function(){
@@ -236,13 +239,15 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/maping/pembelajaran/simpan','settingMapingPembelajaranSimpan')->name('setting.maping.pembelajaran.simpan');
 
         Route::get('/maping/pembelajaran/get','getKelasMaping')->name('get.kelas.maping');
+        Route::post('/import/anggota-rombel','importAnggota_rombel')->name('import.anggota.rombel');
+
         });  
     }); 
 
     //Route IMPORT
 
     Route::prefix('import')->group(function(){
-        Route::post('/guru',[ImportGuruController::class,'importGuru'])->name('import.guru');
+        
         Route::post('/mapel',[ImportMapelController::class,'importMapel'])->name('import.mapel');
 
 

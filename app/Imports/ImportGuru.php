@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\Models\Guru;
 use Maatwebsite\Excel\Concerns\ToModel;
 use App\Traits\GenUuid;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ImportGuru implements ToModel
+class ImportGuru implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -16,18 +17,26 @@ class ImportGuru implements ToModel
     public function model(array $row)
     {
         return new Guru([
-            'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
-            'nama' => $row[0],
-            'nuptk' => $row[1],
-            'nip' => $row[2],
-            'jenis_kelamin' => $row[3],
-            'tempat_lahir' => $row[4],
-            'tanggal_lahir' => $row[5],
-            'nik' => $row[6],
-            // 'mapel_id' => $row[7],
-            // 'agama_id' => $row[8],
-            // 'jurusan_id' => $row[9],
-            // 'RFID_ID' => $row[4],
+            'guru_id' => $row['guru_id'],
+            'nama' => $row['nama'],
+            'nuptk' => $row['nuptk'],
+            'nip' => $row['nip'],
+            'jenis_kelamin' => $row['jenis_kelamin'],
+            'tempat_lahir' => $row['tempat_lahir'],
+            'tanggal_lahir' => $row['tanggal_lahir'],
+            'nik' => $row['nik'],
+            'jenis_ptk_id' => $row['jenis_ptk_id'],
+            'agama_id' => $row['agama_id'],
+            'status_kepegawaian_id' => $row['status_kepegawaian_id'],
+            'alamat' => $row['alamat'],
+            'rt' => $row['rt'],
+            'rw' => $row['rw'],
+            'desa_kelurahan' => $row['desa_kelurahan'],
+            'kecamatan' => $row['kecamatan'],
+            'kode_wilayah' => $row['kode_wilayah'],
+            'kode_pos' => $row['kode_pos'],
+            'no_hp' => $row['no_hp'],
+
         ]);
     }
 }
