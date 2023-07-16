@@ -1,5 +1,7 @@
   @php
-$dataSekolah = App\Models\Sekolah::find(1);
+  $idSekolah = App\Models\Sekolah::select('sekolah_id')->get();
+  $implodeId = $idSekolah->implode('sekolah_id');
+  $dataSekolah = App\Models\Sekolah::find($implodeId);
         @endphp
 
   <footer id="footer">
