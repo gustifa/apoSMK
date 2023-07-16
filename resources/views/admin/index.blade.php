@@ -88,7 +88,7 @@
 									<div class="progress-bar bg-white" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
 								<div class="d-flex align-items-center text-white">
-									<p class="mb-0">Total Guru</p>
+									<p class="mb-0">Total PTK</p>
 									
 								</div>
 							</div>

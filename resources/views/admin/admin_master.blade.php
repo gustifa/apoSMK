@@ -23,6 +23,9 @@
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/dark-theme.css')}}" />
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/header-colors.css')}}" />
+	<!-- <link rel="stylesheet" href="{{asset('adminbackend/assets/social/css/bootstrap.css')}}" /> -->
+	<!-- <link rel="stylesheet" href="{{asset('adminbackend/assets/social/css/docs.css')}}" /> -->
+	<link rel="stylesheet" href="{{asset('adminbackend/assets/social/css/font-awesome.css')}}" />
 		<link href="{{asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 	<title>SIPO SMK | @yield('title')</title>
@@ -66,7 +69,7 @@
 	@include('admin.body.setting')
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
-	<script src="{{asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
+	
 	<!--plugins-->
 	<script src="{{asset('adminbackend/assets/js/jquery.min.js')}}"></script>
 
@@ -81,6 +84,11 @@
 	<script src="{{asset('adminbackend/assets/plugins/sparkline-charts/jquery.sparkline.min.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/excanvas.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
+		<!-- social-icon -->
+	<script src="{{asset('adminbackend/assets/social/js/docs.js')}}"></script>
+	<script src="{{asset('adminbackend/assets/social/js/jquery.js')}}"></script>
+	<script src="{{asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
+	
 	  <script>
 		  $(function() {
 			  $(".knob").knob();
