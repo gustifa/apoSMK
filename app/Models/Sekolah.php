@@ -13,5 +13,8 @@ class Sekolah extends Model
 
     protected $table = 'sekolah';
     protected $primaryKey = 'sekolah_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $guarded = [];
+
 }

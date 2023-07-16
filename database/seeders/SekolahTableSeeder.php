@@ -6,7 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use DB;
 use Carbon\Carbon;
-use App\Traits\GenUuid;
+use App\Traits\Uuid;
+use Illuminate\Support\Str;
 
 class SekolahTableSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class SekolahTableSeeder extends Seeder
         DB::table('sekolah')->insert([
             //admin
             [
-                'sekolah_id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'sekolah_id' => Str::uuid()->toString(),
                 'npsn' => '10308183',
                 'nama' => 'SMK N 1 KINALI',
                 'nss' => '10308183',

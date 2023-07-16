@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Traits\GenUuid;
+use App\Traits\Uuid;
 
 class UsersTableSeeder extends Seeder
 {
@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //admin
             [
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'id' => Str::uuid()->toString(),
                 'name' => 'admin',
                 'username' => 'admin',
                 'email' => 'fauzangustifa@gmail.com',
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             ],
             //guru
             [
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'id' => Str::uuid()->toString(),
                 'name' => 'guru',
                 'username' => 'guru',
                 'email' => 'guru@gmail.com',
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
             ],
             //user
             [
-                'id' => substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0,  5),
+                'id' => Str::uuid()->toString(),
                 'name' => 'user',
                 'username' => 'user',
                 'email' => 'user@gmail.com',
