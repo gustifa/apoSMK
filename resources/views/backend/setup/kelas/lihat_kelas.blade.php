@@ -52,10 +52,12 @@
 											</div>
 										</div>	<!-- AKhir Moodal -->
 				<hr/>
+
+				<!-- Awala Datatable -->
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
+							<table id="example" class="table table-striped table-bordered" style="width:100%">
 								<thead>
 									<tr>
 										<th style="width: 8px;">No</th>
@@ -77,11 +79,18 @@
 									</tr>
 									@endforeach
 								</tbody>
-								
+								<tfoot>
+									<tr>
+									<th>Nama Agama</th>
+									<th>Aksi</th>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>
 				</div>
+				<!-- Akhir Datatable -->	
+				
 			</div>
 		</div>
 		<!--end page wrapper -->

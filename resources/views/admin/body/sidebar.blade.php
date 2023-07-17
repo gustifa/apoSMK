@@ -63,6 +63,12 @@
 						
 	
 					</ul>
+					<ul>
+						<li> <a href="{{route('lihat.guru')}}"><i class="bx bx-right-arrow-alt"></i>PTK</a>
+						</li>
+						
+	
+					</ul>
 
 					<ul>
 						<li> <a href="{{route('lihat.peserta_didik')}}"><i class="bx bx-right-arrow-alt"></i>Peserta Didik</a>
@@ -96,12 +102,7 @@
 	
 					</ul>
 
-					<ul>
-						<li> <a href="{{route('lihat.guru')}}"><i class="bx bx-right-arrow-alt"></i>Guru</a>
-						</li>
-						
-	
-					</ul>
+					
 				</li>
 
 				<li>

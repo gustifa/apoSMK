@@ -10,7 +10,7 @@
 					<div class="col-xl-12 mx-auto">
 						<div class="card">
 							<div class="card-body">
-								<form method="post" action="{{ route('update.agama',$editAgama->id) }}">
+								<form method="post" action="{{ route('update.agama',$editAgama->agama_id) }}">
 	 	@csrf
 
 									<div class="mb-3">

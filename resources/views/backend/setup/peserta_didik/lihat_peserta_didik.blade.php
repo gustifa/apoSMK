@@ -71,22 +71,24 @@
 				<hr/>
 
 
+				<!-- Awala Datatable -->
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
+							<table id="example" class="table table-striped table-bordered" style="width:100%">
 								<thead>
-									<th style="width: 8px;">No</th>
-										<th>Nama</th>
-										<th>NIS</th>
+									<tr>
+										<th style="width: 8px;">No</th>
+										<th>Nama Peserta Didik</th>
+										<th>No Induk</th>
 										<th>NIK</th>
 										<th>NISN</th>
+										<th>Aksi</th>
 										
-										<td style="width: 20px;">
+									</tr>
 								</thead>
 								<tbody>
-
-									@foreach($dataRfid as $key => $item)
+								@foreach($dataRfid as $key => $item)
 
 									
 									<tr>
@@ -104,12 +106,13 @@
 										</td>
 									</tr>
 									@endforeach
-								</tbody>
-								
+								</tbody>	
 							</table>
 						</div>
 					</div>
 				</div>
+				<!-- Akhir Datatable -->	
+
 			</div>
 		</div>
 		<!--end page wrapper -->

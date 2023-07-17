@@ -49,10 +49,11 @@
 										</div>	<!-- AKhir Moodal -->
 										<hr />
 				
+				<!-- Awala Datatable -->
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
+							<table id="example" class="table table-striped table-bordered" style="width:100%">
 								<thead>
 									<tr>
 										<th style="width: 8px;">No</th>
@@ -71,12 +72,12 @@
 										</td>
 									</tr>
 									@endforeach
-								</tbody>
-								
+								</tbody>	
 							</table>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		<!--end page wrapper -->

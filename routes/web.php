@@ -164,10 +164,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::controller(SetupAgamaController::class)->group(function(){
             Route::get('/agama/lihat','Agama')->name('lihat.agama');
             Route::get('/agama/tambah','TambahAgama')->name('tambah.agama');
-            Route::get('/agama/edit/{agama_id}','EditAgama')->name('edit.agama');
-            Route::post('/agama/update/{agama_id}','UpdateAgama')->name('update.agama');
+            Route::get('/agama/edit/{id}','EditAgama')->name('edit.agama');
+            Route::post('/agama/update/{id}','UpdateAgama')->name('update.agama');
             Route::post('/agama/simpan','SimpanAgama')->name('simpan.agama');
-            Route::get('/agama/hapus/{agama_id}','HapusAgama')->name('hapus.agama');
+            Route::get('/agama/hapus/{id}','HapusAgama')->name('hapus.agama');
     
         });  
 

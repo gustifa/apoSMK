@@ -10,7 +10,7 @@ class SetupAgamaController extends Controller
 {
     public function Agama(){
         // $dataAgama = Agama::latest()->get();
-         $dataAgama = Agama::orderBy('agama_id','asc')->get();
+         $dataAgama = Agama::all();
         return view('backend.setup.agama.index', compact('dataAgama'));
     }
 
@@ -38,20 +38,15 @@ class SetupAgamaController extends Controller
 	    	return redirect()->route('lihat.agama')->with($notification);
 	    }
 
-	    public function EditAgama($id){
-	        $editAgama = Agama::find($id);
+	    public function EditAgama($agama_id){
+			
+	        $editAgama = Agama::find($agama_id);
 	        return view('backend.setup.agama.edit_agama', compact('editAgama'));
     	}
 
-    	public function UpdateAgama(Request $request, $id){
-	       $data = Agama::find($id);
-     
-     		$validatedData = $request->validate([
-    		'nama' => 'required|unique:agama,nama,'.$data->id
-    		
-    		]);
-
-    	
+    	public function UpdateAgama(Request $request, $agama_id){
+	       $data = Agama::find($agama_id);
+         	
 	    	$data->nama = $request->nama;
 	    	$data->save();
 
@@ -63,8 +58,8 @@ class SetupAgamaController extends Controller
 	    	return redirect()->route('lihat.agama')->with($notification);
     	}
 
-	    public function HapusAgama($id){
-	    	$agama = Agama::find($id);
+	    public function HapusAgama($agama_id){
+	    	$agama = Agama::find($agama_id);
 	    	$agama->delete();
 
 	    	$notification = array(

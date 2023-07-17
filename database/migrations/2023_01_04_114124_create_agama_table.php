@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('agama', function (Blueprint $table) {
-            $table->increments('agama_id');
+            $table->integer('agama_id');
             $table->string('nama');
             $table->timestamps();
             $table->softDeletes();
