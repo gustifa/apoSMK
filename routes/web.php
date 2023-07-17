@@ -20,6 +20,8 @@ use App\Http\Controllers\Backend\SetupRombelController;
 use App\Http\Controllers\Backend\SetupMataPelajaranController;
 use App\Http\Controllers\Backend\SettingMapingController;
 use App\Http\Controllers\Backend\SetupPeserta_didikController;
+use App\Http\Controllers\Backend\SetupJadwalPelajaranController;
+use App\Http\Controllers\Backend\SetupBobotPelanggaranController;
 
 use App\Http\Controllers\Guru\GuruController;
 
@@ -214,6 +216,22 @@ Route::middleware(['auth','role:admin'])->group(function(){
             //Route Mapel
         Route::get('/mapel/lihat','Index')->name('lihat.mapel');
         Route::get('/template/mapel/excel', 'template_excel_mapel')->name('template.excel.mapel');
+        }); 
+
+        Route::controller(SetupJadwalPelajaranController::class)->group(function(){
+            //Route Jadwal_Pelajaran
+        Route::get('/jadwal','lihatJadwal_pelajaran')->name('lihat.jadwal.pelajaran');
+        Route::post('/jadwal/simpan','simpanJadwal_pelajaran')->name('simpan.jadwal.pelajaran');
+        Route::post('/jadwal/edit/{id}','editJadwal_pelajaran')->name('edit.jadwal.pelajaran');
+        Route::get('/jadwal/hapus/{id}','hapusJadwal_pelajarran')->name('hapus.jadwal.pelajaran');
+        }); 
+
+        Route::controller(SetupBobotPelanggaranController::class)->group(function(){
+            //Route SetupBobotPelanggaranController
+        Route::get('/bobot-pelanggaran','lihatBobot_pelanggaran')->name('lihat.bobot.pelanggaran');
+        Route::post('/bobot-pelanggaran-simpan','simpanBobot_pelanggaran')->name('simpan.bobot.pelanggaran');
+        Route::post('/bobot-pelanggaran-edit/{id}','editBobot_pelanggaran')->name('edit.bobot.pelanggaran');
+        Route::get('/bobot-pelanggaran-hapus/{id}','hapusBobot_pelanggaran')->name('hapus.bobot.pelanggaran');
         }); 
     
 

@@ -36,6 +36,21 @@
 						</li>
 						
 					</ul>
+
+					<ul>
+						</li>
+						<li> <a href="{{route('lihat.jadwal.pelajaran')}}"><i class="bx bx-right-arrow-alt"></i>Jadwal Pelajaran</a>
+						</li>
+						
+					</ul>
+
+					<ul>
+						</li>
+						<li> <a href="{{route('lihat.bobot.pelanggaran')}}"><i class="bx bx-right-arrow-alt"></i>Bobot Pelanggaran</a>
+						</li>
+						
+					</ul>
+					
 					
 					<ul>
 						</li>
