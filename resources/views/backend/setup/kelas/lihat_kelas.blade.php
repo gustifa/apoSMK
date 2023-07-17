@@ -79,12 +79,7 @@
 									</tr>
 									@endforeach
 								</tbody>
-								<tfoot>
-									<tr>
-									<th>Nama Agama</th>
-									<th>Aksi</th>
-									</tr>
-								</tfoot>
+								
 							</table>
 						</div>
 					</div>

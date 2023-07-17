@@ -16,10 +16,12 @@ class Anggota_rombel extends Model
     protected $guarded = [];
 
     public function rombongan_belajar(){
-        return $this->belongsTo(Rombongan_belajar::class, 'rombongan_belajar_id', 'rombongan_belajar_id');
+        return $this->belongsTo(Rombongan_belajar::class, 'rombongan_belajar_id', 'rombongan_belajar_id', 'jurusan_id', 'guru_id');
     }
 
     public function peserta_didik(){
         return $this->belongsTo(Peserta_didik::class, 'peserta_didik_id', 'peserta_didik_id');
     }
+
+    
 }

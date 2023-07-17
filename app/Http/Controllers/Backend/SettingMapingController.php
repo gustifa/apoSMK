@@ -48,7 +48,7 @@ class SettingMapingController extends Controller
 
         $import = Excel::import(new ImportAnggota_rombel, $request->file('file')->store('files'));
         //dd($import);
-        return redirect()->route('lihat.anggota_rombel')->with($notification);
+        return redirect()->route('setting.maping.pembelajaran')->with($notification);
 
 
     }

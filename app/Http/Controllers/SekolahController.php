@@ -9,14 +9,14 @@ class SekolahController extends Controller
 {
     public function Sekolah(){
         // $idsekolah = Sekolah::select('id')->get();
-        $implodeId = Sekolah::select('id')->get()->implode('id');
+        $implodeId = Sekolah::select('sekolah_id')->get()->implode('sekolah_id');
         $adminData = Sekolah::find($implodeId);
         return view('sekolah.sekolah_view',compact('adminData'));
     }
 
 
         public function UpdateSekolah(Request $request){
-        $implodeId = Sekolah::select('id')->get()->implode('id');
+        $implodeId = Sekolah::select('sekolah_id')->get()->implode('sekolah_id');
         $data = Sekolah::find($implodeId);
         $data->nama = $request->nama;
         $data->npsn = $request->npsn;

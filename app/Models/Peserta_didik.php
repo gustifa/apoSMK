@@ -14,4 +14,6 @@ class Peserta_didik extends Model
     protected $table = 'peserta_didik';
     protected $primaryKey = 'peserta_didik_id';
     protected $guarded = [];
+
+    
 }

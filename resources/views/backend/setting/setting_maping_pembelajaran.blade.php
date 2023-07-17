@@ -68,47 +68,51 @@
 
 
             <hr/>
-
-
-            <div class="card">
-               <div class="card-body">
-                  <div class="table-responsive">
-                     <table id="example2" class="table table-striped table-bordered">
-                        <thead>
-                           <th style="width: 8px;">No</th>
-                              <th>Nama</th>
-                              <th>NIS</th>
+            <!-- Awala Datatable -->
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example" class="table table-striped table-bordered" style="width:100%">
+								<thead>
+									<tr>
+										<th style="width: 8px;">No</th>
+										<th>Nama Siswa</th>
+										<th>Rombongan Belajar</th>
                               <th>NIK</th>
                               <th>NISN</th>
-                              
-                              <td style="width: 20px;">
-                        </thead>
-                        <tbody>
-
-                           @foreach($dataRfid as $key => $item)
+										<th>Aksi</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+                        @foreach($dataRfid as $key => $item)
 
                            
-                           <tr>
-                              <td>{{$key+1}}</td>
-                              <td>{{$item->rombongan_belajar->nama}}</td>
-                              <td>{{$item->peserta_didik->nama}}</td>
-                              <td>{{$item->nik}}</td>
-                              <td>{{$item->nisn}}</td>
-                        
-                        
-                           
-                              <td style="width: 20px;">
-                                 <a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
-                                 <a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
-                              </td>
-                           </tr>
-                           @endforeach
-                        </tbody>
-                        
-                     </table>
-                  </div>
-               </div>
-            </div>
+                        <tr>
+                           <td>{{$key+1}}</td>
+                           <td>{{$item->peserta_didik->nama}}</td>
+                           <td>{{$item->rombongan_belajar->nama}}</td>
+                           <td>{{$item->peserta_didik->nik}}</td>
+                           <td>{{$item->peserta_didik->nisn}}</td>
+
+
+
+                           <td style="width: 20px;">
+                              <a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
+                              <a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+                           </td>
+                        </tr>
+                        @endforeach
+								</tbody>
+								
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- Akhir Datatable -->	
+
+
+           
          </div>
       </div>
 <script type="text/javascript">

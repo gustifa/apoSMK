@@ -14,4 +14,9 @@ class Rombongan_belajar extends Model
     protected $table = 'rombongan_belajar';
     protected $primaryKey = 'rombongan_belajar_id';
     protected $guarded = [];
+
+    
+    public function jurusan(){
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'jurusan_id');
+    }
 }
