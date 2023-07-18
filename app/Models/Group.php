@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     use HasFactory;
+    public $incrementing = true;
     protected $table = 'group';
 	protected $primaryKey = 'id';
     protected $guarded = [];

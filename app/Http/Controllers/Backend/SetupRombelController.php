@@ -11,18 +11,20 @@ use App\Models\Group;
 use App\Models\Guru;
 use App\Models\userrfid;
 use App\Imports\ImportRombongan_belajar;
+use App\Models\Rombongan_belajar;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SetupRombelController extends Controller
 {
     public function LihatRombel(){
         $dataRombel = Rombel::all();
-        $dataKelas = Kelas::all();
-        $dataJurusan = Jurusan::all();
-        $dataGroup = Group::all();
+        $kelas = Kelas::all();
+        $jurusan = Jurusan::all();
+        $group = Group::all();
         $dataGuru = Guru::all();
         $userRfid = userrfid::all();
-        return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','dataKelas', 'dataJurusan', 'dataGroup','dataGuru','userRfid'));
+        $dataRombongan_belajar = Rombongan_belajar::all();
+        return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','kelas', 'jurusan', 'group','dataGuru','userRfid', 'dataRombongan_belajar'));
     }
 
     public function TambahRombel(){
@@ -40,13 +42,19 @@ class SetupRombelController extends Controller
         //         'nama' => 'required|unique:rombel,nama',
                 
         //     ]);
+        $jurusan = $request->jurusan_id;
+        $kelas = $request->kelas_id;
+        $group = $request->group_id;
+        $walas = $request->guru_id;
+        $namaRombel = $request->nama;
+        // dd($namaRombel);
 
-            $data = new Rombel();
-            //$data->nama = $request->nama;
-            $data->jurusan_id = $request->jurusan_id;
-            $data->kelas_id = $request->kelas_id;
-            $data->group_id = $request->group_id;
-            $data->guru_id = $request->guru_id;
+            $data = new Rombongan_belajar();
+            $data->nama = $namaRombel;
+            $data->jurusan_id = $jurusan;
+            $data->kelas_id = $kelas;
+            $data->group_id = $group;
+            $data->guru_id = $walas;
             $data->save();
 
             $notification = array(

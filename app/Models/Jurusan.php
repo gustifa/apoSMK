@@ -9,11 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Jurusan extends Model
 {
     use HasFactory;
-    // use Uuid;
-    public $keyType = 'string';
+    public $incrementing = true;
     protected $table = 'jurusan';
-    protected $incremeting = false;
-    protected $primaryKey = 'jurusan_id';
+    protected $primaryKey = 'id';
     protected $guarded = [];
 
     

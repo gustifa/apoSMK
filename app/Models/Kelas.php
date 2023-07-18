@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
+    public $incrementing = true;
     protected $table = 'kelas';
 	protected $primaryKey = 'id';
     protected $guarded = [];

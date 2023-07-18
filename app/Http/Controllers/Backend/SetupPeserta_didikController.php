@@ -9,22 +9,62 @@ use App\Models\Kelas;
 use App\Models\Jurusan;
 use App\Models\Group;
 use App\Models\Peserta_didik;
+use App\Models\Rombongan_belajar;
+use App\Models\Anggota_rombel;
 use App\Imports\ImportPeserta_didik;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
+use Carbon\Carbon;
 
 class SetupPeserta_didikController extends Controller
 {
     public function lihatPeserta_didik(){
-        $dataRfid = Peserta_didik::latest()->get();
-        return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataRfid'));
+        $dataPeserta_didik = Peserta_didik::latest()->get();
+        return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataPeserta_didik'));
     }
 
     public function EditPeserta_didik($peserta_didik_id){
         $dataPeserta_didik = Peserta_didik::find($peserta_didik_id);
-        return view('backend.setup.peserta_didik.edit_peserta_didik', compact('dataPeserta_didik'));
+        $jurusan = Jurusan::all();
+        $kelas = Kelas::all();
+        $group = Group::all();
+        $dataRombongan_belajar = Rombongan_belajar::all();
+        return view('backend.setup.peserta_didik.edit_peserta_didik', compact('dataPeserta_didik', 'jurusan', 'kelas', 'group','dataRombongan_belajar'));
         
     }
+
+     public function UpdatePeserta_didik(Request $request){
+            $id = $request->peserta_didik_id;
+
+            $data = new Anggota_rombel();
+            $data->peserta_didik_id = $id;
+            $data->rombongan_belajar_id = $request->rombongan_belajar_id;
+            $data->created_at = Carbon::now();
+            $data->save();
+            // $simpanROmbongan_belajar = Rombongan_belajar::insert([
+            //     'peserta_didik_id' => $request->peserta_didik_id,
+            //     'kelas_id' => $request->kelas_id,
+            //     'jurusan_id' => $request->jurusan_id,
+            //     'group_id' => $request->group_id,
+            //     'created_at' => Carbon::now(),
+            // ]);
+            // dd($simpanROmbongan_belajar);
+
+            Peserta_didik::findOrfail($id)->update([
+                'rfid_id' => $request->rfid_id,
+            ]);
+
+
+            $notification = array(
+                'message' => 'USER_RFID Berhasil diperbaharui',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('lihat.peserta_didik')->with($notification);
+        }
+
+
+
 
     public function DownloadTemplatePeserta_didik()
     {

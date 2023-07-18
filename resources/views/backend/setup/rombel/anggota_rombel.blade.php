@@ -2,21 +2,22 @@
 @section('admin')
 
 @section('title')
-   Lihat User Peserta Didik
+   Lihat Rombel
 @endsection
 
 <!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">	
+			<div class="page-content">
+				
 
-				<!-- Awal Moodal Import-->
+				<!-- Awal Moodal -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import</button>
 												<ul class="dropdown-menu" style="margin: 0px;">
 													<li><a class="dropdown-item" href="{{route('download.template.user.rfid')}}">Download Template</a>
 													</li>
-													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Import Siswa</a>
+													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Import Rombongan Belajar</a>
 													</li>
 
 													
@@ -50,7 +51,7 @@
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<div class="modal-body">
-														<form action="{{ route('import.peserta_didik') }}" method="POST" enctype="multipart/form-data">
+														<form action="{{ route('import.rombel') }}" method="POST" enctype="multipart/form-data">
 										            	@csrf
 
 														<div class="mb-3">
@@ -65,11 +66,11 @@
 													</form>
 												</div>
 											</div>
-										</div>	<!-- AKhir Moodal Import -->
+										</div>	<!-- AKhir Moodal -->
+
 
 
 				<hr/>
-
 
 				<!-- Awala Datatable -->
 				<div class="card">
@@ -79,30 +80,23 @@
 								<thead>
 									<tr>
 										<th style="width: 8px;">No</th>
-										<th>Nama Peserta Didik</th>
-										<th>No Induk</th>
-										<th>NIK</th>
-										<th>NISN</th>
+										<th>Name</th>
+										<th>Kelas</th>
+										<th>RFID ID</th>
 										<th>Aksi</th>
-										
 									</tr>
 								</thead>
 								<tbody>
-								@foreach($dataPeserta_didik as $key => $item)
-
-									
+								@foreach($dataRombongan_belajar as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->nama}}</td>
-										<td>{{$item->no_induk}}</td>
-										<td>{{$item->nik}}</td>
-										<td>{{$item->nisn}}</td>
-								
-								
-									
+										<td>{{$item->peserta_didik->nama}}</td>
+										<td>{{$item->kelas->nama}} {{$item->jurusan->kode}} {{$item->group->nama}}</td>
+											<td>{{$item->peserta_didik->rfid_id}}</td>
 										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{route('edit.peserta.didik',$item->peserta_didik_id )}}"><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
 											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+
 										</td>
 									</tr>
 									@endforeach
@@ -113,6 +107,8 @@
 				</div>
 				<!-- Akhir Datatable -->	
 
+
+				
 			</div>
 		</div>
 		<!--end page wrapper -->

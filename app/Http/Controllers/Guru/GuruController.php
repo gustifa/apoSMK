@@ -14,7 +14,9 @@ use App\Models\Kelas;
 use App\Models\Group;
 use App\Models\Guru;
 use App\Models\Rombel;
+use App\Models\Anggota_rombel;
 use App\Models\PresensiSholat;
+use App\Models\Rombongan_belajar;
 //use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
@@ -22,18 +24,14 @@ use DB;
 class GuruController extends Controller
 {
     public function GuruDashboard(){
-        //  $user = Auth::user()->guru_id;
-        //  $id = Guru::where('guru_id',$user)->latest()->get();
-        //  $walas = $id->implode('id');
-        //  $rom = Rombel::where('guru_id',$walas)->latest()->get();
-        //  $rombel = $rom->implode('jurusan_id', 'kelas_id', 'group_id');
-        //  $jur = Jurusan::where('id',$rombel )->latest()->get();
-        //  $kel = Kelas::where('id',$rombel )->latest()->get();
-        //  $gr = Group::where('id', $rombel)->latest()->get();
-        //  $kelas = $kel->implode('nama');
-        //  $jurusan = $jur->implode('kode');
-        //  $group = $gr->implode('nama');
-        return view('guru.index');
+         $user = Auth::user()->guru_id;
+         $dataRombongan_belajar_all = Rombongan_belajar::all();
+         $implode = Rombongan_belajar::where('guru_id', $user)->get();
+         $dataRombongan_belajar = $implode->implode('nama'); 
+         $count = Anggota_rombel::all();
+         $countSiswa = count($count);
+         // dd($dataRombongan_belajar);
+        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all'));
     }
 
     public function GuruDestroy(Request $request)

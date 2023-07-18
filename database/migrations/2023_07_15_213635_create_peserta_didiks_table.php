@@ -45,7 +45,7 @@ return new class extends Migration
             $table->string('telp_wali')->nullable();
             $table->integer('kerja_wali')->nullable();
             $table->string('photo')->nullable();
-            $table->string('rfid_id')->nullable();
+            $table->string('rfid_id')->unique()->nullable();
             $table->decimal('active', 1,0)->nullable()->default('1');
             $table->uuid('peserta_didik_id_migrasi')->nullable();
             $table->timestamps();

@@ -158,9 +158,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/lihat/peserta-didik','lihatPeserta_didik')->name('lihat.peserta_didik');
             Route::get('/peserta-didik/delete','AllDeletePeserta_didik')->name('all.delete.user.peserta_didik');
             Route::get('/edit/peserta-didik/{id}','EditPeserta_didik')->name('edit.peserta.didik');
+             Route::post('/peserta-didik/update','UpdatePeserta_didik')->name('update.peserta_didik');
             Route::get('/peserta-didik/rfid/delete/{id}','Peserta_didikDelete')->name('peserta_didik.delete');
             Route::get('/peserta-didik/edit/{id}','UserPeserta_didik')->name('peserta_didik.edit');
-            Route::post('/peserta-didik/update','Peserta_didikUpdate')->name('peserta_didik.update');
+            // Route::post('/peserta-didik/update','Peserta_didikUpdate')->name('peserta_didik.update');
             Route::post('/import/peserta-didik','ImportPeserta_didik')->name('import.peserta_didik');
         });
 
