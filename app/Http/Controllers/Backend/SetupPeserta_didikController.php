@@ -20,6 +20,12 @@ class SetupPeserta_didikController extends Controller
         return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataRfid'));
     }
 
+    public function EditPeserta_didik($peserta_didik_id){
+        $dataPeserta_didik = Peserta_didik::find($peserta_didik_id);
+        return view('backend.setup.peserta_didik.edit_peserta_didik', compact('dataPeserta_didik'));
+        
+    }
+
     public function DownloadTemplatePeserta_didik()
     {
         $path = public_path('/file/excel/template/template_user_rfid.xlsx');

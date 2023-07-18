@@ -9,7 +9,7 @@
 		<div class="page-wrapper">
 			<div class="page-content">	
 
-				<!-- Awal Moodal -->
+				<!-- Awal Moodal Import-->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import</button>
@@ -65,7 +65,7 @@
 													</form>
 												</div>
 											</div>
-										</div>	<!-- AKhir Moodal -->
+										</div>	<!-- AKhir Moodal Import -->
 
 
 				<hr/>
@@ -101,7 +101,7 @@
 								
 									
 										<td style="width: 20px;">
-											<a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-info" href="{{route('edit.peserta.didik',$item->peserta_didik_id )}}"><i class='bx bx-edit mr-1'></i></a>
 											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 										</td>
 									</tr>
