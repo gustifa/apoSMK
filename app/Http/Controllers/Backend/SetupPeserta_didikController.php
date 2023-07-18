@@ -94,7 +94,7 @@ class SetupPeserta_didikController extends Controller
             return redirect()->route('lihat.peserta_didik')->with($notification);
         }
 
-        public function ImportPeserta_didik(Request $request){
+    public function ImportPeserta_didik(Request $request){
 
         $notification = array(
                 'message' => 'Peserta Didik Berhasil diimport',

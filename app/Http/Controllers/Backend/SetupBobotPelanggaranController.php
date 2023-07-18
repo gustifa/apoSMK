@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bobot_pelanggaran;
+use App\Imports\ImportBobot_palanggaran;
 
 class SetupBobotPelanggaranController extends Controller
 {
@@ -24,5 +25,19 @@ class SetupBobotPelanggaranController extends Controller
         );
 
         return redirect()->route('lihat.bobot.pelanggaran')->with($notification);
+    }
+
+    public function ImportBobot_pelanggaran(Request $request){
+
+        $notification = array(
+                'message' => 'Bobot Pelanggaran Berhasil diimport',
+                'alert-type' => 'success'
+            );
+
+        $import = Excel::import(new ImportBobot_pelanggaran, $request->file('file')->store('files'));
+        //dd($import);
+        return redirect()->route('lihat.bobot.pelanggaran')->with($notification);
+
+
     }
 }

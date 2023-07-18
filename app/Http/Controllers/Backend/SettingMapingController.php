@@ -52,4 +52,6 @@ class SettingMapingController extends Controller
 
 
     }
+
+    
 }

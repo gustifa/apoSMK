@@ -232,6 +232,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/bobot-pelanggaran-simpan','simpanBobot_pelanggaran')->name('simpan.bobot.pelanggaran');
         Route::post('/bobot-pelanggaran-edit/{id}','editBobot_pelanggaran')->name('edit.bobot.pelanggaran');
         Route::get('/bobot-pelanggaran-hapus/{id}','hapusBobot_pelanggaran')->name('hapus.bobot.pelanggaran');
+
+        Route::post('/import/bobot-pelanggaran','ImportBobot_pelanggaran')->name('import.bobot.pelanggaran');
         }); 
     
 

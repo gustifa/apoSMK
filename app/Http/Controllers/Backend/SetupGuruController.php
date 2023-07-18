@@ -113,7 +113,33 @@ class SetupGuruController extends Controller
 
     public function GuruGenerate(Request $request){
        $data = Guru::all();
+       $cek_email = Guru::select('nama')->get();
+       $implode_email = $cek_email->implode('email');
+       // dd($cek_email);
 
+       if($implode_email == !NULL){
+
+        foreach($data as $d){
+           $new_password = strtolower(Str::random(8));
+           $user = User::create([
+                        'name' => $d->nama,
+                        'guru_id' => $d->guru_id,
+                        'username' => $d->email,
+                        'password' => '12345678',
+                        'email' => $d->email,
+                        'role' => 'guru',
+                        'status' => 'active',
+                    ]);
+           
+       }
+
+       $notification = array(
+                'message' => 'User Guru Berhasil di Generate',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+
+       }else{
         foreach($data as $d){
            $new_password = strtolower(Str::random(8));
            $user = User::create([
@@ -134,6 +160,8 @@ class SetupGuruController extends Controller
             );
             return redirect()->back()->with($notification);
     
+       }
+        
        
 
 
@@ -149,7 +177,7 @@ class SetupGuruController extends Controller
                         'name' => $d->nama,
                         'siswa_id' => $d->id,
                         'username' => $new_password,
-                        'password' => Hash::make($new_password),
+                        'password' => '12345678',
                         'email' => $new_password.'@smkn1kinali.sch.id',
                         'role' => 'siswa',
                         'status' => 'active',
