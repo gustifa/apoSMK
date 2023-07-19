@@ -79,8 +79,7 @@
 									<tr>
 										<th style="width: 8px;">No</th>
 										<th>Name Jurusan</th>
-										<th>Jurusan Id</th>
-										<th>Level Bidang Id</th>
+										<th>Kode</th>
 
 										<th>Aksi</th>
 										
@@ -90,12 +89,11 @@
 									@foreach($dataJurusan as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->nama_jurusan}}</td>
-										<td>{{$item->jurusan_id}}</td>
-										<td>{{$item->level_bidang_id}}</td>
+										<td>{{$item->nama}}</td>
+										<td>{{$item->kode}}</td>
 										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{ route('edit.jurusan',$item->jurusan_id) }}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{ route('hapus.jurusan',$item->jurusan_id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<a class="btn btn-info" href="{{ route('edit.jurusan',$item->id) }}"><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-danger" href="{{ route('hapus.jurusan',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 										</td>
 									</tr>
 									@endforeach

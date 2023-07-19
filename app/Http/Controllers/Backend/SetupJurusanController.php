@@ -13,7 +13,7 @@ class SetupJurusanController extends Controller
 {
     public function LihatJurusan(){
     	// $dataJurusan = Jurusan::all();
-    	$dataJurusan = Jurusan::orderBy('jurusan_id','asc')->get();
+    	$dataJurusan = Jurusan::orderBy('id','asc')->get();
     	return view('backend.setup.jurusan.lihat_jurusan', compact('dataJurusan'));
     }
 

@@ -83,6 +83,7 @@
 										<th>No Induk</th>
 										<th>NIK</th>
 										<th>NISN</th>
+										<th>Akun RFID</th>
 										<th>Aksi</th>
 										
 									</tr>
@@ -97,6 +98,19 @@
 										<td>{{$item->no_induk}}</td>
 										<td>{{$item->nik}}</td>
 										<td>{{$item->nisn}}</td>
+											@if($item->rfid_id == !NULL)
+										<td>
+
+										
+												<i class='bx bx-check text-success'> Terdaftar</i>
+
+
+										</td>
+										@else
+										<td>
+										<i class='bx bx-x text-danger'> Belum Terdaftar</i>
+										</td>
+										@endif
 								
 								
 									

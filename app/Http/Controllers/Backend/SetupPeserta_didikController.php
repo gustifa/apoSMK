@@ -34,13 +34,37 @@ class SetupPeserta_didikController extends Controller
     }
 
      public function UpdatePeserta_didik(Request $request){
-            $id = $request->peserta_didik_id;
 
-            $data = new Anggota_rombel();
-            $data->peserta_didik_id = $id;
-            $data->rombongan_belajar_id = $request->rombongan_belajar_id;
-            $data->created_at = Carbon::now();
-            $data->save();
+
+            $id = $request->peserta_didik_id;
+            $peserta_didik = Anggota_rombel::where('peserta_didik_id', $id)->get();
+            $dataImplode = $peserta_didik->implode('peserta_didik_id');
+            //dd($id);
+            if($id == $dataImplode ){
+                Peserta_didik::findOrfail($id)->update([
+                    // 'peserta_didik_id' => $request->peserta_didik_id,
+                    // 'kelas_id' => $request->kelas_id,
+                    // 'jurusan_id' => $request->jurusan_id,
+                    // 'group_id' => $request->group_id,
+                    'updated_at' => Carbon::now(),
+                ]);
+
+                Peserta_didik::findOrfail($id)->update([
+                'rfid_id' => $request->rfid_id,
+            ]);
+
+                $notification = array(
+                'message' => 'RFID ID sudah terdaftar',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('lihat.peserta_didik')->with($notification);
+            }else{
+                $data = new Anggota_rombel();
+                $data->peserta_didik_id = $id;
+                $data->rombongan_belajar_id = $request->rombongan_belajar_id;
+                $data->created_at = Carbon::now();
+                $data->save();
             // $simpanROmbongan_belajar = Rombongan_belajar::insert([
             //     'peserta_didik_id' => $request->peserta_didik_id,
             //     'kelas_id' => $request->kelas_id,
@@ -53,6 +77,10 @@ class SetupPeserta_didikController extends Controller
             Peserta_didik::findOrfail($id)->update([
                 'rfid_id' => $request->rfid_id,
             ]);
+            }
+
+
+            
 
 
             $notification = array(

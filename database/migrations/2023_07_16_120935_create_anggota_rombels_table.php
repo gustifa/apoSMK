@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('anggota_rombel', function (Blueprint $table) {
             $table->uuid('anggota_rombel_id');
             $table->uuid('rombongan_belajar_id');
-            $table->uuid('peserta_didik_id');
+            $table->uuid('peserta_didik_id')->unique();
             $table->uuid('anggota_rombel_id_migrasi')->nullable();
             $table->timestamps();
             $table->softDeletes();

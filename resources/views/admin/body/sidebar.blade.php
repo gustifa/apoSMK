@@ -9,21 +9,7 @@
 				
 
 				<li class="menu-label">Master Data</li>
-				<!-- <li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-building-house'></i>
-						</div>
-						<div class="menu-title">Sekolah</div>
-					</a>
-					<ul>
-						<li> <a href="{{route('sekolah')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Sekolah</a>
-						</li>
-					</ul>
-				</li> -->
-				<!-- Settingan Umum -->
-				
-
-				<!-- Settingan Data -->
+				<!-- awal -->
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-data"></i>
@@ -35,6 +21,11 @@
 						<li> <a href="{{route('lihat.tahunajaran')}}"><i class="bx bx-right-arrow-alt"></i>Tahun Ajaran</a>
 						</li>
 						
+					</ul>
+
+					<ul>
+						<li> <a href="{{route('sekolah')}}"><i class="bx bx-right-arrow-alt"></i>Sekolah</a>
+						</li>
 					</ul>
 
 					<ul>
@@ -78,12 +69,40 @@
 						
 	
 					</ul>
+					
+				</li>
+				<!-- Akhir -->
+
+				<!-- awal -->
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-data"></i>
+						</div>
+						<div class="menu-title">PTK</div>
+					</a>
 					<ul>
 						<li> <a href="{{route('lihat.guru')}}"><i class="bx bx-right-arrow-alt"></i>PTK</a>
 						</li>
 						
 	
 					</ul>
+
+					<ul>
+						</li>
+						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>User PTK</a>
+						</li>
+						
+					</ul>
+				</li>
+				<!-- Akhir -->
+
+				<!-- awal -->
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-data"></i>
+						</div>
+						<div class="menu-title">Peserta Didik</div>
+					</a>
 
 					<ul>
 						<li> <a href="{{route('lihat.peserta_didik')}}"><i class="bx bx-right-arrow-alt"></i>Peserta Didik</a>
@@ -93,11 +112,46 @@
 					</ul>
 
 					<ul>
+						</li>
+						<li> <a href="{{route('lihat.user.siswa')}}"><i class="bx bx-right-arrow-alt"></i>User Peserta Didik</a>
+						</li>
+						
+					</ul>
+
+					<ul>
+						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>User RFID</a>
+						</li>
+						
+	
+					</ul>
+
+					
+				</li>
+				<!-- Akhir -->
+
+				<!-- awal -->
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-data"></i>
+						</div>
+						<div class="menu-title">Rombongan Belajar</div>
+					</a>
+
+					<ul>
 						<li> <a href="{{route('lihat.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Rombongan Belajar</a>
 						</li>
 						
 	
 					</ul>
+
+					<ul>
+						<li> <a href="{{route('lihat.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Anggota Rombel</a>
+						</li>
+						
+	
+					</ul>
+
+
 
 					
 
@@ -110,15 +164,9 @@
 
 					
 
-					<ul>
-						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>User RFID</a>
-						</li>
-						
-	
-					</ul>
-
 					
 				</li>
+				<!-- Akhir -->
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
@@ -126,24 +174,11 @@
 						</div>
 						<div class="menu-title">Setting Umum</div>
 					</a>
-					<ul>
-						<li> <a href="{{route('sekolah')}}"><i class="bx bx-right-arrow-alt"></i>Sekolah</a>
-						</li>
-					</ul>
 					
-					<ul>
-						</li>
-						<li> <a href="{{route('lihat.user.siswa')}}"><i class="bx bx-right-arrow-alt"></i>User Siswa</a>
-						</li>
-						
-					</ul>
+					
+					
 
-					<ul>
-						</li>
-						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>User Guru</a>
-						</li>
-						
-					</ul>
+					
 					<ul>
 						</li>
 						<li> <a href="{{route('setting.maping.pembelajaran')}}"><i class="bx bx-right-arrow-alt"></i>Maping PBM</a>
