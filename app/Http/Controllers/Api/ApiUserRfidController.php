@@ -18,7 +18,7 @@ class ApiUserRfidController extends Controller
     public function simpanUserRFid(Request $request){
         $data = new userrfidsiswa();
         $data->rfid_id = $request->rfid_id;
-        $data->created_at = Carbon::now();
+        // $data->created_at = Carbon::now();
         $data->save();
 
         return response()->json([
