@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserRfidSiswa extends Model
 {
     use HasFactory;
+    protected $table = 'user_rfid';
     protected $guarded = [];
 
     public function jurusan(){

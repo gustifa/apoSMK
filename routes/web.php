@@ -23,6 +23,8 @@ use App\Http\Controllers\Backend\SetupPeserta_didikController;
 use App\Http\Controllers\Backend\SetupJadwalPelajaranController;
 use App\Http\Controllers\Backend\SetupBobotPelanggaranController;
 
+use App\Http\Controllers\Api\ApiUserRfidController;
+
 use App\Http\Controllers\Guru\GuruController;
 
 use App\Http\Controllers\Backend\Presensi\PresensiSholatController;
@@ -290,6 +292,7 @@ Route::middleware(['auth','role:user'])->group(function(){
 
 Route::get('/admin/login', [AdminController::class,'AdminLogin'])->name('admin.login');
 Route::get('/guru/login', [GuruController::class,'GuruLogin'])->name('guru.login');
+
 
 Route::middleware(['auth','role:guru'])->group(function(){
     Route::prefix('guru')->group(function(){

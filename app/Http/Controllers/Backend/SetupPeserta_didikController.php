@@ -39,7 +39,7 @@ class SetupPeserta_didikController extends Controller
             $id = $request->peserta_didik_id;
             $peserta_didik = Anggota_rombel::where('peserta_didik_id', $id)->get();
             $dataImplode = $peserta_didik->implode('peserta_didik_id');
-            //dd($id);
+            dd($dataImplode);
             if($id == $dataImplode ){
                 Peserta_didik::findOrfail($id)->update([
                     // 'peserta_didik_id' => $request->peserta_didik_id,
@@ -65,15 +65,6 @@ class SetupPeserta_didikController extends Controller
                 $data->rombongan_belajar_id = $request->rombongan_belajar_id;
                 $data->created_at = Carbon::now();
                 $data->save();
-            // $simpanROmbongan_belajar = Rombongan_belajar::insert([
-            //     'peserta_didik_id' => $request->peserta_didik_id,
-            //     'kelas_id' => $request->kelas_id,
-            //     'jurusan_id' => $request->jurusan_id,
-            //     'group_id' => $request->group_id,
-            //     'created_at' => Carbon::now(),
-            // ]);
-            // dd($simpanROmbongan_belajar);
-
             Peserta_didik::findOrfail($id)->update([
                 'rfid_id' => $request->rfid_id,
             ]);

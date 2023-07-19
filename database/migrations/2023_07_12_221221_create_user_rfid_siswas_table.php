@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_rfid_siswas', function (Blueprint $table) {
+        Schema::create('user_rfid', function (Blueprint $table) {
             $table->id();
+            $table->string('rfid_id')->nullable();
             $table->timestamps();
         });
     }
