@@ -11,6 +11,7 @@ use App\Models\Group;
 use App\Models\Peserta_didik;
 use App\Models\Rombongan_belajar;
 use App\Models\Anggota_rombel;
+use App\Models\userrfidsiswa;
 use App\Imports\ImportPeserta_didik;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
@@ -20,6 +21,7 @@ class SetupPeserta_didikController extends Controller
 {
     public function lihatPeserta_didik(){
         $dataPeserta_didik = Peserta_didik::latest()->get();
+        // $dataRfid_id = Peserta_didik::select('rfid_id')->get(); 
         return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataPeserta_didik'));
     }
 
@@ -28,8 +30,11 @@ class SetupPeserta_didikController extends Controller
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
         $group = Group::all();
+        $userrfidsiswa = userrfidsiswa::select('rfid_id')->orderBy('created_at', 'DESC')->limit(1)->latest()->get();
+        $implodeRfid = $userrfidsiswa->implode('rfid_id');
+        // dd($implodeRfid);
         $dataRombongan_belajar = Rombongan_belajar::all();
-        return view('backend.setup.peserta_didik.edit_peserta_didik', compact('dataPeserta_didik', 'jurusan', 'kelas', 'group','dataRombongan_belajar'));
+        return view('backend.setup.peserta_didik.edit_peserta_didik', compact('dataPeserta_didik', 'jurusan', 'kelas', 'group','dataRombongan_belajar', 'implodeRfid'));
         
     }
 
@@ -39,7 +44,7 @@ class SetupPeserta_didikController extends Controller
             $id = $request->peserta_didik_id;
             $peserta_didik = Anggota_rombel::where('peserta_didik_id', $id)->get();
             $dataImplode = $peserta_didik->implode('peserta_didik_id');
-            dd($dataImplode);
+            // dd($dataImplode);
             if($id == $dataImplode ){
                 Peserta_didik::findOrfail($id)->update([
                     // 'peserta_didik_id' => $request->peserta_didik_id,
@@ -59,6 +64,8 @@ class SetupPeserta_didikController extends Controller
             );
 
             return redirect()->route('lihat.peserta_didik')->with($notification);
+
+
             }else{
                 $data = new Anggota_rombel();
                 $data->peserta_didik_id = $id;
@@ -69,10 +76,6 @@ class SetupPeserta_didikController extends Controller
                 'rfid_id' => $request->rfid_id,
             ]);
             }
-
-
-            
-
 
             $notification = array(
                 'message' => 'USER_RFID Berhasil diperbaharui',

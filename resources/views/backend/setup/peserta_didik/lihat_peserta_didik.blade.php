@@ -90,8 +90,6 @@
 								</thead>
 								<tbody>
 								@foreach($dataPeserta_didik as $key => $item)
-
-									
 									<tr>
 										<td>{{$key+1}}</td>
 										<td>{{$item->nama}}</td>

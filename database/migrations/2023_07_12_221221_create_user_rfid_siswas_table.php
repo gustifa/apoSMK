@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('user_rfid', function (Blueprint $table) {
             $table->id();
             $table->string('rfid_id')->nullable();
+            // $table->uuid('peserta_didik_id')->nullable();
+            // $table->uuid('rombongan_belajar_id')->nullable();
             $table->timestamps();
         });
     }

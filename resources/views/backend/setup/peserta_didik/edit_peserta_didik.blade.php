@@ -48,7 +48,7 @@
 
 									<div class="mb-3">
 										<label class="form-label">RFID ID:</label>
-										<input type="text" name="rfid_id" value="{{$dataPeserta_didik->rfid_id}}" class="form-control">
+										<input type="text" name="rfid_id" value="{{$implodeRfid}}" class="form-control">
 										@error('nama')
 										<span class="text-danger">{{ $message }}</span>
 										 @enderror
