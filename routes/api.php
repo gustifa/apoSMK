@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/userrfid', [ApiUserRfidController::class,'lihatUserRFid']);
-Route::post('/userrfid/simpan', [ApiUserRfidController::class,'simpanUserRFid']);
+Route::get('/userrfid/simpan', [ApiUserRfidController::class,'simpanUserRFid']);

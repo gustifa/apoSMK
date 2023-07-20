@@ -145,7 +145,7 @@
 					</ul>
 
 					<ul>
-						<li> <a href="{{route('lihat.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Anggota Rombel</a>
+						<li> <a href="{{route('lihat.anggota.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Anggota Rombel</a>
 						</li>
 						
 	

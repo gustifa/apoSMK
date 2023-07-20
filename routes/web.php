@@ -18,12 +18,11 @@ use App\Http\Controllers\Backend\SetupTahunAjaranController;
 use App\Http\Controllers\Backend\SetupGuruController;
 use App\Http\Controllers\Backend\SetupRombelController;
 use App\Http\Controllers\Backend\SetupMataPelajaranController;
-use App\Http\Controllers\Backend\SettingMapingController;
 use App\Http\Controllers\Backend\SetupPeserta_didikController;
 use App\Http\Controllers\Backend\SetupJadwalPelajaranController;
 use App\Http\Controllers\Backend\SetupBobotPelanggaranController;
-
-use App\Http\Controllers\Api\ApiUserRfidController;
+use App\Http\Controllers\Backend\SettingMapingController;
+use App\Http\Controllers\Backend\SettingAnggotaRombelController;
 
 use App\Http\Controllers\Guru\GuruController;
 
@@ -214,7 +213,13 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/rombel/update/{id}','UpdateRombel')->name('update.rombel');
             Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
             Route::post('/import/rombel','ImportRombel')->name('import.rombel');
-        });   
+
+            Route::get('/anggota-rombel','LihatAnggotaRombel')->name('lihat.anggota.rombel');
+        });
+
+        Route::controller(SettingAnggotaRombelController::class)->group(function(){
+            Route::get('/anggota-rombel','LihatAnggotaRombel')->name('lihat.anggota.rombel');
+        });    
 
         Route::controller(SetupMataPelajaranController::class)->group(function(){
             //Route Mapel
