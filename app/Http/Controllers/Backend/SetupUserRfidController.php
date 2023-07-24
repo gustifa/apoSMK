@@ -5,15 +5,21 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserRfid;
+use App\Models\UserRfidSiswa;
 use App\Models\Kelas;
 use App\Models\Jurusan;
 use App\Models\Group;
+use App\Models\Peserta_didik;
 use DB;
 
 class SetupUserRfidController extends Controller
 {
     public function Index(){
-        $dataRfid = UserRfid::latest()->get();
+        // $rfid_id = UserRfidSiswa::
+        $peserta_didik = DB::table('peserta_didik')->select('rfid_id')->orderBy('updated_at', 'DESC')->get();
+
+
+        dd($dataRfid);
         //$dataRfid = UserRfid::all();
         return view('backend.setup.user_rfid.view_user_rfid', compact('dataRfid'));
     }

@@ -78,49 +78,27 @@
 								<thead>
 									<th style="width: 8px;">No</th>
 										<th>Nama</th>
-										<th>NIS</th>
+										<th>RFID ID</th>
 										<th>Kelas</th>
-										<th>Jurusan</th>
-										<th>Group</th>
-										<th>RFID_ID</th>
-										<th>Walas</th>
+
 										<td style="width: 20px;">
 								</thead>
 								<tbody>
 
 									@foreach($dataRfid as $key => $item)
 
-									@if($item->Walas_id == NULL)
+								
 									<tr>
 										<td>{{$key+1}}</td>
 										<td>{{$item->Nama}}</td>
-										<td>{{$item->Nis}}</td>
-										<td>{{$item->kelas->nama}}</td>
-										<td>{{$item->jurusan->kode}}</td>
-										<td>{{$item->group->nama}}</td>
-										<td>{{$item->RFID_ID}}</td>
-										<td>Belum ditentukan</td>
+										<td>{{$item->rfid_id}}</td>
+										
 										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{route('user.rfid.edit', $item->id)}}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{route('user.rfid.delete',$item->id )}}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
+											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 										</td>
 									</tr>
-									@else
-										<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$item->Nama}}</td>
-										<td>{{$item->Nis}}</td>
-										<td>{{$item->kelas->nama}}</td>
-										<td>{{$item->jurusan->kode}}</td>
-										<td>{{$item->group->nama}}</td>
-										<td>{{$item->RFID_ID}}</td>
-										<td>{{$item->walas->nama}}</td>
-										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{route('user.rfid.edit', $item->id)}}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{route('user.rfid.delete',$item->id )}}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
-										</td>
-									</tr>
-									@endif
+						
 									@endforeach
 								</tbody>
 								
