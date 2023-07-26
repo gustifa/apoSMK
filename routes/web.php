@@ -120,7 +120,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::prefix('setup')->group(function(){
         Route::controller(SetupGroupController::class)->group(function(){
             //Route Group
-            Route::get('/group/lihat', 'LihatGroup')->name('lihat.group');
+            Route::get('/group', 'LihatGroup')->name('lihat.group');
             Route::get('/group/tambah','TambahGroup')->name('tambah.group');
             Route::post('/group/edit/{id}','EditGroup')->name('edit.group');
             Route::post('/group/simpan','SimpanGroup')->name('simpan.group');
@@ -130,7 +130,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::controller(SetupJurusanController::class)->group(function(){
              //Route Jurusan
-            Route::get('/jurusan/lihat','LihatJurusan')->name('lihat.jurusan');
+            Route::get('/jurusan','LihatJurusan')->name('lihat.jurusan');
             Route::get('/jurusan/tambah','TambahJurusan')->name('tambah.jurusan');
             Route::get('/jurusan/edit/{id}','EditJurusan')->name('edit.jurusan');
             Route::post('/jurusan/update/{id}','UpdateJurusan')->name('update.jurusan');
@@ -141,7 +141,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::controller(SetupKelasController::class)->group(function(){
              //Route Kelas
-            Route::get('/kelas/lihat','LihatKelas')->name('lihat.kelas');
+            Route::get('/kelas','LihatKelas')->name('lihat.kelas');
             Route::get('/kelas/tambah','TambahKelas')->name('tambah.kelas');
             Route::get('/kelas/edit/{id}','EditKelas')->name('edit.kelas');
             Route::post('/kelas/update/{id}','UpdateKelas')->name('update.kelas');
@@ -158,7 +158,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         });
 
         Route::controller(SetupPeserta_didikController::class)->group(function(){
-            Route::get('/lihat/peserta-didik','lihatPeserta_didik')->name('lihat.peserta_didik');
+            Route::get('/peserta-didik','lihatPeserta_didik')->name('lihat.peserta_didik');
             Route::get('/peserta-didik/delete','AllDeletePeserta_didik')->name('all.delete.user.peserta_didik');
             Route::get('/edit/peserta-didik/{id}','EditPeserta_didik')->name('edit.peserta.didik');
              Route::post('/peserta-didik/update','UpdatePeserta_didik')->name('update.peserta_didik');
@@ -169,7 +169,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         });
 
         Route::controller(SetupAgamaController::class)->group(function(){
-            Route::get('/agama/lihat','Agama')->name('lihat.agama');
+            Route::get('/agama','Agama')->name('lihat.agama');
             Route::get('/agama/tambah','TambahAgama')->name('tambah.agama');
             Route::get('/agama/edit/{id}','EditAgama')->name('edit.agama');
             Route::post('/agama/update/{id}','UpdateAgama')->name('update.agama');
@@ -188,7 +188,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::controller(SetupGuruController::class)->group(function(){
             //Route Guru
-            Route::get('/guru/lihat','Index')->name('lihat.guru');
+            Route::get('/guru','Index')->name('lihat.guru');
             Route::get('/guru/tambah','TambahGuru')->name('tambah.guru');
             Route::get('/guru/edit/{id}','EditGuru')->name('edit.guru');
             Route::post('/guru/update/{id}','UpdateGuru')->name('update.guru');
@@ -208,7 +208,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::controller(SetupRombelController::class)->group(function(){
             //Route Rombongan Belajar
-            Route::get('/rombel/lihat','LihatRombel')->name('lihat.rombel');
+            Route::get('/rombel','LihatRombel')->name('lihat.rombel');
             Route::get('/rombel/tambah','TambahRombel')->name('tambah.rombel');
             Route::post('/rombel/edit/{id}','EditRombel')->name('edit.rombel');
             Route::post('/rombel/simpan','SimpanRombel')->name('simpan.rombel');
@@ -216,7 +216,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
             Route::post('/import/rombel','ImportRombel')->name('import.rombel');
 
-            Route::get('/anggota-rombel','LihatAnggotaRombel')->name('lihat.anggota.rombel');
+            // Route::get('/anggota-rombel','LihatAnggotaRombel')->name('lihat.anggota.rombel');
         });
 
         Route::controller(SettingAnggotaRombelController::class)->group(function(){
@@ -225,7 +225,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
         Route::controller(SetupMataPelajaranController::class)->group(function(){
             //Route Mapel
-        Route::get('/mapel/lihat','Index')->name('lihat.mapel');
+        Route::get('/mapel','Index')->name('lihat.mapel');
         Route::get('/template/mapel/excel', 'template_excel_mapel')->name('template.excel.mapel');
         }); 
 
@@ -320,7 +320,10 @@ Route::middleware(['auth','role:guru'])->group(function(){
         Route::get('/change/password','GuruChangePassword')->name('guru.change.password');
         Route::post('/update/password','GuruUpdatePassword')->name('guru.update.password');
         Route::get('/lihat/presensi/sholat','guruLihatPresensiSholat')->name('guru.lihat.presensi.sholat');
+        Route::get('/anggota-rombel','lihatAnggota_rombel')->name('lihat.anggota.rombel.walas');
         });
+
+
     });
  });
 

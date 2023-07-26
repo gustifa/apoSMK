@@ -14,6 +14,20 @@
 				</li>
  @if($status === 'active')
 								
+				<li class="menu-label">Data</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-scan"></i>
+						</div>
+						<div class="menu-title">Data Siswa</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('lihat.anggota.rombel.walas')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Data</a>
+						</li>
+						
+
+					</ul>
+				</li>
 				<li class="menu-label">Presensi Sholat</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">

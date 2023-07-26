@@ -129,4 +129,16 @@ class GuruController extends Controller
     }
 
 
+    public function lihatAnggota_rombel(){
+        $user = Auth::user()->guru_id;
+        $rombel = Rombongan_belajar::where('guru_id', $user )->get();
+        
+        $implode_rombel = $rombel->implode('rombongan_belajar_id');
+        $rombel = Anggota_rombel::where('rombongan_belajar_id', $implode_rombel)->get();
+        // dd($rombel);
+        $anggota_rombel = Anggota_rombel::all();
+        return view('guru.rombel.anggota_rombel_lihat', compact('anggota_rombel','rombel'));
+    }
+
+
 }
