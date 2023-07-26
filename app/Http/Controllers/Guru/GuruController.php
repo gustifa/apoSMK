@@ -17,6 +17,7 @@ use App\Models\Rombel;
 use App\Models\Anggota_rombel;
 use App\Models\PresensiSholat;
 use App\Models\Rombongan_belajar;
+use App\Models\Pengumuman;
 //use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
@@ -30,8 +31,16 @@ class GuruController extends Controller
          $dataRombongan_belajar = $implode->implode('nama'); 
          $count = Anggota_rombel::all();
          $countSiswa = count($count);
+         $pengAll = Pengumuman::all();
+         $implodePengumuman = $pengAll->implode('created_at');
+         $implodeupdate = $pengAll->implode('updated_at');
+         $pengumuman = Pengumuman::orderBy('created_at', 'ASC')->limit(1)->get();
+         $pengumuman_select = Pengumuman::orderBy('id', 'DESC')->limit(1)->get();
+         $pengumuman_updated = Pengumuman::orderBy('updated_at', 'DESC')->limit(1)->get();
+
+
          // dd($dataRombongan_belajar);
-        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all'));
+        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate'));
     }
 
     public function GuruDestroy(Request $request)

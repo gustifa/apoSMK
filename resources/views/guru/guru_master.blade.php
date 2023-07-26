@@ -69,6 +69,9 @@
 	<script src="{{asset('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
 	<!--plugins-->
 	<script src="{{asset('adminbackend/assets/js/jquery.min.js')}}"></script>
+		<!-- JS Dashboard-digital-marketing -->
+	<script src="{{asset('adminbackend/assets/js/dashboard-digital-marketing.js')}}"></script>
+	<script src="{{asset('adminbackend/assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
 
 
 	<script src="{{asset('adminbackend/assets/plugins/simplebar/js/simplebar.min.js')}}"></script>

@@ -21,8 +21,10 @@ use App\Http\Controllers\Backend\SetupMataPelajaranController;
 use App\Http\Controllers\Backend\SetupPeserta_didikController;
 use App\Http\Controllers\Backend\SetupJadwalPelajaranController;
 use App\Http\Controllers\Backend\SetupBobotPelanggaranController;
+
 use App\Http\Controllers\Backend\SettingMapingController;
 use App\Http\Controllers\Backend\SettingAnggotaRombelController;
+use App\Http\Controllers\Backend\SettingPengumumanController;
 
 use App\Http\Controllers\Guru\GuruController;
 
@@ -271,6 +273,15 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/import/anggota-rombel','importAnggota_rombel')->name('import.anggota.rombel');
 
         });  
+
+
+        Route::controller(SettingPengumumanController::class)->group(function(){
+            //Route Pengumuman
+        Route::get('/pengumuman','lihatPengumuman')->name('lihat.pengumuman');
+        Route::post('/pengumuman/simpan','simpanPengumuman')->name('simpan.pengumuman');
+        Route::post('/pengumuman/edit/{id}','edetPengumuman')->name('edit.pengumuman');
+        Route::get('/pengumuman/hapus/{id}','hapusPengumuman')->name('hapus.pengumuman');
+        }); 
     }); 
 
     //Route IMPORT
