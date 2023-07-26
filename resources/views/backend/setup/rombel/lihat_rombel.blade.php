@@ -129,7 +129,12 @@
 								<tbody>
 									
 								@foreach($dataRombongan_belajar as $key => $item)
-								@if($item->walas->nama == !NULL)
+								@if($item->walas->nama == NULL)
+									<tr>
+										<td colspan="3">Data Kosong</td>
+										
+									</tr>
+									@else
 									<tr>
 										<td>{{$key+1}}</td>
 										<!-- <td>{{$item->nama}}</td> -->
