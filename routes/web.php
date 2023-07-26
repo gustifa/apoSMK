@@ -198,8 +198,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/guru/delete','AllDeleteGuru')->name('all.delete.guru');
             Route::get('/guru/generate','GuruGenerate')->name('guru.generate');
             Route::get('/siswa/generate','SiswaGenerate')->name('siswa.generate');
-            Route::get('/guru/user/lihat','LihatUserGuru')->name('lihat.user.guru');
-            Route::get('/siswa/user/lihat','LihatUserSiswa')->name('lihat.user.siswa');
+            Route::get('/guru/user','LihatUserGuru')->name('lihat.user.guru');
+            Route::get('/siswa/user','LihatUserSiswa')->name('lihat.user.siswa');
             Route::get('/guru/user/hapus/{id}','HapusUserGuru')->name('hapus.user.guru');
             Route::post('/import/guru','importGuru')->name('import.guru');
 
