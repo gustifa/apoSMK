@@ -120,35 +120,25 @@
 								<thead>
 									<tr>
 										<th style="width: 8px;">No</th>
-										<!-- <th>Name</th> -->
+										
 										<th>Kelas</th>
 										<th>Nama Walas</th>
 										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
-									
 								@foreach($dataRombongan_belajar as $key => $item)
-								@if($item->walas->nama == NULL)
-									<tr>
-										<td colspan="3">Data Kosong</td>
-										
-									</tr>
-									@else
 									<tr>
 										<td>{{$key+1}}</td>
-										<!-- <td>{{$item->nama}}</td> -->
-										<td>{{$item->kelas->nama}} {{$item->jurusan->kode}} {{$item->group->nama}}</td>
-											<td>{{$item->walas->nama}}</td>
+										<td>{{$item->rombongan_belajar_id}}</td>
+											<td>{{$item->guru_id}}</td>
 										<td style="width: 20px;">
 											<a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
 											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 
 										</td>
 									</tr>
-									@endif
 									@endforeach
-									
 								</tbody>	
 							</table>
 						</div>
