@@ -127,8 +127,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									@if($dataRombongan_belajar == !NULL)
+									
 								@foreach($dataRombongan_belajar as $key => $item)
+								@if($item->walas->nama == !NULL)
 									<tr>
 										<td>{{$key+1}}</td>
 										<!-- <td>{{$item->nama}}</td> -->
@@ -140,8 +141,9 @@
 
 										</td>
 									</tr>
-									@endforeach
 									@endif
+									@endforeach
+									
 								</tbody>	
 							</table>
 						</div>
