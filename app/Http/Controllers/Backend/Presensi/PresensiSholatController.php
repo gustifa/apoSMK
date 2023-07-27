@@ -43,7 +43,38 @@ class PresensiSholatController extends Controller
         $anggota_rombel = Anggota_rombel::where('rombongan_belajar_id', $implode_rombel)->get();
 
         $rombel = Rombongan_belajar::latest()->get();
-        return view('backend.presensi.sholat.tambah_presensi_sholat', compact('rombel', 'anggota_rombel'));
+        $date_now = date('d-m-Y H:i');
+        $time = strtotime(date('H:i'));
+        $awalSholat = strtotime('2017--10 10:05:25');
+        $selesaiSholat = strtotime('2017-08-10 11:05:25');
+        $diff = $awalSholat - $selesaiSholat;
+        $jam   = floor($diff / (60 * 60));
+        $menit = $diff - ( $jam * (60 * 60) );
+        $jadwal_sholat = date('d-m-Y 12:01:00');
+
+        $time1 = '10:20';
+        $time2 = '12:40';
+
+        $time1_unix = strtotime(date('Y-m-d').' '.$time1.':00');
+        $time2_unix = strtotime(date('Y-m-d').' '.$time2.':00');
+
+        $begin_day_unix = strtotime(date('Y-m-d').' 00:00:00');
+
+        $jumlah_time = date('H:i', ($time1_unix + ($time2_unix - $begin_day_unix)));
+
+        // $selectedTime = $_REQUEST['time'];
+        $selectedTimeZuhur = strtotime(date('d-m-Y 12:12:00'));
+        $endTimeZuhur = strtotime(date('d-m-Y 12:51:00'));
+        $selectedTimeAshar = strtotime(date('d-m-Y 15:30:00'));
+        $endTimeAshar = strtotime(date('d-m-Y 16:00:00'));
+
+        // $endTime = strtotime("+45 minutes", strtotime($selectedTime));
+        // $oktime =  date('h:i:s', $endTime);
+
+
+        // dd($oktime);
+
+        return view('backend.presensi.sholat.tambah_presensi_sholat', compact('rombel', 'anggota_rombel', 'date_now', 'time', 'selectedTimeZuhur', 'endTimeZuhur', 'selectedTimeAshar', 'endTimeAshar'));
     }
 
     public function SimpanPresensiSholat(Request $request){

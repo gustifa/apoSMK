@@ -11,13 +11,36 @@
 	
 				<div class="card radius-10">
 					<div class="card-body">
-						<div class="d-flex align-items-center">
-								<div>
-									<h5 class="mb-0">PRESENSI SHOLAT </h5>
-								</div>
-								<div class="font-22 ms-auto"> <i id="jam" class="bx bx-time"></i>
-								</div>
+						<div class="row">
+							<div class="col-xl-4">
+									<div class="mb-3">
+										<label class="form-label">Date:</label>
+										<input type="date" class="form-control">
+									</div>
+								
 							</div>
+							<div class="col-xl-1">
+									<div class="mb-3">
+										<label class="form-label"></label>
+									</div>
+								
+							</div>
+							<div class="col-xl-4">
+									<div class="mb-3">
+										<label class="form-label">Date:</label>
+										<input type="date" class="form-control">
+									</div>
+								
+							</div>
+							<div class="col-xl-3">
+									<div class="mb-3">
+										<label class="form-label"></label>
+										<input type="submit" class="form-control btn btn-primary" value="Cari">
+									</div>
+								
+							</div>
+						</div>
+							
 							<hr>
 							<form>
 							<div class="table-responsive">
@@ -26,9 +49,10 @@
 										<tr>
 											<th>No</th>
 											<th>Nama Siswa</th>
+											<th>NISN</th>
 											<th>No Induk</th>
 											
-											<th>Presensi</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -43,29 +67,16 @@
 													</div>
 												
 											</td>
+											<td>{{$item->peserta_didik->nisn}}</td>
 											<td>{{$item->peserta_didik->no_induk}}</td>
 											<td>
-												@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur)
 
 												<select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-													<option disabled="" selected="">Presensi Sholat Zuhur</option>
+													<option disabled="" selected="">Presensi Sholat</option>
 													<option value="1">Tidak Sholat</option>
 													<option value="2">Sholat</option>
 													<option value="3">Non Muslim</option>
-													<option value="4">Alfa</option>
 												</select>
-												@elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar)
-												<select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-													<option disabled="" selected="">Presensi Sholat Ashar</option>
-													<option value="11">Tidak Sholat</option>
-													<option value="22">Sholat</option>
-													<option value="3">Non Muslim</option>
-													<option value="4">Alfa</option>
-												</select>
-												@else
-
-												<p><code>Belum Jadwal Sholat</code></p>
-												@endif
 											</td>
 
 											
@@ -73,7 +84,6 @@
 										@endforeach
 									</tbody>
 							</table>
-							@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur)
 							<div class="col-xl-12">
 									<div class="mb-10">
 										
@@ -81,9 +91,6 @@
 									</div>
 								
 							</div>
-							
-							@endif
-
 						</div>
 						</form>
 					</div>
@@ -95,24 +102,4 @@
 	</div>
 </div>
 		<!--end page wrapper -->
-<script type="text/javascript">
-    window.onload = function() { jam(); }
-   
-    function jam() {
-     var e = document.getElementById('jam'),
-     d = new Date(), h, m, s;
-     h = d.getHours();
-     m = set(d.getMinutes());
-     s = set(d.getSeconds());
-   
-     e.innerHTML = h +':'+ m +':'+ s;
-   
-     setTimeout('jam()', 1000);
-    }
-   
-    function set(e) {
-     e = e < 10 ? '0'+ e : e;
-     return e;
-    }
-   </script>
 @endsection

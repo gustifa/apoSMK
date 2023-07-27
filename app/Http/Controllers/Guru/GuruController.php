@@ -39,9 +39,10 @@ class GuruController extends Controller
          $pengumuman = Pengumuman::orderBy('created_at', 'ASC')->limit(1)->get();
          $pengumuman_select = Pengumuman::orderBy('id', 'DESC')->limit(1)->get();
          $pengumuman_updated = Pengumuman::orderBy('updated_at', 'DESC')->limit(1)->get();
+         
 
 
-         // dd($dataRombongan_belajar);
+         // dd($data);
         return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'presensiSholat'));
     }
 
@@ -139,6 +140,7 @@ class GuruController extends Controller
         $rombel = Anggota_rombel::where('rombongan_belajar_id', $implode_rombel)->get();
         // dd($rombel);
         $anggota_rombel = Anggota_rombel::all();
+       
         return view('guru.rombel.anggota_rombel_lihat', compact('anggota_rombel','rombel'));
     }
 
