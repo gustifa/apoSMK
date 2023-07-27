@@ -185,7 +185,9 @@
 										<!-- <div class="card radius-10 overflow-hidden"> -->
 										   	<div class="card-body">
 														 <!-- <p>Website Sessions</p> -->
-														 <h3>{{$presensiSholat}}</h3>
+														 
+														 <h3>75</h3>
+														 
 														 <p class="mb-0">72% <span class="float-end"> {{$countSiswa}}</span></p>
 											   </div>
 													<div class="progress-wrapper">

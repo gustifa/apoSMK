@@ -43,7 +43,7 @@ class GuruController extends Controller
 
 
          // dd($data);
-        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'presensiSholat'));
+        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'countPresensi'));
     }
 
     public function GuruDestroy(Request $request)
