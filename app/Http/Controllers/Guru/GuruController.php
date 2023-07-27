@@ -31,6 +31,8 @@ class GuruController extends Controller
          $dataRombongan_belajar = $implode->implode('nama'); 
          $count = Anggota_rombel::all();
          $countSiswa = count($count);
+         $countPresensi = PresensiSholat::all();
+         $presensiSholat = count($countPresensi );
          $pengAll = Pengumuman::all();
          $implodePengumuman = $pengAll->implode('created_at');
          $implodeupdate = $pengAll->implode('updated_at');
@@ -40,7 +42,7 @@ class GuruController extends Controller
 
 
          // dd($dataRombongan_belajar);
-        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate'));
+        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'presensiSholat'));
     }
 
     public function GuruDestroy(Request $request)

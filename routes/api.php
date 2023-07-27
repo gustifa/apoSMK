@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiUserRfidController;
+use App\Http\Controllers\Api\ApiPresensiSholatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/userrfid', [ApiUserRfidController::class,'lihatUserRFid']);
 Route::get('/userrfid/simpan', [ApiUserRfidController::class,'simpanUserRFid']);
+
+Route::get('/presensi-sholat', [ApiPresensiSholatController::class,'lihatPresensiSholat']);
+Route::get('/presensi-sholat/simpan', [ApiPresensiSholatController::class,'simpanPresensiSholat']);

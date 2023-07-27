@@ -1,5 +1,5 @@
-@extends('admin.admin_master')
-@section('admin')
+@extends('guru.guru_master')
+@section('guru')
 
 @section('title')
    Tambah Presensi Sholat
@@ -9,106 +9,139 @@
 <div class="page-wrapper">
 	<div class="page-content">
 	
-						<div class="row">
-					<div class="col-xl-12 mx-auto">
-						<div class="card">
-							<div class="card-body">
-								<form method="post" action="{{ route('simpan.presensi.sholat') }}">
-	 	@csrf
+				<div class="card radius-10">
+						<div class="card-body">
+							<div class="d-flex align-items-center">
+								<div>
+									<h5 class="mb-0">Orders Summary</h5>
+									<!-- <div class="row">
+										<div class="col-lg-12">
+											<div class="col-lg-6">
+													<div class="mb-3">
+														<input type="datetime-local" class="form-control">
+													</div>
+												
+											</div>
 
-								
-									<div class="mb-3">
-										<label class="form-label">Kelas:</label>
-											<select name="Jurusan" class="form-select" id="exampleFormControlSelect1">
-                                                        <option selected="" disabled="">Pilih Kelas</option>
-                                                        @foreach($kelas as $item)
-                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-													@endforeach
-                                                       
-                                                    </select>
-											@error('Kelas')
-										 	<span class="text-danger">{{ $message }}</span>
-										 	@enderror
-
-									</div>
-
-									<div class="mb-3">
-										<label class="form-label">Group:</label>
-											<select name="Jurusan" class="form-select" id="exampleFormControlSelect1">
-                                                        <option selected="" disabled="">Pilih Group</option>
-                                                        @foreach($group as $item)
-                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-													@endforeach
-                                                       
-                                                    </select>
-											@error('Group')
-										 	<span class="text-danger">{{ $message }}</span>
-										 	@enderror
-
-									</div>
-
-									<div class="mb-3">
-										<label class="form-label">Jurusan:</label>
-											<select name="Jurusan" class="form-select" id="exampleFormControlSelect1">
-                                                        <option selected="" disabled="">Pilih Jurusan</option>
-                                                        @foreach($jurusan as $item)
-                                                        <option value="{{$item->id}}">{{$item->kode}}</option>
-													@endforeach
-                                                       
-                                                    </select>
-											@error('Jurusan')
-										 	<span class="text-danger">{{ $message }}</span>
-										 	@enderror
-
-									</div>
-
-
-									<div class="mb-3">
-										<label class="form-label">Nama Siswa:</label>
-											<select name="siswa_id" class="form-select" id="exampleFormControlSelect1">
-                                                        <option selected="" disabled="">Pilih Siswa</option>
-                                                        @foreach($userRfid as $item)
-                                                        <option value="{{$item->id}}">{{$item->Nama}}</option>
-													@endforeach
-                                                       
-                                                    </select>
-											@error('Jurusan')
-										 	<span class="text-danger">{{ $message }}</span>
-										 	@enderror
-
-									</div>
-									<div class="mb-3">
-										<label class="form-label">Status:</label>
-											<select name="presensi" class="form-select" id="exampleFormControlSelect1">
-                                                        <option selected="" disabled="">Pilih Status</option>
-                                                        
-                                                        <option value="0">Tidak Hadir</option>
-                                                        <option value="1">Sholat Zhuhur</option>
-                                                        <option value="10">Tidak Sholat Zhuhur</option>
-                                                        <option value="2">Sholat Ashar</option>
-                                                        <option value="20">Tidak Sholat Ashar</option>
-													
-                                                       
-                                                    </select>
-											
-
-									</div>
-
-									
-
-									
-
+											<div class="col-lg-6">
+												
+												<div class="mb-3">
+													<input type="submit" class="form-control btn btn-primary" value="Cari">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="col-lg-6">
+												
+												<div class="mb-3">
+													<input type="submit" class="form-control btn btn-primary" value="Cari">
+												</div>
+											</div>
+										</div>
+									</div> -->
 									
 									
-									<div class="mb-3">
-										<button type="submit" class="btn btn-primary px-5"><i class='bx bx-save mr-1'></i>Simpan</button>
-									</div>
-								</form>
+								</div>
+								<div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+								</div>
+							</div>
+							<hr>
+							<div class="table-responsive">
+								<table class="table align-middle mb-0">
+									<thead class="table-light">
+										<tr>
+											<th>No</th>
+											<th>Nama Siswa</th>
+											<th>Customer</th>
+											<th>Date</th>
+											<th>Price</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($anggota_rombel as $key => $item)
+										<tr>
+											<td>{{$key+1}}</td>
+											<td>
+												<div class="d-flex align-items-center">
+													<div class="recent-product-img">
+														<img src="assets/images/icons/chair.png" alt="">
+													</div>
+													<div class="ms-2">
+														<h6 class="mb-1 font-14">{{$item->peserta_didik->nama}}</h6>
+													</div>
+												</div>
+											</td>
+											<td>Brooklyn Zeo</td>
+											<td>12 Jul 2020</td>
+											<td>$64.00</td>
+											<td>
+												<div class="badge rounded-pill bg-light-info text-info w-100">In Progress</div>
+											</td>
+											<td>
+												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
+													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
+												</div>
+											</td>
+										</tr>
+										@endforeach
+									</tbody>
+								</table>
 							</div>
 						</div>
-
 					</div>
-				</div>
+
+			</div>
+				<!-- Awal table -->
+
+					<!-- <div class="table-responsive">
+								<table class="table align-middle mb-0">
+									<thead class="table-light">
+										<tr>
+											<th>No</th>
+											<th>Nama Siswa</th>
+											<th>Sholat</th>
+											<th>Tidak Sholat</th>
+											<th>Price</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($anggota_rombel as $key => $item)
+										<tr>
+											<td>
+											<div class="ms-0">{{$key+1}} </div>
+											</td>
+											<td>
+												
+													
+													<div class="ms-0">
+														<h6 class="mb-1 font-14">{{$item->peserta_didik->nama}}</h6>
+													</div>
+											
+											</td>
+											<td>Brooklyn Zeo</td>
+											<td>12 Jul 2020</td>
+											<td>$64.00</td>
+											<td>
+												<div class="badge rounded-pill bg-light-info text-info w-100">In Progress</div>
+											</td>
+											<td>
+												<div class="d-flex order-actions">	<a href="javascript:;" class=""><i class="bx bx-cog"></i></a>
+													<a href="javascript:;" class="ms-4"><i class="bx bx-down-arrow-alt"></i></a>
+												</div>
+											</td>
+										</tr>
+										@endforeach
+										
+									</tbody>
+								</table>
+							</div>
+						</div> -->
+
+						<!-- Akhir Table -->
 			
 
 

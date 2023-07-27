@@ -1,5 +1,5 @@
-@extends('admin.admin_master')
-@section('admin')
+@extends('guru.guru_master')
+@section('guru')
 
 @section('title')
    Lihat Presensi Sholat
@@ -17,7 +17,7 @@
 									<tr>
 										<th style="width: 8px;">No</th>
 										<th>Name</th>
-										<th>Jurusan</th>
+										
 										
 										<th>Presensi</th>
 										<th>Waktu Presensi</th>
@@ -29,8 +29,8 @@
 									@foreach($dataPresensi as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->presensiSholat->Nama}}</td>
-										<td>{{$item->presensiSholat->kelas->nama}} {{$item->presensiSholat->jurusan->kode}} {{$item->presensiSholat->group->nama}}</td>
+										<td>{{$item->peserta_didik->nama}}</td>
+									
 										
 										@if($item->presensi == 0)
 										<td>Tidak Hadir</td>
@@ -46,7 +46,7 @@
 										<td>Izin</td>
 										@elseif($item->presensi == 10)
 										<td>Tidak Sholat Zhuhur</td>
-										@elseif($item->presensi == 10)
+										@elseif($item->presensi == 20)
 										<td>Tidak Sholat Ashar</td>
 										@endif
 										<td>{{$item->created_at}}</td>

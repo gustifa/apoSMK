@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\GenUuid;
+use App\Traits\Uuid;
 
 class PresensiSholat extends Model
 {
     use HasFactory;
-    use GenUuid;
-    // protected $table = 'presensi_sholat';
+    use Uuid;
+    protected $table = 'presensi_sholat';
     // protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function presensiSholat(){
-        return $this->belongsTo(userrfid::class, 'siswa_id', 'id');
+    public function peserta_didik(){
+        return $this->belongsTo(Peserta_didik::class, 'rfid_id', 'rfid_id');
     }
 
     public function jurusan(){

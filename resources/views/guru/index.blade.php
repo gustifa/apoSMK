@@ -181,12 +181,12 @@
 						<div class="col-lg-12 col-xl-12" >
 								<div class="card border-primary">
 									<div class="card-body">
-										<h6 class="mb-0">Total Siswa</h6>
+										<h6 class="mb-0">Presensi Sholat</h6>
 										<!-- <div class="card radius-10 overflow-hidden"> -->
 										   	<div class="card-body">
 														 <!-- <p>Website Sessions</p> -->
-														 <h3>652.9K</h3>
-														 <p class="mb-0">72% <span class="float-end">500k</span></p>
+														 <h3>{{$presensiSholat}}</h3>
+														 <p class="mb-0">72% <span class="float-end"> {{$countSiswa}}</span></p>
 											   </div>
 													<div class="progress-wrapper">
 														<div class="progress" style="height: 7px;">

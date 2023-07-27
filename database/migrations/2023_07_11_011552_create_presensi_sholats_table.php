@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('presensi_sholats', function (Blueprint $table) {
+        Schema::create('presensi_sholat', function (Blueprint $table) {
             $table->uuid('id')->primary();
             // $table->uuid('siswa_id')->nullable();
-            $table->string('siswa_id')->nullable();
+            $table->string('rfid_id')->nullable();
             $table->string('presensi')->default(0);
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presensi_sholats');
+        Schema::dropIfExists('presensi_sholat');
     }
 };

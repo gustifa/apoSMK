@@ -109,11 +109,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         
         Route::get('/guru/lihat',[ImportController::class,'LihatImportGuru'])->name('lihat.import.guru');
         
-        Route::controller(PresensiSholatController::class)->group(function(){
-            Route::get('/presensi/sholat/lihat','LihatPresensiSholat')->name('lihat.presensi.sholat');
-            Route::get('/presensi/sholat/tambah','TambahPresensiSholat')->name('tambah.presensi.sholat');
-            Route::post('/presensi/sholat/simpan','SimpanPresensiSholat')->name('simpan.presensi.sholat');
-        });
+        
 
 
     }); //End Group Admin
@@ -321,6 +317,12 @@ Route::middleware(['auth','role:guru'])->group(function(){
         Route::post('/update/password','GuruUpdatePassword')->name('guru.update.password');
         Route::get('/lihat/presensi/sholat','guruLihatPresensiSholat')->name('guru.lihat.presensi.sholat');
         Route::get('/anggota-rombel','lihatAnggota_rombel')->name('lihat.anggota.rombel.walas');
+        });
+
+        Route::controller(PresensiSholatController::class)->group(function(){
+            Route::get('/presensi-sholat/','LihatPresensiSholat')->name('lihat.presensi.sholat');
+            Route::get('/presensi-sholat/tambah','TambahPresensiSholat')->name('tambah.presensi.sholat');
+            Route::post('/presensi-sholat/simpan','SimpanPresensiSholat')->name('simpan.presensi.sholat');
         });
 
 
