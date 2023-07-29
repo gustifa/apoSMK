@@ -12,6 +12,8 @@ use App\Models\Guru;
 use App\Models\userrfid;
 use App\Imports\ImportRombongan_belajar;
 use App\Models\Rombongan_belajar;
+use App\Models\Anggota_rombel;
+
 use Maatwebsite\Excel\Facades\Excel;
 
 class SetupRombelController extends Controller
@@ -24,6 +26,8 @@ class SetupRombelController extends Controller
         $dataGuru = Guru::all();
         $userRfid = userrfid::all();
         $dataRombongan_belajar = Rombongan_belajar::all();
+        $anggotaRombel = Anggota_rombel::all();
+
         return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','kelas', 'jurusan', 'group','dataGuru','userRfid', 'dataRombongan_belajar'));
     }
 
@@ -81,6 +85,8 @@ class SetupRombelController extends Controller
         
             $data->nama = $request->nama;
             $data->save();
+
+            
 
             $notification = array(
                 'message' => 'Rombel Berhasil diperbaharui',

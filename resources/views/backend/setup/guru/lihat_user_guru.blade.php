@@ -16,7 +16,7 @@
 									
 										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Generate User</button>
+												<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Generate User</button>
 												<ul class="dropdown-menu" style="margin: 0px;">
 													<li><a class="dropdown-item" href="{{route('guru.generate')}}" id="generate_guru">Guru</a>
 													</li>
@@ -71,14 +71,14 @@
 								<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
+							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th>No</th>
 										<th>Nama</th>
 										<th>Username</th>
 										<th>Email</th>
-										<th>Password</th>
+										<!-- <th>Password</th> -->
 										<th style="width: 130px;">Aksi</th>
 									</tr>
 								</thead>
@@ -89,7 +89,7 @@
 										<td>{{$item->name}}</td>
 										<td>{{$item->username}}</td>
 										<td>{{$item->email}}</td>
-										<td>{{$item->username}}</td>
+										<!-- <td>{{$item->username}}</td> -->
 										<td style="width: 20px;">
 											<a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" href=""><i class='bx bx-edit mr-1'></i></a>
 											<a class="btn btn-danger" href="{{route('hapus.user.guru', $item->id)}}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>

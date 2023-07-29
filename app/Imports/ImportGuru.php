@@ -36,6 +36,7 @@ class ImportGuru implements ToModel, WithHeadingRow
             'kode_wilayah' => $row['kode_wilayah'],
             'kode_pos' => $row['kode_pos'],
             'no_hp' => $row['no_hp'],
+            'email' => $row['email'],
 
         ]);
     }

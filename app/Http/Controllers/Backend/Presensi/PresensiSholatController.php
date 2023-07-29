@@ -14,12 +14,16 @@ use App\Models\PresensiSholat;
 use App\Models\Rombongan_belajar;
 use App\Models\Anggota_rombel;
 use App\Models\User;
+use App\Models\WaktuSholat;
 use Carbon\Carbon;
 use DB;
 
 class PresensiSholatController extends Controller
 {
     public function LihatPresensiSholat(){
+        $user = Auth::user()->guru_id;
+        $walas = Rombongan_belajar::where('guru_id', $user )->get();
+        $implode_rombel = $walas->implode('rombongan_belajar_id');
         //$dateNow = Carbon::now()->toDateTimeString();
         // $dateNow = Carbon::now()->addDay()->toDateTimeString();
         //$dateNow = Carbon::now()->subWeek()->toDateTimeString();
@@ -32,7 +36,7 @@ class PresensiSholatController extends Controller
         $dataPresensi = PresensiSholat::all();
         
         //dd($dateNow);
-        return view('backend.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi'));
+        return view('guru.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi', 'implode_rombel'));
 
     }
 
@@ -40,10 +44,15 @@ class PresensiSholatController extends Controller
         $user = Auth::user()->guru_id;
         $rombel = Rombongan_belajar::where('guru_id', $user )->get();
         $implode_rombel = $rombel->implode('rombongan_belajar_id');
-        $anggota_rombel = Anggota_rombel::where('rombongan_belajar_id', $implode_rombel)->get();
-
+        if($implode_rombel == !NULL){
+            $anggota_rombel = Anggota_rombel::where('rombongan_belajar_id', $implode_rombel)->get();
+        }else{
+             $anggota_rombel = Anggota_rombel::all();
+        }
+        
         $rombel = Rombongan_belajar::latest()->get();
         $date_now = date('d-m-Y H:i');
+
         $time = strtotime(date('H:i'));
         $awalSholat = strtotime('2017--10 10:05:25');
         $selesaiSholat = strtotime('2017-08-10 11:05:25');
@@ -63,8 +72,10 @@ class PresensiSholatController extends Controller
         $jumlah_time = date('H:i', ($time1_unix + ($time2_unix - $begin_day_unix)));
 
         // $selectedTime = $_REQUEST['time'];
-        $selectedTimeZuhur = strtotime(date('d-m-Y 12:12:00'));
-        $endTimeZuhur = strtotime(date('d-m-Y 12:51:00'));
+        $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
+        $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
         $selectedTimeAshar = strtotime(date('d-m-Y 15:30:00'));
         $endTimeAshar = strtotime(date('d-m-Y 16:00:00'));
 
@@ -72,9 +83,9 @@ class PresensiSholatController extends Controller
         // $oktime =  date('h:i:s', $endTime);
 
 
-        // dd($oktime);
+        // dd($endTimeZuhur);
 
-        return view('backend.presensi.sholat.tambah_presensi_sholat', compact('rombel', 'anggota_rombel', 'date_now', 'time', 'selectedTimeZuhur', 'endTimeZuhur', 'selectedTimeAshar', 'endTimeAshar'));
+        return view('guru.presensi.sholat.tambah_presensi_sholat', compact('rombel', 'anggota_rombel', 'date_now', 'time', 'selectedTimeZuhur', 'endTimeZuhur', 'selectedTimeAshar', 'endTimeAshar','implode_rombel'));
     }
 
     public function SimpanPresensiSholat(Request $request){

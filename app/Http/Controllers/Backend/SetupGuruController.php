@@ -113,9 +113,10 @@ class SetupGuruController extends Controller
 
     public function GuruGenerate(Request $request){
        $data = Guru::all();
-       $cek_email = Guru::select('nama')->get();
+       $cek_email = Guru::select('email')->get();
        $implode_email = $cek_email->implode('email');
-       // dd($cek_email);
+       $email_user = User::select('email')->get();
+       // dd($email_user);
 
        if($implode_email == !NULL){
 
@@ -125,7 +126,7 @@ class SetupGuruController extends Controller
                         'name' => $d->nama,
                         'guru_id' => $d->guru_id,
                         'username' => $d->email,
-                        'password' => '12345678',
+                        'password' => Hash::make('12345678'),
                         'email' => $d->email,
                         'role' => 'guru',
                         'status' => 'active',

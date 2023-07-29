@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	<link rel="icon" href="{{asset('adminbackend/assets/images/favicon-32x32.png')}}" type="image/png" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!--plugins-->
 	<link href="{{asset('adminbackend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet"/>
 	<link href="{{asset('adminbackend/assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
@@ -97,6 +98,7 @@
 
 	  <script src="{{asset('adminbackend/assets/js/index.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+	
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
@@ -115,6 +117,7 @@
 	</script>
 	<!--app JS-->
 	<script src="{{asset('adminbackend/assets/js/app.js')}}"></script>
+	<script src="{{asset('adminbackend/assets/download/app.js')}}"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	

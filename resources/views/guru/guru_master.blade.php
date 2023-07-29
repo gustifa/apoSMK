@@ -70,7 +70,7 @@
 	<!--plugins-->
 	<script src="{{asset('adminbackend/assets/js/jquery.min.js')}}"></script>
 		<!-- JS Dashboard-digital-marketing -->
-	<script src="{{asset('adminbackend/assets/js/dashboard-digital-marketing.js')}}"></script>
+	<!-- <script src="{{asset('adminbackend/assets/js/dashboard-digital-marketing.js')}}"></script> -->
 	<script src="{{asset('adminbackend/assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
 
 

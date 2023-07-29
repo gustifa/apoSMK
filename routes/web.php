@@ -20,7 +20,11 @@ use App\Http\Controllers\Backend\SetupRombelController;
 use App\Http\Controllers\Backend\SetupMataPelajaranController;
 use App\Http\Controllers\Backend\SetupPeserta_didikController;
 use App\Http\Controllers\Backend\SetupJadwalPelajaranController;
+use App\Http\Controllers\Backend\SetupWaktuSholatController;
 use App\Http\Controllers\Backend\SetupBobotPelanggaranController;
+
+use App\Http\Controllers\Guru\PesertaDidikController;
+use App\Http\Controllers\Guru\BobotPelanggaranController;
 
 use App\Http\Controllers\Backend\SettingMapingController;
 use App\Http\Controllers\Backend\SettingAnggotaRombelController;
@@ -162,6 +166,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/peserta-didik/edit/{id}','UserPeserta_didik')->name('peserta_didik.edit');
             // Route::post('/peserta-didik/update','Peserta_didikUpdate')->name('peserta_didik.update');
             Route::post('/import/peserta-didik','ImportPeserta_didik')->name('import.peserta_didik');
+            Route::get('/peserta-didik/json','getPesertaDidik')->name('get.peserta.didik');
+
         });
 
         Route::controller(SetupAgamaController::class)->group(function(){
@@ -212,11 +218,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
             Route::post('/import/rombel','ImportRombel')->name('import.rombel');
 
-            // Route::get('/anggota-rombel','LihatAnggotaRombel')->name('lihat.anggota.rombel');
         });
 
         Route::controller(SettingAnggotaRombelController::class)->group(function(){
             Route::get('/anggota-rombel','LihatAnggotaRombel')->name('lihat.anggota.rombel');
+            Route::get('/anggota-rombel/ajax/{rombongan_belajar_id}','getRombelPesertaDidik');
         });    
 
         Route::controller(SetupMataPelajaranController::class)->group(function(){
@@ -231,6 +237,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/jadwal/simpan','simpanJadwal_pelajaran')->name('simpan.jadwal.pelajaran');
         Route::post('/jadwal/edit/{id}','editJadwal_pelajaran')->name('edit.jadwal.pelajaran');
         Route::get('/jadwal/hapus/{id}','hapusJadwal_pelajarran')->name('hapus.jadwal.pelajaran');
+        }); 
+
+        Route::controller(SetupWaktuSholatController::class)->group(function(){
+            //Route Jadwal_Pelajaran
+        Route::get('/waktu-sholat','lihatWaktuSholat')->name('lihat.waktu.sholat');
+        Route::post('/waktu-sholat/simpan','simpanWaktuSholat')->name('simpan.waktu.sholat');
+        Route::post('/waktu-sholat/edit/{id}','editWaktuSholat')->name('edit.waktu.sholat');
+        Route::get('/waktu-sholat/hapus/{id}','hapusWaktuSholat')->name('hapus.waktu.sholat');
         }); 
 
         Route::controller(SetupBobotPelanggaranController::class)->group(function(){
@@ -316,7 +330,6 @@ Route::middleware(['auth','role:guru'])->group(function(){
         Route::get('/change/password','GuruChangePassword')->name('guru.change.password');
         Route::post('/update/password','GuruUpdatePassword')->name('guru.update.password');
         Route::get('/lihat/presensi/sholat','guruLihatPresensiSholat')->name('guru.lihat.presensi.sholat');
-        Route::get('/anggota-rombel','lihatAnggota_rombel')->name('lihat.anggota.rombel.walas');
         });
 
         Route::controller(PresensiSholatController::class)->group(function(){
@@ -325,7 +338,23 @@ Route::middleware(['auth','role:guru'])->group(function(){
             Route::post('/presensi-sholat/simpan','SimpanPresensiSholat')->name('simpan.presensi.sholat');
         });
 
+        Route::controller(PesertaDidikController::class)->group(function(){
+           Route::get('/anggota-rombel-belajar','lihatAnggota_rombel_walas')->name('lihat.anggota.rombel.walas');
+           Route::get('/anggota-rombel-belajar/ajax/{rombongan_belajar_id}','getAnggotaRombelPesertaDidik');
+           Route::get('/kelas/ajax/{kelas_id}','getKelas');
+           Route::get('/jurusan/ajax/{jurusan_id}','getJurusan');
+        });
+
+
+        Route::controller(BobotPelanggaranController::class)->group(function(){
+           Route::get('/bobot-pelanggaran-siswa','lihatBobotPelanggaranSiswa')->name('lihat.bobot.pelanggaran.siswa');
+           Route::get('/bobot-pelanggaran-siswa/tambah','tambahBobotPelanggaranSiswa')->name('tambah.bobot.pelanggaran.siswa');
+           Route::post('/bobot-pelanggaran-siswa/simpan','simpanBobotPelanggaranSiswa')->name('simpan.bobot.pelanggaran.siswa');
+        });
+
+        
 
     });
  });
+
 

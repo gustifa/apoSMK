@@ -2,13 +2,13 @@
 @section('guru')
 
 @section('title')
-   Tambah Presensi Sholat
+   Tambah Presensi Sholat Oleh Walas
 @endsection
 
 <!--start page wrapper -->
 <div class="page-wrapper">
 	<div class="page-content">
-	
+		@if($implode_rombel == !NULL)
 				<div class="card radius-10">
 					<div class="card-body">
 						<div class="d-flex align-items-center">
@@ -94,9 +94,14 @@
 						</form>
 					</div>
 				</div>
+				@else
+				<div class="row">
+					<h2>Tidak diisinkan</h2>
+				</div>
 
 			
-				
+				@endif
+
 
 	</div>
 </div>

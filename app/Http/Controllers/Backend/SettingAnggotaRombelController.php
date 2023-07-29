@@ -14,4 +14,11 @@ class SettingAnggotaRombelController extends Controller
         $rombonganBelajar = Rombongan_belajar::all();
         return view('backend.setup.rombel.anggota_rombel', compact('anggotaRombel', 'rombonganBelajar'));
     }
+
+    public function getRombelPesertaDidik($rombongan_belajar_id){
+
+        $getAnggotaRombel = Anggota_rombel::where('rombongan_belajar_id',$rombongan_belajar_id)->orderBy('peserta_didik_id', 'DESC')->get();
+        // dd($getAnggotaRombel);
+        return json_encode($getAnggotaRombel);
+     }
 }

@@ -8,7 +8,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
+							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th style="width: 8px;">No</th>
@@ -27,7 +27,7 @@
 									@foreach($dataPresensi as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->presensiSholat->Nama}}</td>
+										<td>{{($item->presensiSholat->Nama)}}</td>
 										<td>{{$item->presensiSholat->kelas->nama}} {{$item->presensiSholat->jurusan->kode}} {{$item->presensiSholat->group->nama}}</td>
 										<td>{{$item->presensiSholat->walas->nama}} {{$item->presensiSholat->jurusan->kode}} {{$item->presensiSholat->group->nama}}</td>
 										

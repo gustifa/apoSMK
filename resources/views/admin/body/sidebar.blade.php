@@ -37,6 +37,13 @@
 
 					<ul>
 						</li>
+						<li> <a href="{{route('lihat.waktu.sholat')}}"><i class="bx bx-right-arrow-alt"></i>Waktu Sholat</a>
+						</li>
+						
+					</ul>
+
+					<ul>
+						</li>
 						<li> <a href="{{route('lihat.bobot.pelanggaran')}}"><i class="bx bx-right-arrow-alt"></i>Bobot Pelanggaran</a>
 						</li>
 						
@@ -69,6 +76,9 @@
 						
 	
 					</ul>
+
+					
+
 					
 				</li>
 				<!-- Akhir -->
@@ -76,9 +86,9 @@
 				<!-- awal -->
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-data"></i>
+						<div class="parent-icon"><i class="bx bx-cog"></i>
 						</div>
-						<div class="menu-title">PTK</div>
+						<div class="menu-title">Setting Data</div>
 					</a>
 					<ul>
 						<li> <a href="{{route('lihat.guru')}}"><i class="bx bx-right-arrow-alt"></i>PTK</a>
@@ -86,57 +96,6 @@
 						
 	
 					</ul>
-
-					<ul>
-						</li>
-						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>User PTK</a>
-						</li>
-						
-					</ul>
-				</li>
-				<!-- Akhir -->
-
-				<!-- awal -->
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-data"></i>
-						</div>
-						<div class="menu-title">Peserta Didik</div>
-					</a>
-
-					<ul>
-						<li> <a href="{{route('lihat.peserta_didik')}}"><i class="bx bx-right-arrow-alt"></i>Peserta Didik</a>
-						</li>
-						
-	
-					</ul>
-
-					<ul>
-						</li>
-						<li> <a href="{{route('lihat.user.siswa')}}"><i class="bx bx-right-arrow-alt"></i>User Peserta Didik</a>
-						</li>
-						
-					</ul>
-
-					<ul>
-						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>User RFID</a>
-						</li>
-						
-	
-					</ul>
-
-					
-				</li>
-				<!-- Akhir -->
-
-				<!-- awal -->
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-data"></i>
-						</div>
-						<div class="menu-title">Rombongan Belajar</div>
-					</a>
-
 					<ul>
 						<li> <a href="{{route('lihat.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Rombongan Belajar</a>
 						</li>
@@ -145,48 +104,61 @@
 					</ul>
 
 					<ul>
+						<li> <a href="{{route('lihat.peserta_didik')}}"><i class="bx bx-right-arrow-alt"></i>Peserta Didik</a>
+						</li>
+						
+	
+					</ul>
+
+					
+
+					<ul>
 						<li> <a href="{{route('lihat.anggota.rombel')}}"><i class="bx bx-right-arrow-alt"></i>Anggota Rombel</a>
 						</li>
 						
 	
 					</ul>
-
-
-
-					
-
-					<ul>
-						<li> <a href="{{route('lihat.mapel')}}"><i class="bx bx-right-arrow-alt"></i>Mata Pelajaran</a>
-						</li>
-						
-	
-					</ul>
-
 					
 
 					
 				</li>
 				<!-- Akhir -->
 
+				<!-- awal -->
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-cog"></i>
+						<div class="parent-icon"><i class="bx bx-user"></i>
 						</div>
-						<div class="menu-title">Setting Umum</div>
+						<div class="menu-title">Hak Akses</div>
 					</a>
-					
-					
-					
+					<ul>
+						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>User RFID</a>
+						</li>
+						
+	
+					</ul>
 
-					
 					<ul>
 						</li>
-						<li> <a href="{{route('setting.maping.pembelajaran')}}"><i class="bx bx-right-arrow-alt"></i>Maping PBM</a>
+						<li> <a href="{{route('lihat.user.guru')}}"><i class="bx bx-right-arrow-alt"></i>User Guru</a>
 						</li>
 						
 					</ul>
+
+					<ul>
+						</li>
+						<li> <a href="{{route('lihat.user.siswa')}}"><i class="bx bx-right-arrow-alt"></i>User Siswa</a>
+						</li>
+						
+					</ul>
+
 					
 				</li>
+				<!-- Akhir -->
+
+				
+
+				
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
@@ -263,7 +235,7 @@
 					</ul>
 				</li> -->
 				
-				<li class="menu-label">Presensi Sholat</li>
+				<!-- <li class="menu-label">Presensi Sholat</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-scan"></i>
@@ -301,7 +273,7 @@
 						<li> <a href="app-fullcalender.html"><i class="bx bx-right-arrow-alt"></i>Cetak</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 
 
 			</ul>

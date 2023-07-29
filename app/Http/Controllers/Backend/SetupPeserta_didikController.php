@@ -20,9 +20,24 @@ use Carbon\Carbon;
 class SetupPeserta_didikController extends Controller
 {
     public function lihatPeserta_didik(){
-        $dataPeserta_didik = Peserta_didik::latest()->get();
+        $dataPeserta_didik = Peserta_didik::orderBy('updated_at', 'DESC')->latest()->get();
         // $dataRfid_id = Peserta_didik::select('rfid_id')->get(); 
         return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataPeserta_didik'));
+    }
+
+    public function getPesertaDidik(Request $request){
+        // return DataTables::of(Peserta_didik::query())->make(true);
+        if ($request->ajax()) {
+            $data = Peserta_didik::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 
     public function EditPeserta_didik($peserta_didik_id){
@@ -30,6 +45,8 @@ class SetupPeserta_didikController extends Controller
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
         $group = Group::all();
+        // $rfid_id = Peserta_didik::select('rfid_id')->get();
+        // $userrfid = userrfidsiswa::select('rfid_id')->get();
         $userrfidsiswa = userrfidsiswa::select('rfid_id')->orderBy('created_at', 'DESC')->limit(1)->latest()->get();
         $implodeRfid = $userrfidsiswa->implode('rfid_id');
         // dd($implodeRfid);
@@ -58,9 +75,12 @@ class SetupPeserta_didikController extends Controller
                 'rfid_id' => $request->rfid_id,
             ]);
 
+                $delete = DB::table('user_rfid')->delete();
+            
+
                 $notification = array(
-                'message' => 'RFID ID sudah terdaftar',
-                'alert-type' => 'error'
+                'message' => 'Update RFID Berhasil',
+                'alert-type' => 'success'
             );
 
             return redirect()->route('lihat.peserta_didik')->with($notification);
@@ -75,10 +95,11 @@ class SetupPeserta_didikController extends Controller
             Peserta_didik::findOrfail($id)->update([
                 'rfid_id' => $request->rfid_id,
             ]);
+             $delete = DB::table('user_rfid')->delete();
             }
 
             $notification = array(
-                'message' => 'USER_RFID Berhasil diperbaharui',
+                'message' => 'USER_RFID Berhasil disimpan',
                 'alert-type' => 'success'
             );
 

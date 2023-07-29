@@ -17,6 +17,7 @@ use App\Models\Rombel;
 use App\Models\Anggota_rombel;
 use App\Models\PresensiSholat;
 use App\Models\Rombongan_belajar;
+use App\Models\Peserta_didik;
 use App\Models\Pengumuman;
 //use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -28,9 +29,13 @@ class GuruController extends Controller
          $user = Auth::user()->guru_id;
          $dataRombongan_belajar_all = Rombongan_belajar::all();
          $implode = Rombongan_belajar::where('guru_id', $user)->get();
+         $id_rombelImplode = $implode->implode('rombongan_belajar_id');
          $dataRombongan_belajar = $implode->implode('nama'); 
-         $count = Anggota_rombel::all();
-         $countSiswa = count($count);
+         if($dataRombongan_belajar == !NULL){
+         $countSiswa = count(Anggota_rombel::where('rombongan_belajar_id', $id_rombelImplode)->get());
+         }else{
+            $countSiswa = count(Peserta_didik::all());
+         }
          $countPresensi = PresensiSholat::all();
          $presensiSholat = count($countPresensi );
          $pengAll = Pengumuman::all();
@@ -42,7 +47,7 @@ class GuruController extends Controller
          
 
 
-         // dd($data);
+         
         return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'countPresensi'));
     }
 
@@ -132,17 +137,7 @@ class GuruController extends Controller
     }
 
 
-    public function lihatAnggota_rombel(){
-        $user = Auth::user()->guru_id;
-        $rombel = Rombongan_belajar::where('guru_id', $user )->get();
-        
-        $implode_rombel = $rombel->implode('rombongan_belajar_id');
-        $rombel = Anggota_rombel::where('rombongan_belajar_id', $implode_rombel)->get();
-        // dd($rombel);
-        $anggota_rombel = Anggota_rombel::all();
-       
-        return view('guru.rombel.anggota_rombel_lihat', compact('anggota_rombel','rombel'));
-    }
+    
 
 
 }

@@ -27,17 +27,15 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($anggota_rombel_walas as $key => $item)
+									@foreach($kasusPelanggaran as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->peserta_didik->nama}}</td>
-										<td>{{$item->peserta_didik->nisn}}</td>
-										<td>{{$item->peserta_didik->no_induk}}</td>
-										@if($item->peserta_didik->jenis_kelamin == "P")
-										<td>Perempuan</td>
-										@else
-										<td>Laki-Laki</td>
-										@endif
+										<td>{{$item->bobot_pelanggaran_id}}</td>
+										<td>{{$item->guru_id}}</td>
+										<td>{{$item->peserta_didik_id}}</td>
+										
+										<td>{{$item->keterangan}}</td>
+										
 										
 										
 									</tr>

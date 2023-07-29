@@ -13,8 +13,24 @@
 					</a>
 				</li>
  @if($status === 'active')
+ 			
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-cog"></i>
+						</div>
+						<div class="menu-title">Jadwal Pelajaran</div>
+					</a>
+					<ul>
+						</li>
+						<li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Lihat</a>
+						<li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Buat Baru</a>
+						</li>
+						
+					</ul>
+				</li>
 								
-				<li class="menu-label">Data</li>
+			
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-scan"></i>
@@ -28,6 +44,23 @@
 
 					</ul>
 				</li>
+				<li class="menu-label">Bobot Pelanggaran</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-scan"></i>
+						</div>
+						<div class="menu-title">Rekap Pelanggaran</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('lihat.bobot.pelanggaran.siswa')}}"><i class="bx bx-right-arrow-alt"></i>Lihat Rekap</a>
+						</li>
+						<li> <a href="{{route('tambah.bobot.pelanggaran.siswa')}}"><i class="bx bx-right-arrow-alt"></i> Tambah</a>
+						
+						</li>
+
+					</ul>
+				</li>
+
 				<li class="menu-label">Presensi Sholat</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
@@ -67,6 +100,8 @@
 						</li>
 					</ul>
 				</li>
+
+
 @endif
 
 			</ul>

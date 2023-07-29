@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
-            $table->uuid('guru_id')->unique()->nullable();
+            $table->uuid('guru_id')->nullable();
             $table->uuid('siswa_id')->unique()->nullable();
             // $table->unsignedBigInteger('guru_id');
             // $table->foreign('guru_id')->references('id')->on('gurus');

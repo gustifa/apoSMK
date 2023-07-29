@@ -24,7 +24,12 @@
 							<div class="col-12 col-lg-12 col-xl-12 d-flex">
 
 								
-							<h5>Penguna {{$user->name}} Anda <span class="text-success">Aktif</span> dan Walas {{$dataRombongan_belajar}}</h5>
+							<h5>Penguna {{$user->name}} Anda <span class="text-success">Aktif</span> dan 
+								@if($dataRombongan_belajar == !NULL)
+							Walas {{$dataRombongan_belajar}}</h5>
+								@else
+								Bukan Walas
+								@endif
 								
 							
 							</div>
@@ -159,18 +164,19 @@
 						<div class="col-lg-12 col-xl-12" >
 								<div class="card border-primary">
 									<div class="card-body">
+
 										<h5 class="mb-0"><i class="fadeIn animated bx bx-user"> Total Siswa</i></h5>
 										<!-- <div class="card radius-10 overflow-hidden"> -->
 										   	<div class="card-body">
 														 <!-- <p>Website Sessions</p> -->
-														 <h3>652.9K</h3>
-														 <p class="mb-0">72% <span class="float-end">500k</span></p>
+														 <a href="{{route('lihat.anggota.rombel.walas')}}"><h3>{{$countSiswa}}</h3></a>
+														 <!-- <p class="mb-0">Detail <span class="float-end">500k</span></p> -->
 											   </div>
-													<div class="progress-wrapper">
+												<!-- <div class="progress-wrapper">
 														<div class="progress" style="height: 7px;">
 														  <div class="progress-bar" role="progressbar" style="width: 75%"></div>
 														</div>
-												</div>
+												</div> -->
 										<!-- </div> -->
 										
 									</div>

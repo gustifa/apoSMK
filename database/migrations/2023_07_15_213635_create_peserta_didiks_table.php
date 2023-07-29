@@ -50,6 +50,8 @@ return new class extends Migration
             $table->uuid('peserta_didik_id_migrasi')->nullable();
             $table->timestamps();
             $table->primary('peserta_didik_id');
+            // $table->foreign('rfid_id')->references('rfid_id')->on('user_rfid')
+            //     ->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

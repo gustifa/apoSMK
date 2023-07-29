@@ -48,10 +48,13 @@
 
 									<div class="mb-3">
 										<label class="form-label">RFID ID:</label>
-										<input type="text" name="rfid_id" value="{{$implodeRfid}}" class="form-control">
+										
+										 <input type="text" name="rfid_id" value="{{$implodeRfid}}" class="form-control">
 										@error('nama')
 										<span class="text-danger">{{ $message }}</span>
 										 @enderror
+										
+
 									</div>
 									
 									<div class="mb-3">
@@ -70,4 +73,59 @@
 	</div>
 </div>
 		<!--end page wrapper -->
+<script type="text/javascript">
+       $(document).ready(function() {
+        $('select[name="rombongan_belajar_id"]').on('click', function(){
+            var rombongan_belajar_id = $(this).val();
+            if(rombongan_belajar_id) {
+                $.ajax({
+                    url: "{{  url('/guru/anggota-rombel-belajar/ajax') }}/"+rombongan_belajar_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                    	$('select[name="peserta_didik_id"]').html('');
+                       var d =$('select[name="peserta_didik_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="peserta_didik_id"]').append('<option value="'+ value.peserta_didik_id +'">' + value.peserta_didik_id + '</option>');
+                          });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+     });
+
+</script>
+		
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                property_name: {
+                    required : true,
+                },  
+
+            },
+            messages :{
+                property_name: {
+                    required : 'Please Enter property_name',
+                },
+                
+            },
+            errorElement : 'span', 
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+    
+</script>
 @endsection
