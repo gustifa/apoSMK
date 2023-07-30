@@ -84,7 +84,7 @@
             var rombongan_belajar_id = $(this).val();
             if(rombongan_belajar_id) {
                 $.ajax({
-                    url: "{{  url('/setup/anggota-rombel/ajax') }}/"+rombongan_belajar_id,
+                    url: "{{  url('/setting/anggota-rombel/ajax') }}/"+rombongan_belajar_id,
                     type:"GET",
                     dataType:"json",
                     success:function(data) {

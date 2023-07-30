@@ -46,7 +46,7 @@
 											   @csrf
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Username</label>
-												<input type="text" name="username" class="form-control" id="inputEmailAddress" placeholder="Username">
+												<input type="text" name="login" class="form-control" id="login" placeholder="Username">
 											</div>
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Password</label>

@@ -54,6 +54,16 @@ class UsersTableSeeder extends Seeder
                 'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
+            [
+                'id' => '4',
+                'name' => 'siswa',
+                'username' => 'siswa',
+                'email' => 'siswa@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'siswa',
+                'status' => 'active',
+                'created_at' => Carbon::now(),
+            ],
             //siswa
             // [
             //     'id' => Str::uuid()->toString(),

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginRequest extends FormRequest
 {
@@ -29,7 +31,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'string'],
+            'login' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,18 +43,22 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate()
+    public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
+        $user = User::where('email', $this->login)
+                ->orWhere('username', $this->login)
+                ->orWhere('phone', $this->login)
+                ->first();
 
-        if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
+        if (!$user || !Hash::check($this->password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'username' => trans('auth.failed'),
             ]);
         }
-
+        Auth::login($user, $this->boolean('remember'));
         RateLimiter::clear($this->throttleKey());
     }
 
