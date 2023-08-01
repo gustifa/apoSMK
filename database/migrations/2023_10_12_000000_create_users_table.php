@@ -36,7 +36,7 @@ return new class extends Migration
             $table->timestamps();
             // $table->primary('id');
             $table->foreign('guru_id')->references('guru_id')->on('guru');
-            $table->foreign('siswa_id')->references('id')->on('user');
+            $table->foreign('siswa_id')->references('peserta_didik_id')->on('peserta_didik');
         });
     }
 

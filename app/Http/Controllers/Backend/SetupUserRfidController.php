@@ -24,6 +24,14 @@ class SetupUserRfidController extends Controller
         return view('backend.setup.user_rfid.view_user_rfid', compact('dataRfid'));
     }
 
+    
+    public function getrfid($rfid_id){
+
+        $getrfid = UserRfidSiswa::all();
+        // dd($getAnggotaRombel);
+        return json_encode($getrfid);
+     }
+
     public function DownloadTemplateUserRfid()
     {
         $path = public_path('/file/excel/template/template_user_rfid.xlsx');

@@ -59,51 +59,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example" class="table table-striped table-bordered" style="width:100%">
-								<thead>
-									<tr>
-										<th style="width: 8px;">No</th>
-										<th>Nama Peserta Didik</th>
-										<th>No Induk</th>
-										<th>NIK</th>
-										<th>NISN</th>
-										<th>Akun RFID</th>
-										<th>Aksi</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-								@foreach($dataPeserta_didik as $key => $item)
-									<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$item->nama}}</td>
-										<td>{{$item->no_induk}}</td>
-										<td>{{$item->nik}}</td>
-										<td>{{$item->nisn}}</td>
-											@if($item->rfid_id == !NULL)
-										<td>
-
-										
-												<i class='bx bx-check text-success'> Terdaftar</i>
-
-
-										</td>
-										@else
-										<td>
-										<i class='bx bx-x text-danger'> Belum Terdaftar</i>
-										</td>
-										@endif
-								
-								
-									
-										<td style="width: 20px;">
-											<a class="btn btn-info" href="{{route('edit.peserta.didik',$item->peserta_didik_id )}}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
-										</td>
-									</tr>
-									@endforeach
-								</tbody>	
-							</table>
+							 {{ $dataTable->table() }}
 						</div>
 					</div>
 				</div>
@@ -111,19 +67,6 @@
 
 			</div>
 		</div>
-		<!--end page wrapper -->
-<script type="text/javascript">
-	$(function () {
-		$('#datatable').DataTable({
-			processing: true,
-			serverSide: true,
-			ajax: 'penjualan/json',
-				columns: [
-					{data: 'id' , name: 'id'},
-					{data: 'id' , name: 'id'},
-					
-				]
-		});
-	});
-</script>
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endsection
+

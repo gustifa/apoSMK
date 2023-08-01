@@ -21,12 +21,14 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             //admin
+
+
+
             [
                 'id' => '1',
                 'name' => 'admin',
                 'username' => 'admin',
-                'email' => 'fauzangustifa@gmail.com',
-                // 'password' => rand(123456, 999999),
+                'email' => 'fauzangustifa@gmail.com', // 'password' => rand(123456, 999999),
                 'password' => Hash::make('111'),
                 'role' => 'admin',
                 'status' => 'active',
@@ -64,17 +66,22 @@ class UsersTableSeeder extends Seeder
                 'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
+
+            /*
+            
             //siswa
-            // [
-            //     'id' => Str::uuid()->toString(),
-            //     'name' => 'siswa',
-            //     'username' => 'siswa',
-            //     'email' => 'siswa@gmail.com',
-            //     'password' => Hash::make('111'),
-            //     'role' => 'siswa',
-            //     'status' => 'active',
-            //     'created_at' => Carbon::now(),
-            // ],
+            [
+                'id' => Str::uuid()->toString(),
+                'name' => 'admin',
+                'username' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'admin',
+                'status' => 'active',
+                'created_at' => Carbon::now(),
+            ],
+
+            */
 
         ]);
     }

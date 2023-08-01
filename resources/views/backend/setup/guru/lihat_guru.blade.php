@@ -85,45 +85,13 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example" class="table table-striped table-bordered" style="width:100%">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>Nama</th>
-										<th>NIK</th>
-										<th>NUPTK</th>
-										<th>Tanggal Lahir</th>
-										<th style="width: 130px;">Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($dataGuru as $key => $item)
-									<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$item->nama}}</td>
-										<td>{{$item->nik}}</td>
-										<td>{{$item->nuptk}}</td>
-										<td>{{$item->tanggal_lahir}}</td>
-										<td style="width: 20px;">
-											<a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" href=""><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{ route('hapus.guru',$item->guru_id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
-
-										</td>
-									</tr>
-									@endforeach
-								</tbody>
-								<tfoot>
-									<tr>
-									<th>Nama Agama</th>
-									<th>Aksi</th>
-									</tr>
-								</tfoot>
-							</table>
+							 {{ $dataTable->table() }}
 						</div>
 					</div>
 				</div>
 				<!-- Akhir Datatable -->	
 			</div>
 		</div>
+		{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 		<!--end page wrapper -->
 @endsection

@@ -13,9 +13,9 @@
 								<form method="post" action="{{route('simpan.bobot.pelanggaran.siswa')}}" enctype="multipart/form-data">
 	 							@csrf
 
-	 								<div class="mb-3">
+	 								<!-- <div class="mb-3">
 										<label class="form-label">Pilih Kelas:</label>
-											<!-- <select name="rombongan_belajar_id" class="form-select" id="exampleFormControlSelect1"> -->
+											<select name="rombongan_belajar_id" class="form-select" id="exampleFormControlSelect1">
 											<select name="kelas_id" class="form-control" required="" >
                                                         <option selected="" disabled="">Select Jurusan</option>
                                                         @foreach($kelas as $item)
@@ -27,16 +27,16 @@
 										 	<span class="text-danger">{{ $message }}</span>
 										 	@enderror
 
-									</div>
+									</div> -->
 
 									<div class="mb-3">
 										<label class="form-label">Pilih Kelas:</label>
 											<!-- <select name="rombongan_belajar_id" class="form-select" id="exampleFormControlSelect1"> -->
 											<select name="rombongan_belajar_id" class="form-control" required="" >
                                                         <option selected="" disabled="">Select Jurusan</option>
-                                                        <!-- @foreach($anggota_rombel_walas as $item)
-                                                        <option value="{{$item->rombongan_belajar_id}}">{{$item->nama}}</option>
-													@endforeach -->
+                                                        @foreach($anggota_rombel_walas as $item)
+                                                        <option value="{{$item->rombongan_belajar_id}}">{{$item->kelas->nama}} {{$item->jurusan->kode}} {{$item->group->nama}}</option>
+													@endforeach
                                                        
                                                     </select>
 											@error('Jurusan')

@@ -11,15 +11,16 @@ use App\Models\Guru;
 use App\Models\User;
 use App\Models\userrfid;
 use App\Models\Peserta_didik;
-
+use App\DataTables\GuruDataTable;
 use App\Imports\ImportGuru;
 use DB;
 
 class SetupGuruController extends Controller
 {
-    public function Index(){
-        $dataGuru = Guru::latest()->get();
-        return view('backend.setup.guru.lihat_guru', compact('dataGuru'));
+    public function Index(GuruDataTable $dataTable){
+        // $dataGuru = Guru::latest()->get();
+        // return view('backend.setup.guru.lihat_guru', compact('dataGuru'));
+        return $dataTable->render('backend.setup.guru.lihat_guru');
     }
 
     public function SimpanGuru(Request $request){
@@ -118,11 +119,17 @@ class SetupGuruController extends Controller
        $email_user = User::select('email')->get();
        // dd($email_user);
 
+       $user = User::all();
+       $countuser = Count($user);
+       
+
+       // dd($countuser);
        if($implode_email == !NULL){
 
         foreach($data as $d){
            $new_password = strtolower(Str::random(8));
            $user = User::create([
+                        // 'id' => $d->$countuser, 
                         'name' => $d->nama,
                         'guru_id' => $d->guru_id,
                         'username' => $d->email,

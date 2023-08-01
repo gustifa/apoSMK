@@ -50,11 +50,12 @@ class SetupRombelController extends Controller
         $kelas = $request->kelas_id;
         $group = $request->group_id;
         $walas = $request->guru_id;
-        $namaRombel = $request->nama;
+        // $namaRombel = $request->nama;
+        
         // dd($namaRombel);
 
             $data = new Rombongan_belajar();
-            $data->nama = $namaRombel;
+            // $data->nama =  $nama_kelas;
             $data->jurusan_id = $jurusan;
             $data->kelas_id = $kelas;
             $data->group_id = $group;

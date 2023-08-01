@@ -14,7 +14,7 @@
 											<select name="rombongan_belajar_id" class="form-select text-secondary" id="exampleFormControlSelect1">
                                                         <option selected="" disabled="">Pilih Rombel</option>
                                                         @foreach($rombonganBelajar as $item)
-                                                        <option value="{{$item->rombongan_belajar_id}}">{{$item->nama}}</option>
+                                                        <option value="{{$item->rombongan_belajar_id}}">{{$item->kelas->nama}} {{$item->jurusan->kode}} {{$item->group->nama}}</option>
 													@endforeach
                                                        
                                                     </select>

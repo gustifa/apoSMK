@@ -29,13 +29,13 @@
 				<form action="{{ route('simpan.rombel') }}" method="POST">
             @csrf
 
-									<div class="mb-3">
+									<!-- <div class="mb-3">
 										<label class="form-label">Nama Rombel:</label>
 										<input type="text" name="nama" class="form-control" placeholder="Nama Kelas">
 										@error('nama')
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
-									</div>
+									</div> -->
 
                                    
 									
@@ -45,6 +45,7 @@
                                                         <option selected="" disabled="">Pilih Kelas</option>
                                                         @foreach($kelas as $item)
                                                         <option value="{{$item->id}}">{{$item->nama}}</option>
+
 													@endforeach
                                                        
                                                     </select>

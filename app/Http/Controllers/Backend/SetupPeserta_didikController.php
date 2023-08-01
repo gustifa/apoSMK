@@ -14,15 +14,17 @@ use App\Models\Anggota_rombel;
 use App\Models\userrfidsiswa;
 use App\Imports\ImportPeserta_didik;
 use Maatwebsite\Excel\Facades\Excel;
+use App\DataTables\Peserta_didikDataTable;
 use DB;
 use Carbon\Carbon;
 
 class SetupPeserta_didikController extends Controller
 {
-    public function lihatPeserta_didik(){
-        $dataPeserta_didik = Peserta_didik::orderBy('updated_at', 'DESC')->latest()->get();
+    public function lihatPeserta_didik(Peserta_didikDataTable $dataTable){
+        // $dataPeserta_didik = Peserta_didik::orderBy('updated_at', 'DESC')->latest()->get();
         // $dataRfid_id = Peserta_didik::select('rfid_id')->get(); 
-        return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataPeserta_didik'));
+        // return view('backend.setup.peserta_didik.lihat_peserta_didik', compact('dataPeserta_didik'));
+        return $dataTable->render('backend.setup.peserta_didik.lihat_peserta_didik');
     }
 
     public function getPesertaDidik(Request $request){

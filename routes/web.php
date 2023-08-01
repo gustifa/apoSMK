@@ -157,6 +157,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/user-rfid/delete/{id}','UserRfidDelete')->name('user.rfid.delete');
             Route::get('/user-rfid/edit/{id}','UserRfidEdit')->name('user.rfid.edit');
             Route::post('/user-rfid/update','UserRfidUpdate')->name('user.rfid.update');
+            Route::get('/rfid_id/ajax/{id}','getrfid');
         });
 
         
