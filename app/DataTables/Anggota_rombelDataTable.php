@@ -2,17 +2,17 @@
 
 namespace App\DataTables;
 
-use App\Models\Peserta_didik;
+use App\Models\Anggota_rombel;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
+// use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class Peserta_didikDataTable extends DataTable
+class Anggota_rombelDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,45 +23,62 @@ class Peserta_didikDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        //     ->addColumn('No', function($query){
-        //         $item = 0;
-        //         while (count($query)) {
-        //             $item++;
-        //         }
-                
-        //            return $item; 
-                  
-               
-                
-            // })
             ->addColumn('action', function($query){
                 // return $query;
-                if($query->rfid_id == NULL){
-                return '<a href="'.route('edit.peserta.didik',$query->peserta_didik_id).'" class="btn btn-primary"><i class="bx bx-edit"></i</a>'; 
-                }else{
-                return '';  
-                }
+                return ''; 
+                
                 
             })
-            ->addColumn('rfid', function($query){
-                if ($query->rfid_id == !NULL) {
-                    $terdaftar = 'Terdaftar';
-                    return  $terdaftar;
-                }else{
-                    return 'Belum Terdaftar';
+            
+            ->addColumn('No', function($query){
+                // $hitung = count($query);
+                $hitung = count(Anggota_rombel::all());
+                for ($i=1; $i <= $hitung ; $i++) { 
+                    $angka[] = $i;
+
                 }
-                
+                $a = 1;
+                while ($a <=$hitung ) {
+                    $b[] = $a++;
+
+                }
+
+                // foreach ($hitung as $key => $value) {
+                //     $b = $key++;
+                // }
+                return $angka;
+
             })
-            ->setRowId('peserta_didik_id');
+
+             ->addColumn('No Induk', function($query){
+                $siswa = $query->peserta_didik->no_induk;
+                    return  $siswa;  
+            })
+
+            ->addColumn('NISN', function($query){
+                $siswa = $query->peserta_didik->nisn;
+                    return  $siswa;  
+            })
+            ->addColumn('Peserta Didik', function($query){
+                $siswa = $query->peserta_didik->nama;
+                    return  $siswa;  
+            })
+            ->addColumn('Jurusan', function($query){
+                $kelas = $query->rombongan_belajar->kelas->nama;
+                $jurusan = $query->rombongan_belajar->jurusan->kode;
+                $group = $query->rombongan_belajar->group->nama;
+                    return $kelas.' '.$jurusan.''.$group ;  
+            })
+            ->setRowId('anggota_rombel_id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Peserta_didik $model
+     * @param \App\Models\Anggota_rombel $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Peserta_didik $model): QueryBuilder
+    public function query(Anggota_rombel $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -74,7 +91,7 @@ class Peserta_didikDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('peserta_didik-table')
+                    ->setTableId('anggota_rombel-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -98,28 +115,18 @@ class Peserta_didikDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(60)
-            //       ->addClass('text-center'),
-            // Column::make('peserta_didik_id'),
-            // Column::make('No'),
-            Column::make('nama'),
-            Column::make('nisn'),
-            Column::make('no_induk'),
-            Column::computed('rfid')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(100)
-                  ->addClass('text-center'),
+            
+            Column::make('No'),
+            Column::make('Peserta Didik'),
+            Column::make('No Induk'),
+            Column::make('NISN'),
+            Column::make('Jurusan'),
+           
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(100)
-                  ->addClass('text-left'),
-            // Column::make('created_at'),
-            // Column::make('updated_at'),
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 
@@ -130,6 +137,6 @@ class Peserta_didikDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Peserta_didik_' . date('YmdHis');
+        return 'Anggota_rombel_' . date('YmdHis');
     }
 }
