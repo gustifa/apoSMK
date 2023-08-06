@@ -18,7 +18,7 @@
 	<link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset('admin/assets/css/app.css')}}" rel="stylesheet">
 	<link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet">
-	<title>ApoSMK - Halaman Login Guru</title>
+	<title>SIPOSMK - Halaman Login Guru</title>
 </head>
 
 <body class="bg-login">

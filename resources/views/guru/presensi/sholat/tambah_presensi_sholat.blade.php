@@ -109,7 +109,7 @@
 	</div>
 </div>
 		<!--end page wrapper -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     window.onload = function() { jam(); }
    
     function jam() {
@@ -128,5 +128,5 @@
      e = e < 10 ? '0'+ e : e;
      return e;
     }
-   </script>
+   </script> -->
 @endsection

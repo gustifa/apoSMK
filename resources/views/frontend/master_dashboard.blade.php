@@ -8,26 +8,26 @@
   <title>@yield('judul')</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
-<!-- {{asset('depan/')}} -->
+<!-- {{asset('frontend/')}} -->
   <!-- Favicons -->
-  <link href="{{asset('depan/assets/img/favicon.png')}}" rel="icon">
-  <link href="{{asset('depan/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{asset('frontend/assets/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('frontend/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{asset('depan/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/venobox/venobox.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/aos/aos.css')}}" rel="stylesheet">
-  <link href="{{asset('depan/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/venobox/venobox.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{asset('depan/assets/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('frontend/assets/css/style.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Company - v2.1.0
@@ -50,33 +50,33 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url({{asset('depan/assets/img/slide/slide-1.jpg')}});">
+        <div class="carousel-item active" style="background-image: url({{asset('frontend/assets/img/slide/slide-1.jpg')}});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>Selamat Datang <span>Aplikasi Presensi Online</span></h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <h2><span>Sistem Informasi Presensi Online</span></h2>
+              <p>Sistem Informasi Presensi Online digunakan untuk rekap kehadiran siswa, rekap kegiatan sholat dan jurnal kegiatan siswa. Dengan Aplikasi ini diharupkan semua data tersimpan dalam satu database sehingga memudahkan dalam pelaporan kepada orang tua peserta didik.</p>
               <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
             </div>
           </div>
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url({{asset('depan/assets/img/slide/slide-2.jpg')}});">
+        <div class="carousel-item" style="background-image: url({{asset('frontend/assets/img/slide/slide-2.jpg')}});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>Lorem Ipsum Dolor</h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <h2>Presensi Sholat</h2>
+              <p>Presensi sholat digunakan untuk merekap kehadiran siswa saat melaksanakan sholat untuk pembentukan soft skil pada peserta didik.</p>
               <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
             </div>
           </div>
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url({{asset('depan/assets/img/slide/slide-3.jpg')}});">
+        <div class="carousel-item" style="background-image: url({{asset('frontend/assets/img/slide/slide-3.jpg')}});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>Sequi ea ut et est quaerat</h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <h2>Presensi Kehadiran</h2>
+              <p>Presensi sholat digunakan untuk merekap kehadiran siswa saat melaksanakan sholat untuk pembentukan soft skil pada peserta didik.</p>
               <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
             </div>
           </div>
@@ -112,19 +112,19 @@
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{{asset('depan/assets/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/php-email-form/validate.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/jquery-sticky/jquery.sticky.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/venobox/venobox.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/waypoints/jquery.waypoints.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
-  <script src="{{asset('depan/assets/vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/jquery-sticky/jquery.sticky.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/waypoints/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/vendor/aos/aos.js')}}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{asset('depan/assets/js/main.js')}}"></script>
+  <script src="{{asset('frontend/assets/js/main.js')}}"></script>
 
 </body>
 

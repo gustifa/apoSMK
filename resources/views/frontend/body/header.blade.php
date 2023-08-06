@@ -1,7 +1,7 @@
  <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto"><a href="{{url('/')}}"><span>apo</span>SMK</a></h1>
+      <h1 class="logo mr-auto"><a href="{{url('/')}}"><span>SIPO</span>SMK</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -9,7 +9,7 @@
         <ul>
           <li class="active"><a href="{{url('/')}}">Home</a></li>
 
-          <li class="drop-down"><a href="">About</a>
+          <!-- <li class="drop-down"><a href="">About</a>
             <ul>
               <li><a href="about.html">About Us</a></li>
               <li><a href="team.html">Team</a></li>
@@ -28,17 +28,40 @@
 
           <li><a href="services.html">Services</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="pricing.html">Pricing</a></li> -->
+          @auth
+                            @php
+                                $id = Auth::user()->id;
+                                $profileData = App\Models\User::find($id);
+                                
 
-          <li>
-           
-              
-                <a href="{{url('/admin/login')}}"><div class="btn btn-dark fadeIn animated bx bx-user"> Login</div></a>
-      
+                  @endphp
+                  @if($profileData->role === 'admin')
+                              <li> <a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i>Dashboard</a></li>
+
+                            <li>
+                                <a href="{{route('admin.logout')}}"><i class="fas fa-user"></i>Logout</a>
+                            
+                            </li>
+                  @elseif($profileData->role === 'guru')
+                   <li> <a href="{{route('guru.dashboard')}}"><i class="fas fa-home"></i>Dashboard</a></li>
+
+                            <li>
+                                <a href="{{route('guru.logout')}}"><i class="fas fa-user"></i>Logout</a>
+                            
+                            </li>
+
+                            @endif
+
+                  @else
+                  <li>
+                   
+                            <a href="{{route('login')}}"><i class="fas fa-user"></i>Login</a>
+                     
+                 
           
           </li>
-
+@endauth
         </ul>
       </nav><!-- .nav-menu -->
 

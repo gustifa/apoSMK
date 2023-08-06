@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('judul')
-    ApoSMK || Aplikasi Presensi Online
+    SIPO SMK || Sistem Informasi Presensi Online
 @endsection
 
 <!-- ======= About Us Section ======= -->

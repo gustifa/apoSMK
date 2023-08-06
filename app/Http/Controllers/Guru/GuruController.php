@@ -59,7 +59,7 @@ class GuruController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/guru/login');
+        return redirect('/');
     }
 
     public function GuruLogin(){
