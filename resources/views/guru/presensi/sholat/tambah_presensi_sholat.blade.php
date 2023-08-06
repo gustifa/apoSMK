@@ -25,7 +25,9 @@
 								</div>
 							</div>
 							<hr>
-							<form>
+
+							<form action="{{route('simpan.presensi.sholat.manual')}}" method="post">
+								@csrf
 							<div class="table-responsive">
 								<table class="table align-middle mb-0">
 									<thead class="table-light">
@@ -39,6 +41,7 @@
 									</thead>
 									<tbody>
 										@foreach($anggota_rombel as $key => $item)
+										<input type="hidden" name="peserta_didik_id[]" value="{{$item->peserta_didik_id}}">
 										<tr>
 											<td>{{$key+1}}</td>
 											<td>
@@ -53,20 +56,20 @@
 											<td>
 												@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur)
 
-												<select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+												<select name="presensi[]" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
 													<option disabled="" selected="">Presensi Sholat Zuhur</option>
 													<option value="1">Tidak Sholat</option>
-													<option value="2">Sholat</option>
+													<option value="2">Sholat Zuhur</option>
 													<option value="3">Non Muslim</option>
 													<option value="4">Alfa</option>
 												</select>
 												@elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar)
-												<select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+												<select name="presensi[]" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
 													<option disabled="" selected="">Presensi Sholat Ashar</option>
 													<option value="11">Tidak Sholat</option>
-													<option value="22">Sholat</option>
+													<option value="22">Sholat Ashar</option>
 													<option value="3">Non Muslim</option>
-													<option value="4">Alfa</option>
+													<!-- <option value="4">Alfa</option> -->
 												</select>
 												@else
 

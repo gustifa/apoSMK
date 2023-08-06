@@ -49,7 +49,7 @@ class SetupPeserta_didikController extends Controller
         $group = Group::all();
         // $rfid_id = Peserta_didik::select('rfid_id')->get();
         // $userrfid = userrfidsiswa::select('rfid_id')->get();
-        $userrfidsiswa = userrfidsiswa::select('rfid_id')->orderBy('created_at', 'DESC')->limit(1)->latest()->get();
+        $userrfidsiswa = userrfidsiswa::all();
         $implodeRfid = $userrfidsiswa->implode('rfid_id');
         // dd($implodeRfid);
         $dataRombongan_belajar = Rombongan_belajar::all();
@@ -61,25 +61,26 @@ class SetupPeserta_didikController extends Controller
 
 
             $id = $request->peserta_didik_id;
+            $rfidRequest = $request->rfid_id;
+            // dd($rfidRequest);
             $peserta_didik = Anggota_rombel::where('peserta_didik_id', $id)->get();
             $dataImplode = $peserta_didik->implode('peserta_didik_id');
             // dd($dataImplode);
-            if($id == $dataImplode ){
+            
                 Peserta_didik::findOrfail($id)->update([
-                    // 'peserta_didik_id' => $request->peserta_didik_id,
-                    // 'kelas_id' => $request->kelas_id,
-                    // 'jurusan_id' => $request->jurusan_id,
-                    // 'group_id' => $request->group_id,
-                    'updated_at' => Carbon::now(),
+                    
+                    'rfid_id' => $rfidRequest,
+                    // 'updated_at' => Carbon::now(),
                 ]);
 
-                Peserta_didik::findOrfail($id)->update([
-                'rfid_id' => $request->rfid_id,
-            ]);
+                $data = new Anggota_rombel();
+                $data->rombongan_belajar_id = $request->rombongan_belajar_id;
+                $data->peserta_didik_id = $request->peserta_didik_id;
+                $data->created_at = Carbon::now();
+                $data->save();
 
                 $delete = DB::table('user_rfid')->delete();
             
-
                 $notification = array(
                 'message' => 'Update RFID Berhasil',
                 'alert-type' => 'success'
@@ -88,24 +89,7 @@ class SetupPeserta_didikController extends Controller
             return redirect()->route('lihat.peserta_didik')->with($notification);
 
 
-            }else{
-                $data = new Anggota_rombel();
-                $data->peserta_didik_id = $id;
-                $data->rombongan_belajar_id = $request->rombongan_belajar_id;
-                $data->created_at = Carbon::now();
-                $data->save();
-            Peserta_didik::findOrfail($id)->update([
-                'rfid_id' => $request->rfid_id,
-            ]);
-             $delete = DB::table('user_rfid')->delete();
-            }
-
-            $notification = array(
-                'message' => 'USER_RFID Berhasil disimpan',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('lihat.peserta_didik')->with($notification);
+            
         }
 
 
@@ -166,24 +150,24 @@ class SetupPeserta_didikController extends Controller
         return view('backend.setup.user_rfid.edit_user_rfid', compact('userRfid', 'jurusan', 'kelas', 'group'));
     }
 
-    public function Peserta_didikUpdate(Request $request){
-            $id = $request->id;
-            UserRfid::findOrfail($id)->update([
-                'Nama' => $request->Nama,
-                'Nis' => $request->Nis,
-                'Jurusan' => $request->Jurusan,
-                'Kelas' => $request->Kelas,
-                'Group' => $request->Group,
-                'RFID_ID' => $request->RFID_ID,
-            ]);
+    // public function Peserta_didikUpdate(Request $request){
+    //         $id = $request->id;
+    //         UserRfid::findOrfail($id)->update([
+    //             'Nama' => $request->Nama,
+    //             'Nis' => $request->Nis,
+    //             'Jurusan' => $request->Jurusan,
+    //             'Kelas' => $request->Kelas,
+    //             'Group' => $request->Group,
+    //             'RFID_ID' => $request->RFID_ID,
+    //         ]);
 
-            $notification = array(
-                'message' => 'USER_RFID Berhasil diperbaharui',
-                'alert-type' => 'success'
-            );
+    //         $notification = array(
+    //             'message' => 'USER_RFID Berhasil diperbaharui',
+    //             'alert-type' => 'success'
+    //         );
 
-            return redirect()->route('lihat.peserta_didik')->with($notification);
-        }
+    //         return redirect()->route('lihat.peserta_didik')->with($notification);
+    //     }
 
     public function ImportPeserta_didik(Request $request){
 

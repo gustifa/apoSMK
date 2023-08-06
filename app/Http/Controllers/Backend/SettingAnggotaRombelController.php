@@ -20,8 +20,10 @@ class SettingAnggotaRombelController extends Controller
 
     public function LihatAnggotaRombel(Request $request){
         $anggotaRombel = Anggota_rombel::all();
-        // $rombonganBelajar = Rombongan_belajar::all();
-        // return view('backend.setup.rombel.anggota_rombel', compact('anggotaRombel', 'rombonganBelajar'));
+        $dataRombongan_belajar = Rombongan_belajar::all();
+        
+        $rombongan_belajar_id = $request->rombongan_belajar_id;
+        // dd($rombongan_belajar_id);
 
         if ($request->ajax()) {
             $data = Anggota_rombel::all();
@@ -30,6 +32,63 @@ class SettingAnggotaRombelController extends Controller
                 ->addColumn('peserta_didik_id', function ($query) {
                     return $query->peserta_didik->nama;
                 })
+
+                // ->addColumn('no', function ($query) {
+                //     $data = Peserta_didik::all();
+                //         return count($data) ;  
+                // })
+
+                ->addColumn('rombongan_belajar_id', function ($query) {
+                    $kelas = $query->rombongan_belajar->kelas->nama;
+                    $jurusan = $query->rombongan_belajar->jurusan->kode;
+                    $group = $query->rombongan_belajar->group->nama;
+                        return $kelas.' '.$jurusan.''.$group ;  
+                })
+
+                ->addColumn('no_induk', function ($query) {
+                    $no_induk = $query->peserta_didik->no_induk;
+                        return $no_induk;  
+                })
+
+                ->addColumn('nisn', function ($query) {
+                    $nisn = $query->peserta_didik->nisn;
+                        return $nisn;  
+                })
+
+                ->addColumn('walas', function ($query) {
+                    $walas = $query->rombongan_belajar->walas->nama;
+                        return $walas;  
+                })
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('backend.setup.rombel.anggota_rombel', compact('dataRombongan_belajar'));
+    }
+
+    public function LihatAnggotaRombelDatatable(Request $request){
+        $anggotaRombel = Anggota_rombel::all();
+        $dataRombongan_belajar = Rombongan_belajar::all();
+        
+        $rombongan_belajar_id = $request->rombongan_belajar_id;
+        // dd($rombongan_belajar_id);
+
+        if ($request->ajax()) {
+            $data = Anggota_rombel::all();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('peserta_didik_id', function ($query) {
+                    return $query->peserta_didik->nama;
+                })
+
+                // ->addColumn('no', function ($query) {
+                //     $data = Peserta_didik::all();
+                //         return count($data) ;  
+                // })
 
                 ->addColumn('rombongan_belajar_id', function ($query) {
                     $kelas = $query->rombongan_belajar->kelas->nama;
@@ -45,7 +104,7 @@ class SettingAnggotaRombelController extends Controller
                 ->make(true);
         }
 
-        return view('backend.setup.rombel.anggota_rombel');
+        return view('backend.setup.rombel.anggota_rombel', compact('dataRombongan_belajar'));
     }
 
     public function getRombelPesertaDidik($rombongan_belajar_id){

@@ -17,7 +17,7 @@ class ApiPresensiSholatController extends Controller
     public function simpanPresensiSholat(Request $request){
         $data = new PresensiSholat();
         $data->rfid_id = $request->rfid_id;
-        $data->status = $request->status;
+        $data->presensi = $request->presensi;
         // $data->created_at = Carbon::now();
         $data->save();
 

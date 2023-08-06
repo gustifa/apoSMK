@@ -13,7 +13,7 @@
 				<div class="mt-2-3">
 					<div class="card">
 					<div class="card-body">
-					<!-- 	<div class="row">
+						<div class="row">
 							<div class="col-xl-12">
 								<form action="" method="POST">
 								<div class="mb-3">
@@ -39,16 +39,13 @@
 							</div>
 						</div>
 						
-							<hr /> -->
+							<hr />
 						<div class="table-responsive">
-				<table class="table table-striped table-bordered data-table ">
+				<table class="table table-bordered data-table">
         <thead>
             <tr>
                 <!-- <th>No</th> -->
                 <th>Nama Siswa</th>
-                <th>No Induk</th>
-                <th>NISN</th>
-                <th>WALAS</th>
                 <th>Jurusan</th>
                 <th width="105px">Action</th>
             </tr>
@@ -72,17 +69,19 @@
         $('select[name="rombongan_belajar_id"]').on('change', function(){
             var rombongan_belajar_id = $(this).val();
             if(rombongan_belajar_id) {
-                var table = $('.data-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('lihat.anggota.rombel') }}",
-        columns: [
-            // {data: 'no', name: 'no'},
-            {data: 'peserta_didik_id', name: 'peserta_didik_id'},
-            {data: 'rombongan_belajar_id', name: 'rombongan_belajar_id'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
-    });
+                $.ajax({
+                    url: "{{  url('/setting/anggota-rombel/ajax') }}/"+rombongan_belajar_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                    	$('#rombel').html('');
+                       var d =$('.data-table').empty();
+                          $.each(data, function(key, value){
+                              $('.data-table').append(
+                              	'<table class="table table-striped table-bordered" style="width:100%"><thead><tr><th>Nama Siswa</th><th>NISN</th></tr></thead><tbody><tr><td>'+value.peserta_didik.nama +'</td><td>'+value.rombongan_belajar_id +'</td></tr></tbody></table>');
+                          });
+                    },
+                });
             } else {
                 alert('danger');
             }
@@ -99,9 +98,6 @@
         columns: [
             // {data: 'no', name: 'no'},
             {data: 'peserta_didik_id', name: 'peserta_didik_id'},
-            {data: 'no_induk', name: 'no_induk'},
-            {data: 'nisn', name: 'nisn'},
-            {data: 'walas', name: 'walas'},
             {data: 'rombongan_belajar_id', name: 'rombongan_belajar_id'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]

@@ -157,7 +157,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/user-rfid/delete/{id}','UserRfidDelete')->name('user.rfid.delete');
             Route::get('/user-rfid/edit/{id}','UserRfidEdit')->name('user.rfid.edit');
             Route::post('/user-rfid/update','UserRfidUpdate')->name('user.rfid.update');
-            Route::get('/rfid_id/ajax/{id}','getrfid');
+            Route::get('/rfid_id/ajax/{rfid_id}','getrfid');
         });
 
         
@@ -345,6 +345,7 @@ Route::middleware(['auth','role:guru'])->group(function(){
             Route::get('/presensi-sholat/','LihatPresensiSholat')->name('lihat.presensi.sholat');
             Route::get('/presensi-sholat/tambah','TambahPresensiSholat')->name('tambah.presensi.sholat');
             Route::post('/presensi-sholat/simpan','SimpanPresensiSholat')->name('simpan.presensi.sholat');
+            Route::post('/presensi-sholat-manual/simpan','SimpanPresensiSholatManual')->name('simpan.presensi.sholat.manual');
         });
 
         Route::controller(PesertaDidikController::class)->group(function(){
