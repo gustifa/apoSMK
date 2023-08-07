@@ -99,7 +99,7 @@
 				</div>
 				@else
 				<div class="row">
-					<h2>Tidak diisinkan</h2>
+					<h2 class="font-semibold">Tidak diizinkan</h2>
 				</div>
 
 			

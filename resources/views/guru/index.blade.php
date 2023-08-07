@@ -26,7 +26,7 @@
 								
 							<h5>Penguna {{$user->name}} Anda <span class="text-success">Aktif</span> dan 
 								@if($dataRombongan_belajar == !NULL)
-							Walas {{$dataRombongan_belajar}}</h5>
+							Walas {{$kelas_nama}} {{$jurusan_kode}}{{$group_nama}}</h5>
 								@else
 								Bukan Walas
 								@endif

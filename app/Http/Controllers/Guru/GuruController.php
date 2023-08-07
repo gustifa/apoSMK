@@ -26,11 +26,18 @@ use DB;
 class GuruController extends Controller
 {
     public function GuruDashboard(){
-         $user = Auth::user()->guru_id;
-         $dataRombongan_belajar_all = Rombongan_belajar::all();
-         $implode = Rombongan_belajar::where('guru_id', $user)->get();
-         $id_rombelImplode = $implode->implode('rombongan_belajar_id');
-         $dataRombongan_belajar = $implode->implode('nama'); 
+        $user = Auth::user()->guru_id;
+         
+        $dataRombongan_belajar_all = Rombongan_belajar::all();
+        $implode = Rombongan_belajar::where('guru_id', $user)->get();
+        $kelas =  $implode->implode('kelas_id');
+        $kelas_nama = (Kelas::where('id', $kelas)->get())->implode('nama');
+        $jurusan_kode = (Jurusan::where('id', $kelas)->get())->implode('kode');
+        $group_nama = (Group::where('id', $kelas)->get())->implode('nama');
+        $id_rombelImplode = $implode->implode('rombongan_belajar_id');
+        $dataRombongan_belajar = $implode->implode('rombongan_belajar_id'); 
+          // dd($group_nama);
+         
          if($dataRombongan_belajar == !NULL){
          $countSiswa = count(Anggota_rombel::where('rombongan_belajar_id', $id_rombelImplode)->get());
          }else{
@@ -48,7 +55,7 @@ class GuruController extends Controller
 
 
          
-        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'countPresensi'));
+        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'countPresensi', 'kelas_nama', 'jurusan_kode', 'group_nama'));
     }
 
     public function GuruDestroy(Request $request)
