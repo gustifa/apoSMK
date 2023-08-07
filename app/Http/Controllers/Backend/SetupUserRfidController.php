@@ -10,16 +10,21 @@ use App\Models\Kelas;
 use App\Models\Jurusan;
 use App\Models\Group;
 use App\Models\Peserta_didik;
+use App\Models\Rombongan_belajar;
+use App\Models\Anggota_rombel;
 use DB;
 
 class SetupUserRfidController extends Controller
 {
     public function Index(){
         // $rfid_id = UserRfidSiswa::
-        $peserta_didik = DB::table('peserta_didik')->select('rfid_id')->orderBy('updated_at', 'DESC')->get();
+        // $dataRombel[] = Anggota_rombel::select('peserta_didik_id')->get();;
+        // dd($dataRombel);
+        $dataRfid = Peserta_didik::select('rfid_id','nama')->get();
+        // $hitungRfid = count($dataRombel[]);
 
 
-        dd($dataRfid);
+
         //$dataRfid = UserRfid::all();
         return view('backend.setup.user_rfid.view_user_rfid', compact('dataRfid'));
     }

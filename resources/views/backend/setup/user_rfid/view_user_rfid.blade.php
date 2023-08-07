@@ -74,23 +74,24 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example2" class="table table-striped table-bordered">
+							<table id="example" class="table table-striped table-bordered">
 								<thead>
-									<th style="width: 8px;">No</th>
+									<!-- <th style="width: 8px;">No</th> -->
 										<th>Nama</th>
 										<th>RFID ID</th>
-										<th>Kelas</th>
 
-										<td style="width: 20px;">
+										<th style="width: 20px;">Action</th>
 								</thead>
 								<tbody>
-
+									<!-- @php $no=1; @endphp -->
 									@foreach($dataRfid as $key => $item)
-
-								
+									@if($item->rfid_id == !NULL)
+									@php
+									$a = 1;
+									@endphp
 									<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$item->Nama}}</td>
+										<!-- <td>{{$no}}</td> -->
+										<td>{{$item->nama}}</td>
 										<td>{{$item->rfid_id}}</td>
 										
 										<td style="width: 20px;">
@@ -98,8 +99,10 @@
 											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
 										</td>
 									</tr>
-						
+									@endif
+									<!-- @php $no++; @endphp -->
 									@endforeach
+
 								</tbody>
 								
 							</table>

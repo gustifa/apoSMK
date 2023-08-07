@@ -34,8 +34,9 @@ class SettingAnggotaRombelController extends Controller
                 })
 
                 // ->addColumn('no', function ($query) {
-                //     $data = Peserta_didik::all();
-                //         return count($data) ;  
+                    
+                //                         }
+                          
                 // })
 
                 ->addColumn('rombongan_belajar_id', function ($query) {
