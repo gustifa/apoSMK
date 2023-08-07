@@ -120,16 +120,23 @@ class SetupGuruController extends Controller
        // dd($email_user);
 
        $user = User::all();
+       $countGuru = count($data);
        $countuser = Count($user);
-       
+       for ($i=$countuser; $i <= $countGuru ; $i++) { 
+           
+       }
 
+       $id_guru =  $i; 
+
+       
+       // dd($id_guru);
        // dd($countuser);
        if($implode_email == !NULL){
 
         foreach($data as $d){
            $new_password = strtolower(Str::random(8));
            $user = User::create([
-                        // 'id' => $d->$countuser, 
+                        // 'id' => $countuser++, 
                         'name' => $d->nama,
                         'guru_id' => $d->guru_id,
                         'username' => $d->email,

@@ -31,9 +31,16 @@ class GuruController extends Controller
         $dataRombongan_belajar_all = Rombongan_belajar::all();
         $implode = Rombongan_belajar::where('guru_id', $user)->get();
         $kelas =  $implode->implode('kelas_id');
-        $kelas_nama = (Kelas::where('id', $kelas)->get())->implode('nama');
-        $jurusan_kode = (Jurusan::where('id', $kelas)->get())->implode('kode');
-        $group_nama = (Group::where('id', $kelas)->get())->implode('nama');
+        if($kelas == !NULL){
+            $kelas_nama = (Kelas::where('id', $kelas)->get())->implode('nama');
+            $jurusan_kode = (Jurusan::where('id', $kelas)->get())->implode('kode');
+            $group_nama = (Group::where('id', $kelas)->get())->implode('nama');
+        }else{
+            $kelas_nama = Kelas::all();
+            $jurusan_kode = Jurusan::all();
+            $group_nama = Group::all();
+        }
+       
         $id_rombelImplode = $implode->implode('rombongan_belajar_id');
         $dataRombongan_belajar = $implode->implode('rombongan_belajar_id'); 
           // dd($group_nama);
