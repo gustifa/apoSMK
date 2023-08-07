@@ -3,7 +3,8 @@
 
 <!--start page wrapper -->
 <!-- <script src="{{asset('admin/assets/download/jquery.min.js')}}"></script> -->
-	<script src="{{asset('admin/assets/download/js/jquery-3.5.1.js')}}"></script>
+	<!-- <script src="{{asset('admin/assets/download/js/jquery-3.5.1.js')}}"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <div class="page-wrapper">
 	<div class="page-content">
 		
