@@ -17,13 +17,12 @@ class ApiPresensiSholatController extends Controller
 
     public function simpanPresensiSholat(Request $request){
         $time = strtotime(date('H:i'));
-        $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
-        $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
         $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
         $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
 
         if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
-        
         $data = new PresensiSholat();
         $data->rfid_id = $request->rfid_id;
         $data->presensi = $request->presensi;
