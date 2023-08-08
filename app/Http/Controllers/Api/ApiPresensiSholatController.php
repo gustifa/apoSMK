@@ -21,13 +21,14 @@ class ApiPresensiSholatController extends Controller
         $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
         $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
         $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
-        if($time >= $waktuZuhurMulai && $time <= $waktuZuhurSelesai){
-          $data = new PresensiSholat();
+
+        if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
+        
+        $data = new PresensiSholat();
         $data->rfid_id = $request->rfid_id;
         $data->presensi = $request->presensi;
         // $data->created_at = Carbon::now();
         $data->save();
-
         return response()->json([
             "message" => "Presensi Sholat Berhasil ditambahkan"
         ], 201);  
