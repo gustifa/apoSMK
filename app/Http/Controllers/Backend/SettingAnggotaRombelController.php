@@ -32,13 +32,6 @@ class SettingAnggotaRombelController extends Controller
                 ->addColumn('peserta_didik_id', function ($query) {
                     return $query->peserta_didik->nama;
                 })
-
-                // ->addColumn('no', function ($query) {
-                    
-                //                         }
-                          
-                // })
-
                 ->addColumn('rombongan_belajar_id', function ($query) {
                     $kelas = $query->rombongan_belajar->kelas->nama;
                     $jurusan = $query->rombongan_belajar->jurusan->kode;

@@ -24,7 +24,7 @@
 							<div class="col-12 col-lg-12 col-xl-12 d-flex">
 
 								
-							<h5>Penguna {{$user->name}} Anda <span class="text-success">Aktif</span> dan 
+							<h5>Pengguna <b>{{$user->name}}</b> Anda <span class="text-success">Aktif</span> dan 
 								@if($dataRombongan_belajar == !NULL)
 							Walas {{$kelas_nama}} {{$jurusan_kode}}{{$group_nama}}</h5>
 								@else

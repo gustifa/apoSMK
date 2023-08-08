@@ -22,13 +22,15 @@ class PresensiSholatController extends Controller
 {
     public function LihatPresensiSholat(){
         $time = strtotime(date('H:i'));
-        $hari = strtotime(date('Y-m-d H:i'));
-        $now_awal = date('Y-m-d 1:01');
-        // dd($now);
         $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
         $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
         $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
         $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
+
+        $waktuAsharMulai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuAsharSelesai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $selectedTimeAshar = strtotime(date($waktuAsharMulai));
+        $endTimeAshar = strtotime(date($waktuAsharSelesai));
 
         $user = Auth::user()->guru_id;
         $walas = Rombongan_belajar::where('guru_id', $user )->get();
@@ -43,11 +45,12 @@ class PresensiSholatController extends Controller
         $userLoginId = Auth::user()->id;
         // $userRfId = DB::table('user')->select('Walas_id')->where('Walas_id', $userLoginId)->get();
         // dd($userLoginId);
-
-        $dataPresensi = PresensiSholat::all();
+        $dateNow = date('m-d-Y');
+        // $dataPresensi = PresensiSholat::all();
+        $dataPresensi = PresensiSholat::where('presensi', '2')->where('date', $dateNow)->get();
         $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');
         // dd($create_Presensi);
-        return view('guru.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi', 'implode_rombel', 'selectedTimeZuhur', 'endTimeZuhur', 'time' ));
+        return view('guru.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi', 'implode_rombel', 'selectedTimeZuhur', 'endTimeZuhur', 'time', 'selectedTimeAshar', 'endTimeAshar', 'dateNow','waktuZuhurMulai','waktuZuhurSelesai','waktuAsharMulai', 'waktuAsharSelesai'));
 
     }
 
