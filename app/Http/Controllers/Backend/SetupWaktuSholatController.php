@@ -27,6 +27,29 @@ class SetupWaktuSholatController extends Controller
         return redirect()->route('lihat.waktu.sholat')->with($notification);
     }
 
+    public function editWaktuSholat($id){
+        $WaktuSholat = WaktuSholat::find($id);
+       return view('backend.setup.waktu_sholat.edit_waktu_sholat', compact('WaktuSholat'));
+    }
+
+    public function updateWaktuSholat(Request $request){
+            $id = $request->id;
+            $data = WaktuSholat::find($id);
+            //dd($data);
+            
+            $data->waktu_mulai = $request->waktu_mulai;
+            $data->waktu_selesai = $request->waktu_selesai;
+            $data->save();
+
+            $notification = array(
+                'message' => 'Waktu Sholat Berhasil diperbaharui',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('lihat.waktu.sholat')->with($notification);
+        }
+
+
     public function hapusWaktuSholat($id){
         $hapusWaktuSholat = WaktuSholat::findOrFail($id)->delete();
         // $hapusWaktuSholat->delete();

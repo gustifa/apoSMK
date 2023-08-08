@@ -200,8 +200,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::controller(SetupWaktuSholatController::class)->group(function(){
             //Route Jadwal_Pelajaran
         Route::get('/waktu-sholat','lihatWaktuSholat')->name('lihat.waktu.sholat');
+        Route::get('/waktu-sholat/edit/{id}','editWaktuSholat')->name('edit.waktu.sholat');
         Route::post('/waktu-sholat/simpan','simpanWaktuSholat')->name('simpan.waktu.sholat');
-        Route::post('/waktu-sholat/edit/{id}','editWaktuSholat')->name('edit.waktu.sholat');
+        Route::post('/waktu-sholat/update','updateWaktuSholat')->name('update.waktu.sholat');
         Route::get('/waktu-sholat/hapus/{id}','hapusWaktuSholat')->name('hapus.waktu.sholat');
         }); 
 

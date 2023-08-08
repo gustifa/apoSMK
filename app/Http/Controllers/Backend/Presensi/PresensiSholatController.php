@@ -33,6 +33,7 @@ class PresensiSholatController extends Controller
         $user = Auth::user()->guru_id;
         $walas = Rombongan_belajar::where('guru_id', $user )->get();
         $implode_rombel = $walas->implode('rombongan_belajar_id');
+        
         //$dateNow = Carbon::now()->toDateTimeString();
         // $dateNow = Carbon::now()->addDay()->toDateTimeString();
         //$dateNow = Carbon::now()->subWeek()->toDateTimeString();
@@ -42,6 +43,7 @@ class PresensiSholatController extends Controller
         $userLoginId = Auth::user()->id;
         // $userRfId = DB::table('user')->select('Walas_id')->where('Walas_id', $userLoginId)->get();
         // dd($userLoginId);
+
         $dataPresensi = PresensiSholat::all();
         $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');
         // dd($create_Presensi);

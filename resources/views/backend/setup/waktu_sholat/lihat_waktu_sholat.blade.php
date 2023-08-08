@@ -96,7 +96,7 @@
                                         <td>{{$item->waktu_selesai}}</td>
 										<td style="width: 20px;">
 											<a class="btn btn-info" href="{{ route('edit.waktu.sholat',$item->id) }}"><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="{{ route('hapus.waktu.sholat',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<!-- <a class="btn btn-danger" href="{{ route('hapus.waktu.sholat',$item->id) }}" id="delete"><i class='bx bx-x-circle mr-1'></i></a> -->
 										</td>
 									</tr>
 									@endforeach
