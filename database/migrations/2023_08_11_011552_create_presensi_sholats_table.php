@@ -18,6 +18,7 @@ return new class extends Migration
             // $table->uuid('siswa_id')->nullable();
             $table->string('rfid_id')->nullable();
             $table->string('presensi')->default(0);
+            $table->date('date')->nullable();
             $table->timestamps();
             $table->primary('id');
             $table->foreign('rfid_id')->references('rfid_id')->on('peserta_didik')
