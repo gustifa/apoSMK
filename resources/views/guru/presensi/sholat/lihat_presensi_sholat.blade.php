@@ -12,7 +12,7 @@
 						<h4 class="text-dark">Presensi Sholat Zhuhur {{$dateNow}}</h4>
 						<h5 class="text-danger">Waktu Mulai Presensi: {{$waktuZuhurMulai}} dan berakhir: {{$waktuZuhurSelesai}}  </h5>
 						<hr />
-						<div class="table-responsive">
+						<div class="table-responsive" id="refresh">
 							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -60,6 +60,7 @@
 								</tbody>
 								
 							</table>
+							<button class="btn btn-primary">Refresh</button>
 						</div>
 					</div>
 				</div>
@@ -89,7 +90,7 @@
 								</thead>
 								<tbody>
 									
-									@foreach($dataPresensi as $key => $item)
+									@foreach($dataPresensiAshar as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
 										<td>{{($item->peserta_didik->nama)}}</td>
@@ -136,6 +137,7 @@
 		</div>
 
 			</div>
+			
 		</div>
 		<!--end page wrapper -->
 @endsection

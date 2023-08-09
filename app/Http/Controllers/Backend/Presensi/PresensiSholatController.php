@@ -50,9 +50,10 @@ class PresensiSholatController extends Controller
         // dd($dateNow);
         // $dataPresensi = PresensiSholat::all();
         $dataPresensi = PresensiSholat::where('presensi', '2')->where('date', $dateNow)->get();
+        $dataPresensiAshar = PresensiSholat::where('presensi', '22')->where('date', $dateNow)->get();
         $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');
         // dd($create_Presensi);
-        return view('guru.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi', 'implode_rombel', 'selectedTimeZuhur', 'endTimeZuhur', 'time', 'selectedTimeAshar', 'endTimeAshar', 'dateNow','waktuZuhurMulai','waktuZuhurSelesai','waktuAsharMulai', 'waktuAsharSelesai'));
+        return view('guru.presensi.sholat.lihat_presensi_sholat', compact('dataPresensi', 'implode_rombel', 'selectedTimeZuhur', 'endTimeZuhur', 'time', 'selectedTimeAshar', 'endTimeAshar', 'dateNow','waktuZuhurMulai','waktuZuhurSelesai','waktuAsharMulai', 'waktuAsharSelesai', 'dataPresensiAshar'));
 
     }
 
