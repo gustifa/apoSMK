@@ -45,7 +45,9 @@ class PresensiSholatController extends Controller
         $userLoginId = Auth::user()->id;
         // $userRfId = DB::table('user')->select('Walas_id')->where('Walas_id', $userLoginId)->get();
         // dd($userLoginId);
-        $dateNow = date('m-d-Y');
+        // $dateNow = date('m-d-Y');
+        $dateNow = date('Y-m-d');
+        // dd($dateNow);
         // $dataPresensi = PresensiSholat::all();
         $dataPresensi = PresensiSholat::where('presensi', '2')->where('date', $dateNow)->get();
         $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');

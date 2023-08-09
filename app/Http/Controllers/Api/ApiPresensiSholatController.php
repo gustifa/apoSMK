@@ -30,7 +30,8 @@ class ApiPresensiSholatController extends Controller
         $endTimeAshar = strtotime(date($waktuAsharSelesai));
 
         $peserta_didik = Peserta_didik::all();
-        $dateNow = date('m-d-Y');
+        // $dateNow = date('m-d-Y');
+        $dateNow = date('Y-m-d');
         $dateStart = date('Y-m-d 00:01');
         $dateEnd = date('Y-m-d '.$waktuAsharMulai);
         // $dateNow = date(now());
@@ -79,7 +80,7 @@ class ApiPresensiSholatController extends Controller
              
         }else{
             return response()->json([
-                "message" => "Tidak Jadwal Sholat"
+                "message" => "Belum Jadwal Sholat"
             ], 201);
     }
        
