@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
-            //guru
+            // guru
             [
                 'id' => '2',
                 'name' => 'guru',
@@ -46,26 +46,26 @@ class UsersTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
             //user
-            [
-                'id' => '3',
-                'name' => 'user',
-                'username' => 'user',
-                'email' => 'user@gmail.com',
-                'password' => Hash::make('111'),
-                'role' => 'user',
-                'status' => 'active',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'id' => '4',
-                'name' => 'siswa',
-                'username' => 'siswa',
-                'email' => 'siswa@gmail.com',
-                'password' => Hash::make('111'),
-                'role' => 'siswa',
-                'status' => 'active',
-                'created_at' => Carbon::now(),
-            ],
+            // [
+            //     'id' => '3',
+            //     'name' => 'user',
+            //     'username' => 'user',
+            //     'email' => 'user@gmail.com',
+            //     'password' => Hash::make('111'),
+            //     'role' => 'user',
+            //     'status' => 'active',
+            //     'created_at' => Carbon::now(),
+            // ],
+            // [
+            //     'id' => '4',
+            //     'name' => 'siswa',
+            //     'username' => 'siswa',
+            //     'email' => 'siswa@gmail.com',
+            //     'password' => Hash::make('111'),
+            //     'role' => 'siswa',
+            //     'status' => 'active',
+            //     'created_at' => Carbon::now(),
+            // ],
 
             /*
             

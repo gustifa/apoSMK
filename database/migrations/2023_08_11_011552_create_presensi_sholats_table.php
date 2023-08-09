@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id');
             // $table->uuid('siswa_id')->nullable();
             $table->string('rfid_id')->nullable();
+            $table->string('nisn')->nullable();
             $table->string('presensi')->default(0);
             $table->date('date')->nullable();
             $table->timestamps();

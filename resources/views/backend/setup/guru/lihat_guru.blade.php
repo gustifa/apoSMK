@@ -13,7 +13,7 @@
 				<!-- Awal Moodal -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<a href="{{route('tambah.guru')}}"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Tambah Guru</button></a>
+												<a href="{{route('tambah.guru')}}"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-plus"></i> Tambah Guru</button></a>
 												
 											</div>
 										</div>
@@ -28,19 +28,7 @@
 												</ul>
 											</div>
 										</div>
-										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-											<div class="btn-group" role="group">
-												<a href="{{route('export.guru')}}"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Download</button></a>
-												
-											</div>
-										</div>
-
-										<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-											<div class="btn-group" role="group">
-												<a href="{{route('all.delete.guru')}}" id="delete"><button type="button" class="btn btn-dark" aria-expanded="false"><i class="fadeIn animated bx bx-cloud-download"></i> Kosongkan Table</button></a>
-												
-											</div>
-										</div>
+										
 
 
 

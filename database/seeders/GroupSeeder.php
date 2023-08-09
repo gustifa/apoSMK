@@ -39,15 +39,15 @@ class GroupSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
 
-            [
-                'nama' => '5',
-                'created_at' => Carbon::now(),
-            ],
+            // [
+            //     'nama' => '5',
+            //     'created_at' => Carbon::now(),
+            // ],
 
-                        [
-                'nama' => '6',
-                'created_at' => Carbon::now(),
-            ],
+            //             [
+            //     'nama' => '6',
+            //     'created_at' => Carbon::now(),
+            // ],
 
         ]);
     }

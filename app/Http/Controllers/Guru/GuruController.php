@@ -27,26 +27,26 @@ class GuruController extends Controller
 {
     public function GuruDashboard(){
         $user = Auth::user()->guru_id;
-         
         $dataRombongan_belajar_all = Rombongan_belajar::all();
-        $implode = Rombongan_belajar::where('guru_id', $user)->get();
-        $kelas =  $implode->implode('kelas_id');
-        if($kelas == !NULL){
+        $walas_id = Rombongan_belajar::where('guru_id', $user)->get();
+        $kelas =  $walas_id->implode('kelas_id');
+        $jurusan =  $walas_id->implode('jurusan_id');
+        $group =  $walas_id->implode('group_id');
+        if($kelas || $jurusan || $group  == !NULL){
             $kelas_nama = (Kelas::where('id', $kelas)->get())->implode('nama');
-            $jurusan_kode = (Jurusan::where('id', $kelas)->get())->implode('kode');
-            $group_nama = (Group::where('id', $kelas)->get())->implode('nama');
+            $jurusan_kode = (Jurusan::where('id', $jurusan)->get())->implode('kode');
+            $group_nama = (Group::where('id', $group)->get())->implode('nama');
         }else{
             $kelas_nama = Kelas::all();
             $jurusan_kode = Jurusan::all();
             $group_nama = Group::all();
         }
-       
-        $id_rombelImplode = $implode->implode('rombongan_belajar_id');
-        $dataRombongan_belajar = $implode->implode('rombongan_belajar_id'); 
+
+        $dataRombongan_belajar = $walas_id->implode('rombongan_belajar_id'); 
           // dd($group_nama);
          
          if($dataRombongan_belajar == !NULL){
-         $countSiswa = count(Anggota_rombel::where('rombongan_belajar_id', $id_rombelImplode)->get());
+         $countSiswa = count(Anggota_rombel::where('rombongan_belajar_id', $dataRombongan_belajar)->get());
          }else{
             $countSiswa = count(Peserta_didik::all());
          }
@@ -58,11 +58,26 @@ class GuruController extends Controller
          $pengumuman = Pengumuman::orderBy('created_at', 'ASC')->limit(1)->get();
          $pengumuman_select = Pengumuman::orderBy('id', 'DESC')->limit(1)->get();
          $pengumuman_updated = Pengumuman::orderBy('updated_at', 'DESC')->limit(1)->get();
-         
 
+         // Count Presensi Sholat Hari ini
+         $dateNow = date('Y-m-d');
+        // dd($dateNow);
+        // $dataPresensi = PresensiSholat::all();
+        $dataPresensi = PresensiSholat::where('presensi', '2')->where('date', $dateNow)->get();
+        $countZuhur = count($dataPresensi);
+        $dataPresensiAshar = PresensiSholat::where('presensi', '22')->where('date', $dateNow)->get();
+        $countAshar = count($dataPresensiAshar);
+        // dd($countAshar);
 
-         
-        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'countPresensi', 'kelas_nama', 'jurusan_kode', 'group_nama'));
+        $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');
+        // dd($create_Presensi); 
+        
+        $persenZuhur = ($countZuhur/$countSiswa) * 100;
+        $persenAshar = (($countAshar/$countSiswa) * 100);
+    
+        
+        // dd($presensiZuhur);
+        return view('guru.index', compact('dataRombongan_belajar', 'countSiswa', 'dataRombongan_belajar_all', 'pengumuman', 'pengumuman_select', 'implodePengumuman', 'pengumuman_updated', 'implodeupdate', 'countPresensi', 'kelas_nama', 'jurusan_kode', 'group_nama', 'countZuhur', 'countAshar', 'persenAshar','persenZuhur'));
     }
 
     public function GuruDestroy(Request $request)

@@ -3,6 +3,9 @@
     $id = Auth::user()->id;
     $agentId = App\Models\User::find($id);
     $status = $agentId->status;
+    $user = Auth::user()->guru_id;
+    $walas = App\Models\Rombongan_belajar::where('guru_id', $user )->get();
+    $implode_rombel = $walas->implode('rombongan_belajar_id');
 @endphp
 <ul class="metismenu" id="menu">
 	<li>
@@ -30,7 +33,7 @@
 					</ul>
 				</li>
 								
-			
+	@if( $implode_rombel)		
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-scan"></i>
@@ -44,6 +47,7 @@
 
 					</ul>
 				</li>
+	@endif
 				<li class="menu-label">Bobot Pelanggaran</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
@@ -60,7 +64,7 @@
 
 					</ul>
 				</li>
-
+@if( $implode_rombel)
 				<li class="menu-label">Presensi Sholat</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
@@ -81,6 +85,7 @@
 
 					</ul>
 				</li>
+@endif
 
 				<li class="menu-label">Presensi PBM</li>
 

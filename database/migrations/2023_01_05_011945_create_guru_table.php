@@ -22,15 +22,15 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
             $table->string('nik', 16)->nullable();
-            $table->integer('jenis_ptk_id');
+            $table->integer('jenis_ptk_id')->nullable();
             $table->integer('agama_id');
-            $table->integer('status_kepegawaian_id');
+            $table->integer('status_kepegawaian_id')->nullable();
             $table->string('alamat')->nullable();
             $table->string('rt')->nullable();
             $table->string('rw')->nullable();
             $table->string('desa_kelurahan')->nullable();
             $table->string('kecamatan')->nullable();
-            $table->string('kode_wilayah');
+            $table->string('kode_wilayah')->nullable();
             $table->string('kode_pos')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();

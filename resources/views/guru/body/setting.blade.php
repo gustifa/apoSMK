@@ -1,3 +1,4 @@
+
 <div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>

@@ -187,18 +187,41 @@
 						<div class="col-lg-12 col-xl-12" >
 								<div class="card border-primary">
 									<div class="card-body">
-										<h6 class="mb-0">Presensi Sholat</h6>
+										<h6 class="mb-0">Total Sholat Zuhur</h6>
 										<!-- <div class="card radius-10 overflow-hidden"> -->
 										   	<div class="card-body">
 														 <!-- <p>Website Sessions</p> -->
 														 
-														 <h3>75</h3>
+														 <h3>{{$countZuhur}}</h3>
 														 
-														 <p class="mb-0">72% <span class="float-end"> {{$countSiswa}}</span></p>
+														 <p class="mb-0">{{$persenZuhur}}% <span class="float-end"> {{$countZuhur}}</span></p>
 											   </div>
 													<div class="progress-wrapper">
 														<div class="progress" style="height: 7px;">
-														  <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+														  <div class="progress-bar" role="progressbar" style="width: {{$persenZuhur}}%"></div>
+														</div>
+												</div>
+										<!-- </div> -->
+										
+									</div>
+								</div>
+						<!-- Akhir Col -->
+						<!-- awal col -->
+						<div class="col-lg-12 col-xl-12" >
+								<div class="card border-primary">
+									<div class="card-body">
+										<h6 class="mb-0">Total Sholat Ashar</h6>
+										<!-- <div class="card radius-10 overflow-hidden"> -->
+										   	<div class="card-body">
+														 <!-- <p>Website Sessions</p> -->
+														 
+														 <h3>{{$countAshar}}</h3>
+														 
+														 <p class="mb-0">{{$persenAshar}}% <span class="float-end"> {{$countAshar}}</span></p>
+											   </div>
+													<div class="progress-wrapper">
+														<div class="progress" style="height: 7px;">
+														  <div class="progress-bar" role="progressbar" style="width: {{$persenAshar}}%"></div>
 														</div>
 												</div>
 										<!-- </div> -->

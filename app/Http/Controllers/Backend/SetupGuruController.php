@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Agama;
 use App\Models\userrfid;
 use App\Models\Peserta_didik;
 use App\DataTables\GuruDataTable;
@@ -34,10 +35,15 @@ class SetupGuruController extends Controller
             $data->nama = $request->nama;
             $data->nik = $request->nik;
             $data->nuptk = $request->nuptk;
+            $data->email = $request->email;
+            $data->tanggal_lahir = $request->tanggal_lahir;
+            $data->tempat_lahir = $request->tempat_lahir;
+            $data->jenis_kelamin = $request->jenis_kelamin;
+            $data->agama_id = $request->agama_id;
             $data->save();
 
             $notification = array(
-                'message' => 'Guru Berhasil ditambahkan',
+                'message' => 'Data Guru Berhasil ditambahkan',
                 'alert-type' => 'success'
             );
 
@@ -45,7 +51,8 @@ class SetupGuruController extends Controller
         }
 
         public function TambahGuru(){
-            return view('backend.setup.guru.tambah_guru');
+            $agama = Agama::all();
+            return view('backend.setup.guru.tambah_guru', compact('agama'));
         }
 
         public function EditGuru($id){
