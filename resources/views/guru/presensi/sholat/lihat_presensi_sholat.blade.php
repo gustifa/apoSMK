@@ -98,6 +98,7 @@
 										
 										<th>Presensi</th>
 										<th>Waktu Presensi</th>
+										<th>Status Presensi</th>
 										
 
 										
@@ -129,6 +130,11 @@
 										<td>Sholat Ashar</td>
 										@endif
 										<td>{{$item->created_at}}</td>
+										@if($item->status == 1)
+										<td>RFID</td>
+										@else
+										<td>Manual</td>
+										@endif
 									</tr>
 									@endforeach
 									
