@@ -82,7 +82,7 @@
 										@endforeach
 									</tbody>
 							</table>
-							@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur || $time >= $selectedTimeAshar && $time <= $endTimeAshar )
+							@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur)
 							<div class="col-xl-12">
 									<div class="mb-10">
 										
@@ -90,7 +90,14 @@
 									</div>
 								
 							</div>
-							
+							@elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar)
+								<div class="col-xl-12">
+									<div class="mb-10">
+										
+										<input type="submit" class="form-control btn btn-outline-primary" value="Simpan">
+									</div>
+								
+							</div>
 							@endif
 
 						</div>

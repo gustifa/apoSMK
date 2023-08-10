@@ -48,7 +48,7 @@ class ApiPresensiSholatController extends Controller
         
 
         if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
-            if(!$rfid_idZhuhur && !$rfid_idAshar && !$tidakZuhur && !$tidakAshar && !$non){
+            if(!$rfid_idZhuhur){
                 $data = new PresensiSholat();
                 $data->rfid_id = $request->rfid_id;
                 $data->presensi = '2';
@@ -66,7 +66,7 @@ class ApiPresensiSholatController extends Controller
             }
             
         }elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar){
-            if(!$rfid_idZhuhur && !$rfid_idAshar && !$tidakZuhur && !$tidakAshar && !$non){
+            if(!$rfid_idAshar){
                 $data = new PresensiSholat();
                 $data->rfid_id = $request->rfid_id;
                 $data->presensi = '22';

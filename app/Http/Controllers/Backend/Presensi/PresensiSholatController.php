@@ -95,10 +95,15 @@ class PresensiSholatController extends Controller
         // $selectedTime = $_REQUEST['time'];
         $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
         $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $waktuAsharMulai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuAsharSelesai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
         $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
         $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
-        $selectedTimeAshar = strtotime(date('d-m-Y 15:30:00'));
-        $endTimeAshar = strtotime(date('d-m-Y 16:00:00'));
+        $selectedTimeAshar = strtotime(date($waktuAsharMulai));
+        $endTimeAshar = strtotime(date($waktuAsharSelesai));
+
+        // $selectedTimeAshar = strtotime(date('d-m-Y 15:30:00'));
+        // $endTimeAshar = strtotime(date('d-m-Y 16:00:00'));
 
         // $endTime = strtotime("+45 minutes", strtotime($selectedTime));
         // $oktime =  date('h:i:s', $endTime);
@@ -149,7 +154,7 @@ class PresensiSholatController extends Controller
         
         if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
         // dd($countPresensi);
-            if(!$rfid_idZhuhur && !$rfid_idAshar && !$tidakZuhur && !$tidakAshar && !$non){
+            if(!$rfid_idZhuhur){
                 if($countPresensi != NULL){
                     for ($i=0; $i < $countPresensi; $i++) { 
                         $presensi = new PresensiSholat();
@@ -175,6 +180,31 @@ class PresensiSholatController extends Controller
                 }
 
                 
+            }elseif(!$rfid_idAshar){
+                if($countPresensi != NULL){
+                    for ($i=0; $i < $countPresensi; $i++) { 
+                        $presensi = new PresensiSholat();
+                        $presensi->rfid_id = $request->rfid_id[$i];
+                        $presensi->presensi = $request->presensi[$i];
+                        $presensi->status = '22';
+                        $presensi->date = Carbon::now();
+                        $presensi->save();
+                    }
+                    $notification = array(
+                    'message' => 'Presensi Sholat Berhasil ditambahkan',
+                    'alert-type' => 'success'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }else{
+                    $notification = array(
+                    'message' => 'Gagal Menyimpan Data',
+                    'alert-type' => 'error'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }
+                
             }else{
                 $notification = array(
                     'message' => 'Sudah Mengambil Presensi',
@@ -183,13 +213,75 @@ class PresensiSholatController extends Controller
 
                 return redirect()->route('lihat.presensi.sholat')->with($notification);
             }
+        }elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar){
+        // dd($countPresensi);
+            if(!$rfid_idZhuhur && !$rfid_idAshar){
+                if($countPresensi != NULL){
+                    for ($i=0; $i < $countPresensi; $i++) { 
+                        $presensi = new PresensiSholat();
+                        $presensi->rfid_id = $request->rfid_id[$i];
+                        $presensi->presensi = $request->presensi[$i];
+                        $presensi->status = '2';
+                        $presensi->date = Carbon::now();
+                        $presensi->save();
+                    }
+                    $notification = array(
+                    'message' => 'Presensi Sholat Berhasil ditambahkan',
+                    'alert-type' => 'success'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }else{
+                    $notification = array(
+                    'message' => 'Gagal Menyimpan Data',
+                    'alert-type' => 'error'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }
+
+                
+            }elseif(!$rfid_idAshar){
+                if($countPresensi != NULL){
+                    for ($i=0; $i < $countPresensi; $i++) { 
+                        $presensi = new PresensiSholat();
+                        $presensi->rfid_id = $request->rfid_id[$i];
+                        $presensi->presensi = $request->presensi[$i];
+                        $presensi->status = '22';
+                        $presensi->date = Carbon::now();
+                        $presensi->save();
+                    }
+                    $notification = array(
+                    'message' => 'Presensi Sholat Berhasil ditambahkan',
+                    'alert-type' => 'success'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }else{
+                    $notification = array(
+                    'message' => 'Gagal Menyimpan Data',
+                    'alert-type' => 'error'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }
+                
+            }else{
+                $notification = array(
+                    'message' => 'Sudah Mengambil Presensi',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->route('lihat.presensi.sholat')->with($notification);
+            }
+            
         }else{
-            $notification = array(
+           $notification = array(
                 'message' => 'Gagal Menyimpan Presensi, Belum Waktunya',
                 'alert-type' => 'error'
             );
 
-            return redirect()->route('lihat.presensi.sholat')->with($notification);
+            return redirect()->route('lihat.presensi.sholat')->with($notification); 
         }
     }
 
