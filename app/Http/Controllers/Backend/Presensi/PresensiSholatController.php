@@ -50,10 +50,10 @@ class PresensiSholatController extends Controller
         $dateNow = date('Y-m-d');
         // dd($dateNow);
         // $dataPresensi = PresensiSholat::all();
-        $dataPresensi = PresensiSholat::where('date', $dateNow)->get();
+        $dataPresensi = PresensiSholat::where('presensi', '2')->where('date', $dateNow)->get();
         
         
-        $dataPresensiAshar = PresensiSholat::where('date', $dateNow)->get();
+        $dataPresensiAshar = PresensiSholat::where('presensi', '22')->where('date', $dateNow)->get();
 
         $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');
         // dd($create_Presensi);
