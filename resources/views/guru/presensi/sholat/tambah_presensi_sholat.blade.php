@@ -82,7 +82,7 @@
 										@endforeach
 									</tbody>
 							</table>
-							@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur)
+							@if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur || $time >= $selectedTimeAshar && $time <= $endTimeAshar )
 							<div class="col-xl-12">
 									<div class="mb-10">
 										
