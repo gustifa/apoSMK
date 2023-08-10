@@ -118,6 +118,13 @@
 						
 	
 					</ul>
+
+					<ul>
+						<li> <a href="{{route('lihat.pengumuman')}}"><i class="bx bx-right-arrow-alt"></i>Pengumuman</a>
+						</li>
+						
+	
+					</ul>
 					
 
 					
