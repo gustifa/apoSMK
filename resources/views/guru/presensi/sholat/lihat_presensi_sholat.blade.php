@@ -1,6 +1,11 @@
 @extends('guru.guru_master')
 @section('guru')
 
+@section('title')
+   Lihat Presensi Sholat Oleh Walas
+@endsection
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <!--start page wrapper -->
@@ -26,6 +31,7 @@
 										
 										<th>Presensi</th>
 										<th>Waktu Presensi</th>
+										<th>Status Presensi</th>
 										
 
 										
@@ -57,6 +63,11 @@
 										<td>Sholat Ashar</td>
 										@endif
 										<td>{{$item->created_at}}</td>
+										@if($item->status == 1)
+										<td>RFID</td>
+										@else
+										<td>Manual</td>
+										@endif
 									</tr>
 									@endforeach
 									

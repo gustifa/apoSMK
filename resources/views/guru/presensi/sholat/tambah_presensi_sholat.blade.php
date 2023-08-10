@@ -41,7 +41,7 @@
 									</thead>
 									<tbody>
 										@foreach($anggota_rombel as $key => $item)
-										<input type="hidden" name="peserta_didik_id[]" value="{{$item->peserta_didik_id}}">
+										<input type="hidden" name="rfid_id[]" value="{{$item->peserta_didik->rfid_id}}">
 										<tr>
 											<td>{{$key+1}}</td>
 											<td>

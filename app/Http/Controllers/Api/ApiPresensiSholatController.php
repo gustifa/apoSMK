@@ -39,16 +39,20 @@ class ApiPresensiSholatController extends Controller
 
         $rfid_idZhuhur = PresensiSholat::where('presensi', '2')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
         $rfid_idAshar = PresensiSholat::where('presensi', '22')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $tidakZuhur = PresensiSholat::where('presensi', '1')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $tidakAshar = PresensiSholat::where('presensi', '1')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $non = PresensiSholat::where('presensi', '3')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
         
         // dd($data);
         
         
 
         if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
-            if(!$rfid_idZhuhur){
+            if(!$rfid_idZhuhur && !$rfid_idAshar && !$tidakZuhur && !$tidakAshar && !$non){
                 $data = new PresensiSholat();
                 $data->rfid_id = $request->rfid_id;
                 $data->presensi = '2';
+                $data->status = '1';
                 // $data->presensi = $request->presensi;
                 $data->date = Carbon::now();
                 $data->save();
@@ -62,10 +66,11 @@ class ApiPresensiSholatController extends Controller
             }
             
         }elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar){
-            if(!$rfid_idAshar){
+            if(!$rfid_idZhuhur && !$rfid_idAshar && !$tidakZuhur && !$tidakAshar && !$non){
                 $data = new PresensiSholat();
                 $data->rfid_id = $request->rfid_id;
                 $data->presensi = '22';
+                $data->status = '1';
                 $data->date = Carbon::now();
                 // $data->created_at = Carbon::now();
                 $data->save();

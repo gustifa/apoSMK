@@ -15,6 +15,7 @@ use App\Models\Rombongan_belajar;
 use App\Models\Anggota_rombel;
 use App\Models\User;
 use App\Models\WaktuSholat;
+use App\Models\Peserta_didik;
 use Carbon\Carbon;
 use DB;
 
@@ -49,10 +50,10 @@ class PresensiSholatController extends Controller
         $dateNow = date('Y-m-d');
         // dd($dateNow);
         // $dataPresensi = PresensiSholat::all();
-        $dataPresensi = PresensiSholat::where('presensi', '2')->where('date', $dateNow)->get();
+        $dataPresensi = PresensiSholat::where('date', $dateNow)->get();
         
         
-        $dataPresensiAshar = PresensiSholat::where('presensi', '22')->where('date', $dateNow)->get();
+        $dataPresensiAshar = PresensiSholat::where('date', $dateNow)->get();
 
         $create_Presensi = (PresensiSholat::select('created_at')->get())->implode('created_at');
         // dd($create_Presensi);
@@ -109,34 +110,87 @@ class PresensiSholatController extends Controller
     }
 
     public function SimpanPresensiSholatManual(Request $request){
+        /*Awal Waktu*/ 
+        $time = strtotime(date('H:i'));
+        $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
+        $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
+
+        $waktuAsharMulai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuAsharSelesai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $selectedTimeAshar = strtotime(date($waktuAsharMulai));
+        $endTimeAshar = strtotime(date($waktuAsharSelesai));
+
+        $peserta_didik = Peserta_didik::all();
+        // $cekPesertaDidik = Peserta_didik::where('rfid_')
+        $cekrfid_id = $request->rfid_id;
+        $dateNow = date('Y-m-d');
+
+        $rfid_idZhuhur = PresensiSholat::where('presensi', '2')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $rfid_idAshar = PresensiSholat::where('presensi', '22')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $tidakZuhur = PresensiSholat::where('presensi', '1')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $tidakAshar = PresensiSholat::where('presensi', '1')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $non = PresensiSholat::where('presensi', '3')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        /*Akhir Waktu*/
+
         $user = Auth::user()->guru_id;
         $rombel = Rombongan_belajar::where('guru_id', $user )->get();
         $implode_rombel = $rombel->implode('rombongan_belajar_id');
-        $implode_peserta_didik = $rombel->implode('peserta_didik_id'); 
-        $peserta_didik_id = $request->peserta_didik_id;
-        $presensi = $request->presensi;
-        // dd($peserta_didik_id && $presensi);
-        if ($peserta_didik_id && $presensi == true){
-        foreach ($presensi as $key => $presensi_sholat) {
-            $data = new PresensiSholat();
-            // $data->rfid_id = $request->peserta_didik_id;
-            $data->presensi = $presensi_sholat;
-            $data->save();
+        // Anggota Rombel
+        $anggota_rombel = Anggota_rombel::where('rombongan_belajar_id',$implode_rombel)->get();
+        $countanAgota_rombel = count($anggota_rombel);
+        $presensi =$request->presensi;
+        if($presensi != NULL){
+            $countPresensi = count($presensi);
+        }else{
+            $countPresensi = NULL;
         }
-            $notification = array(
-                'message' => 'Presensi Sholat Berhasil ditambahkan',
-                'alert-type' => 'success'
-            );
+        
+        if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
+        // dd($countPresensi);
+            if(!$rfid_idZhuhur && !$rfid_idAshar && !$tidakZuhur && !$tidakAshar && !$non){
+                if($countPresensi != NULL){
+                    for ($i=0; $i < $countPresensi; $i++) { 
+                        $presensi = new PresensiSholat();
+                        $presensi->rfid_id = $request->rfid_id[$i];
+                        $presensi->presensi = $request->presensi[$i];
+                        $presensi->status = '2';
+                        $presensi->date = Carbon::now();
+                        $presensi->save();
+                    }
+                    $notification = array(
+                    'message' => 'Presensi Sholat Berhasil ditambahkan',
+                    'alert-type' => 'success'
+                    );
 
-            return redirect()->route('lihat.presensi.sholat')->with($notification);
-    }else{
-        $notification = array(
-                'message' => 'Presensi Gagal ditambahkan',
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }else{
+                    $notification = array(
+                    'message' => 'Gagal Menyimpan Data',
+                    'alert-type' => 'error'
+                    );
+
+                    return redirect()->route('lihat.presensi.sholat')->with($notification);
+                }
+
+                
+            }else{
+                $notification = array(
+                    'message' => 'Sudah Mengambil Presensi',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->route('lihat.presensi.sholat')->with($notification);
+            }
+        }else{
+            $notification = array(
+                'message' => 'Gagal Menyimpan Presensi, Belum Waktunya',
                 'alert-type' => 'error'
             );
 
             return redirect()->route('lihat.presensi.sholat')->with($notification);
-    }
+        }
     }
 
     public function SimpanPresensiSholat(Request $request){
