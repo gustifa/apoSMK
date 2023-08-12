@@ -26,7 +26,11 @@ class SetupRombelController extends Controller
         $dataGuru = Guru::all();
         $userRfid = userrfid::all();
         $dataRombongan_belajar = Rombongan_belajar::all();
+        // $totalrombel = Rombongan_belajar::find('10 TJKT1');
+        // $total = count($totalrombel);
+        // dd($total);
         $anggotaRombel = Anggota_rombel::all();
+        
 
         return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','kelas', 'jurusan', 'group','dataGuru','userRfid', 'dataRombongan_belajar'));
     }
@@ -49,7 +53,11 @@ class SetupRombelController extends Controller
         $jurusan = $request->jurusan_id;
         $kelas = $request->kelas_id;
         $group = $request->group_id;
-        $walas = $request->guru_id;
+        $nama_kelas = $request->nama_kelas;
+        $kode_jurusan = $request->kode_jurusan;
+        $nama_group = $request->nama_group;
+
+        
         // $namaRombel = $request->nama;
         
         // dd($namaRombel);
@@ -59,7 +67,8 @@ class SetupRombelController extends Controller
             $data->jurusan_id = $jurusan;
             $data->kelas_id = $kelas;
             $data->group_id = $group;
-            $data->guru_id = $walas;
+            $data->guru_id = $request->guru_id;
+            $data->nama = $nama_kelas. ' '.$kode_jurusan.$nama_group;
             $data->save();
 
             $notification = array(
@@ -123,6 +132,33 @@ class SetupRombelController extends Controller
 
 
     }
+
+
+    public function getKelasAjax($kelas_id){
+    $getkelas = Kelas::where('id', $kelas_id)->orderBy('id', 'DESC')->get();
+        // dd($getkelas);
+    return json_encode($getkelas);
+    }
+
+    public function getJurusanAjax($jurusan_id){
+    $getjurusan = Jurusan::where('id', $jurusan_id)->orderBy('id', 'DESC')->get();
+        // dd($getkelas);
+    return json_encode($getjurusan);
+    }
+
+    public function getGroupAjax($group_id){
+    $getgroup = Group::where('id', $group_id)->orderBy('id', 'DESC')->get();
+        // dd($getkelas);
+    return json_encode($getgroup);
+    }
+
+    public function getGuruAjax($guru_id){
+    $getguru = Guru::where('guru_id', $guru_id)->get();
+        // dd($getguru);
+    return json_encode($getguru);
+    }
+
+        
 
     
 

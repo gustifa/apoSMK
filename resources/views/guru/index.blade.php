@@ -69,15 +69,17 @@
 								</div>
 								<!-- timeline item 1 event content -->
 								<div class="col py-2">
-									<div class="card radius-15">
-										<div class="card-body">
+									
+										
 											<div class="float-end text-muted">{{$item->created_at}}</div>
-											<h4 class="card-title text-muted">{{$item->judul}}</h4>
+											<h5 class="card-title text-muted">{{$item->judul}}</h5>
 											<p class="card-text">{{$item->isi_pengumuman}}.</p>
+												<hr class="border border-transparent" />
 										</div>
-									</div>
-								</div>
+									
+								
 							</div>
+
 							@endforeach
 							@endif
 							<!--/row-->
@@ -100,12 +102,12 @@
 										</div>
 									</div>
 									<div class="col py-2">
-										<div class="card border-primary shadow radius-15">
-											<div class="card-body">
+
 												<div class="float-end text-primary">{{$item->created_at}}</div>
-												<h4 class="card-title text-primary">{{$item->judul}}</h4>
+												<h5 class="card-title text-primary">{{$item->judul}}</h5>
 												<p class="card-text">{{$item->isi_pengumuman}}.</p>
-												<button class="btn btn-sm btn-outline-secondary" type="button" data-bs-target="#t2_details" data-bs-toggle="collapse">Show Details ▼</button>
+													<hr class="border border-transparent" />
+												<!-- <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-target="#t2_details" data-bs-toggle="collapse">Show Details ▼</button>
 												<div class="collapse border" id="t2_details">
 													<div class="p-2 text-monospace">
 														<div>08:30 - 09:00 Breakfast in CR 2A</div>
@@ -113,9 +115,8 @@
 														<div>10:30 - 10:45 Break</div>
 														<div>10:45 - 12:00 Live sessions in CR 3</div>
 													</div>
-												</div>
-											</div>
-										</div>
+											
+												</div> -->
 									</div>
 								</div>
 								@endforeach
@@ -140,14 +141,13 @@
 										</div>
 									</div>
 									<div class="col py-2">
-										<div class="card radius-15">
-											<div class="card-body">
+										
 												<div class="float-end text-muted">{{$item->created_at}}</div>
-												<h4 class="card-title">{{$item->judul}}</h4>
+												<h5 class="card-title">{{$item->judul}}</h5>
 												<p>{{$item->isi_pengumuman}}.</p>
+													<hr class="border border-transparent" />
 											</div>
-										</div>
-									</div>
+										
 								</div>
 								@endforeach
 								@endif

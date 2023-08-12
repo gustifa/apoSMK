@@ -17,7 +17,7 @@
 				<div class="card">
 					<div class="card-body">
 						
-						<h4 class="text-dark">Presensi Sholat Zhuhur {{$dateNow}}</h4>
+						<h4 class="text-dark">Presensi Sholat Zhuhur {{($dateNow)}}</h4>
 						<h5 class="text-danger">Waktu Mulai Presensi: {{$waktuZuhurMulai}} dan berakhir: {{$waktuZuhurSelesai}}  </h5>
 						<hr />
 						<div class="table-responsive">
@@ -63,7 +63,7 @@
 										<td>Sholat Ashar</td>
 										@endif
 										<td>{{$item->created_at}}</td>
-										@if($item->status == 1)
+										@if($item->status_presensi == 1)
 										<td>RFID</td>
 										@else
 										<td>Manual</td>
@@ -130,7 +130,7 @@
 										<td>Sholat Ashar</td>
 										@endif
 										<td>{{$item->created_at}}</td>
-										@if($item->status == 1)
+										@if($item->status_presensi == 1)
 										<td>RFID</td>
 										@else
 										<td>Manual</td>

@@ -78,11 +78,11 @@
 									</tr>
 								</thead>
 								<tbody>
-								@foreach($pengumuman as $key => $item)
+								@foreach($semuaROmbel as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->judul}}</td>
-										<td>{{$item->isi_pengumuman}}</td>
+										<td>{{$item->rombongan_belajar_id}}</td>
+										<td>{{$item->guru_id}}</td>
 										
 								
 									

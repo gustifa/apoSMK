@@ -163,6 +163,33 @@
 				</li>
 				<!-- Akhir -->
 
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-export"></i>
+						</div>
+						<div class="menu-title">Laporan</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('laporan.all')}}"><i class="bx bx-right-arrow-alt"></i>Semua ROmbel</a>
+						</li>
+					</ul>
+					<ul>
+						<li> <a href="{{route('export.userrfid')}}"><i class="bx bx-right-arrow-alt"></i>Export UserRFID</a>
+						
+					</ul>
+
+					<ul>
+						<li> <a href="{{route('export.guru')}}"><i class="bx bx-right-arrow-alt"></i>Export Guru</a>
+						
+					</ul>
+
+
+					<!-- <ul>
+						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>Export Guru</a>
+						
+					</ul> -->
+				</li>
+
 				
 
 				

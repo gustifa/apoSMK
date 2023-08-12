@@ -21,8 +21,8 @@ return new class extends Migration
             // $table->uuid('peserta_didik_id')->nullable();
             // $table->uuid('jurusan_sp_id')->nullable();
             // $table->integer('kurikulum_id')->nullable();
-            // $table->string('nama');
-            $table->uuid('guru_id')->nullable();
+            $table->string('nama')->unique();
+            $table->uuid('guru_id')->nullable()->unique();
             // $table->uuid('ptk_id')->nullable();
             // $table->integer('tingkat')->nullable();
             // $table->decimal('jenis_rombel', 2, 0);

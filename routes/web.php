@@ -31,6 +31,8 @@ use App\Http\Controllers\Backend\SettingMapingController;
 use App\Http\Controllers\Backend\SettingAnggotaRombelController;
 use App\Http\Controllers\Backend\SettingPengumumanController;
 
+use App\Http\Controllers\Laporan\LaporanPresensiSholatController;
+
 use App\Http\Controllers\Guru\GuruController;
 use App\Http\Controllers\Siswa\SiswaController;
 
@@ -222,13 +224,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
        
         //Route Sekolah
         Route::get('/sekolah',[SekolahController::class,'Sekolah'])->name('sekolah');
-        Route::post('/update/sekolah/',[SekolahController::class,'UpdateSekolah'])->name('update.sekolah');
-        
-        
-
-          
-        
-        
+        Route::post('/update/sekolah/',[SekolahController::class,'UpdateSekolah'])->name('update.sekolah');   
 
     }); //End Group
     Route::prefix('setting')->group(function(){  
@@ -283,6 +279,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/rombel/update/{id}','UpdateRombel')->name('update.rombel');
             Route::get('/rombel/hapus/{id}','HapusRombel')->name('hapus.rombel');
             Route::post('/import/rombel','ImportRombel')->name('import.rombel');
+            Route::get('/kelas/ajax/{kelas_id}','getKelasAjax');
+            Route::get('/kelas/ajax/{kelas_id}','getKelasAjax');
+            Route::get('/jurusan/ajax/{jurusan_id}','getjurusanAjax');
+            Route::get('/group/ajax/{group_id}','getgroupAjax');
+            Route::get('/guru/ajax/{guru_id}','getguruAjax');
 
         });
 
@@ -316,8 +317,21 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     }); //End Group
 
+    Route::prefix('laporan')->group(function(){
+        Route::controller(LaporanPresensiSholatController::class)->group(function(){
+        Route::get('/all','laporanAll')->name('laporan.all');
+        Route::get('/exam/fee/classwisedata', 'ExamFeeClassData')->name('student.exam.fee.classwise.get');
+        });
+
+    }); //End Group
+
 }); //End Middleware Admin
 
+// Route Laporan
+
+// Route::middleware(['auth','role:admin'])->group(function(){
+    
+// });
 
 Route::middleware(['auth','role:user'])->group(function(){
     // Route::get('/dashboard', [VendorController::class,'VendorDashboard'])->name('vendor.dashboard');

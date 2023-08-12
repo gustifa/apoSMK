@@ -75,4 +75,6 @@ class SetupKelasController extends Controller
 	    	return redirect()->route('lihat.kelas')->with($notification);
 
 	    }
+
+	    
 }

@@ -19,6 +19,7 @@ use App\Models\PresensiSholat;
 use App\Models\Rombongan_belajar;
 use App\Models\Peserta_didik;
 use App\Models\Pengumuman;
+use App\Models\WaktuSHolat;
 //use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
@@ -74,6 +75,21 @@ class GuruController extends Controller
         
         $persenZuhur = ($countZuhur/$countSiswa) * 100;
         $persenAshar = (($countAshar/$countSiswa) * 100);
+
+        /*Waktu Sholat*/
+
+        $date_now = date('d-m-Y H:i');
+        $time = strtotime(date('H:i'));
+        // $selectedTime = $_REQUEST['time'];
+        $waktuZuhurMulai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuZuhurSelesai = (WaktuSholat::where('nama', 'Zhuhur')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $waktuAsharMulai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_mulai');
+        $waktuAsharSelesai = (WaktuSholat::where('nama', 'Ashar')->select('waktu_mulai', 'waktu_selesai')->get())->implode('waktu_selesai');
+        $selectedTimeZuhur = strtotime(date($waktuZuhurMulai));
+        $endTimeZuhur = strtotime(date($waktuZuhurSelesai));
+        $selectedTimeAshar = strtotime(date($waktuAsharMulai));
+        $endTimeAshar = strtotime(date($waktuAsharSelesai));
+        /*Akhir Waktu Sholat*/
     
         
         // dd($presensiZuhur);

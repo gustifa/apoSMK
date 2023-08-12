@@ -131,11 +131,12 @@ class PresensiSholatController extends Controller
         // $cekPesertaDidik = Peserta_didik::where('rfid_')
         $cekrfid_id = $request->rfid_id;
         $dateNow = date('Y-m-d');
-
+        $statusRfid = PresensiSholat::where('status_presensi', '1')->where('rfid_id', $cekrfid_id )->where('date', $dateNow)->first();
+        // dd($statusRfid);
         $rfid_idZhuhur = PresensiSholat::where('presensi', '2')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
         $rfid_idAshar = PresensiSholat::where('presensi', '22')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
         $tidakZuhur = PresensiSholat::where('presensi', '1')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
-        $tidakAshar = PresensiSholat::where('presensi', '1')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
+        $tidakAshar = PresensiSholat::where('presensi', '11')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
         $non = PresensiSholat::where('presensi', '3')->where('rfid_id',$cekrfid_id )->where('date', $dateNow)->first();
         /*Akhir Waktu*/
 
@@ -154,13 +155,13 @@ class PresensiSholatController extends Controller
         
         if($time >= $selectedTimeZuhur && $time <= $endTimeZuhur){
         // dd($countPresensi);
-            if(!$rfid_idZhuhur){
-                if($countPresensi != NULL){
+            if(!$rfid_idZhuhur && !$statusRfid){
+                if($countPresensi == !NULL){
                     for ($i=0; $i < $countPresensi; $i++) { 
                         $presensi = new PresensiSholat();
                         $presensi->rfid_id = $request->rfid_id[$i];
                         $presensi->presensi = $request->presensi[$i];
-                        $presensi->status = '2';
+                        $presensi->status_presensi = '2';
                         $presensi->date = Carbon::now();
                         $presensi->save();
                     }
@@ -172,38 +173,13 @@ class PresensiSholatController extends Controller
                     return redirect()->route('lihat.presensi.sholat')->with($notification);
                 }else{
                     $notification = array(
-                    'message' => 'Gagal Menyimpan Data',
+                    'message' => 'Gagal Menyimpan Data Presensi Sholat',
                     'alert-type' => 'error'
                     );
 
                     return redirect()->route('lihat.presensi.sholat')->with($notification);
                 }
 
-                
-            }elseif(!$rfid_idAshar){
-                if($countPresensi != NULL){
-                    for ($i=0; $i < $countPresensi; $i++) { 
-                        $presensi = new PresensiSholat();
-                        $presensi->rfid_id = $request->rfid_id[$i];
-                        $presensi->presensi = $request->presensi[$i];
-                        $presensi->status = '22';
-                        $presensi->date = Carbon::now();
-                        $presensi->save();
-                    }
-                    $notification = array(
-                    'message' => 'Presensi Sholat Berhasil ditambahkan',
-                    'alert-type' => 'success'
-                    );
-
-                    return redirect()->route('lihat.presensi.sholat')->with($notification);
-                }else{
-                    $notification = array(
-                    'message' => 'Gagal Menyimpan Data',
-                    'alert-type' => 'error'
-                    );
-
-                    return redirect()->route('lihat.presensi.sholat')->with($notification);
-                }
                 
             }else{
                 $notification = array(
@@ -215,13 +191,13 @@ class PresensiSholatController extends Controller
             }
         }elseif($time >= $selectedTimeAshar && $time <= $endTimeAshar){
         // dd($countPresensi);
-            if(!$rfid_idZhuhur && !$rfid_idAshar){
+            if(!$rfid_idAshar){
                 if($countPresensi != NULL){
                     for ($i=0; $i < $countPresensi; $i++) { 
                         $presensi = new PresensiSholat();
                         $presensi->rfid_id = $request->rfid_id[$i];
                         $presensi->presensi = $request->presensi[$i];
-                        $presensi->status = '2';
+                        $presensi->status_presensi = '2';
                         $presensi->date = Carbon::now();
                         $presensi->save();
                     }
@@ -233,33 +209,7 @@ class PresensiSholatController extends Controller
                     return redirect()->route('lihat.presensi.sholat')->with($notification);
                 }else{
                     $notification = array(
-                    'message' => 'Gagal Menyimpan Data',
-                    'alert-type' => 'error'
-                    );
-
-                    return redirect()->route('lihat.presensi.sholat')->with($notification);
-                }
-
-                
-            }elseif(!$rfid_idAshar){
-                if($countPresensi != NULL){
-                    for ($i=0; $i < $countPresensi; $i++) { 
-                        $presensi = new PresensiSholat();
-                        $presensi->rfid_id = $request->rfid_id[$i];
-                        $presensi->presensi = $request->presensi[$i];
-                        $presensi->status = '22';
-                        $presensi->date = Carbon::now();
-                        $presensi->save();
-                    }
-                    $notification = array(
-                    'message' => 'Presensi Sholat Berhasil ditambahkan',
-                    'alert-type' => 'success'
-                    );
-
-                    return redirect()->route('lihat.presensi.sholat')->with($notification);
-                }else{
-                    $notification = array(
-                    'message' => 'Gagal Menyimpan Data',
+                    'message' => 'Gagal Menyimpan Data Presensi Sholat',
                     'alert-type' => 'error'
                     );
 
