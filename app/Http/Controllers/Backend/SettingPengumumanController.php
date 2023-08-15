@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengumuman;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SettingPengumumanController extends Controller
 {
@@ -23,8 +24,7 @@ class SettingPengumumanController extends Controller
             $dataPengumuman->save();
 
             $notification = array(
-                    'message' => 'Pengumuman Berhasil ditambahkan',
-                    'alert-type' => 'success'
+                        Alert::success('Pengumuman '.$dataPengumuman->isi_pengumuman, 'Berhasil ditambahkan')
                     );
 
             return redirect()->route('lihat.pengumuman')->with($notification);

@@ -25,11 +25,18 @@ class SetupRombelController extends Controller
         $group = Group::all();
         $dataGuru = Guru::all();
         $userRfid = userrfid::all();
+
         $dataRombongan_belajar = Rombongan_belajar::all();
         // $totalrombel = Rombongan_belajar::find('10 TJKT1');
         // $total = count($totalrombel);
         // dd($total);
-        $anggotaRombel = Anggota_rombel::all();
+        $rombel_1 = Rombongan_belajar::select('nama')->where('nama', '10 TJKT1')->get();
+        // dd( $rombel_1);
+        // $kelas_id = Kelas::find();
+        $anggotaRombel = Anggota_rombel::find($rombel_1);
+        $countanggotaRombel;
+        // $countRombel = count(Rombongan_belajar::where('nama', '10 TJKT1')->get());
+        dd(count($anggotaRombel));
         
 
         return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','kelas', 'jurusan', 'group','dataGuru','userRfid', 'dataRombongan_belajar'));

@@ -227,6 +227,13 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/update/sekolah/',[SekolahController::class,'UpdateSekolah'])->name('update.sekolah');   
 
     }); //End Group
+
+    Route::prefix('presensi')->group(function(){  
+        Route::controller(PresensiSholatController::class)->group(function(){
+            Route::get('/barcode-sholat/','LihatbarcodeSholat')->name('lihat.barcode.sholat');
+            Route::post('/validasi/','validas')->name('validasi');
+        });
+    });
     Route::prefix('setting')->group(function(){  
 
         Route::controller(SetupGuruController::class)->group(function(){

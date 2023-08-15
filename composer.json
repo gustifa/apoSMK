@@ -11,7 +11,9 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "^3.1",
+        "milon/barcode": "^10.0",
         "phpoffice/phpspreadsheet": "^1.26",
+        "realrashid/sweet-alert": "^7.1",
         "webklex/laravel-pdfmerger": "^1.3",
         "yajra/laravel-datatables-buttons": "^9.1",
         "yajra/laravel-datatables-oracle": "^10.6"

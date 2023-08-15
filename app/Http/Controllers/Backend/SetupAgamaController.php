@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Agama;
 
 class SetupAgamaController extends Controller
@@ -35,7 +36,7 @@ class SetupAgamaController extends Controller
 	    		'alert-type' => 'success'
 	    	);
 
-	    	return redirect()->route('lihat.agama')->with($notification);
+	    	return redirect()->route('lihat.agama')->Alert::success('Success Title', 'Success Message');
 	    }
 
 	    public function EditAgama($agama_id){

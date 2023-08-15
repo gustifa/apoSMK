@@ -74,8 +74,9 @@
 	<!-- Bootstrap JS -->
 	
 	<!--plugins-->
-	<!-- <script src="{{asset('admin/assets/js/jquery.min.js')}}"></script> -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+	<script src="{{asset('admin/assets/js/jquery.min.js')}}"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
 
 
 	<script src="{{asset('admin/assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
@@ -120,10 +121,10 @@
 	<!--app JS-->
 	<script src="{{asset('admin/assets/js/app.js')}}"></script>
 
-	<!-- <script src="{{ asset('admin/assets/download/js/toastr.min.js') }}"></script> -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="{{ asset('admin/assets/download/js/toastr.min.js') }}"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
 
-	
+	@include('sweetalert::alert')
 
 <script>
  @if(Session::has('message'))
@@ -152,6 +153,8 @@
  <script src="{{ asset('admin/assets/download/js/sweetalert2.js') }}"></script>
  <script src="{{ asset('admin/assets/js/code.js') }}"></script>
  <script src="{{ asset('admin/assets/js/code/validate.min.js') }}"></script>
+
+
 
 
 

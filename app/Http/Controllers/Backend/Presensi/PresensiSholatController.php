@@ -253,4 +253,8 @@ class PresensiSholatController extends Controller
 
             return redirect()->route('lihat.presensi.sholat')->with($notification);
     }
+
+    public function LihatbarcodeSholat(){
+        return view('backend.presensi.sholat.barcode_sholat');
+    }
 }

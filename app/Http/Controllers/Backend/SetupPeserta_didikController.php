@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\UserRfid;
 use App\Models\Kelas;
 use App\Models\Jurusan;
@@ -58,15 +59,18 @@ class SetupPeserta_didikController extends Controller
     }
 
      public function UpdatePeserta_didik(Request $request){
-
-
             $id = $request->peserta_didik_id;
             $rfidRequest = $request->rfid_id;
             // dd($rfidRequest);
+            // $rfid = userrfidsiswa::find($rfidRequest);
+            // $rfid_id = Peserta_didik::where('rfid_id', $rfid )->get();
+           
+            // dd($rfidRequest);
             $peserta_didik = Anggota_rombel::where('peserta_didik_id', $id)->get();
             $dataImplode = $peserta_didik->implode('peserta_didik_id');
-            // dd($dataImplode);
             
+            // dd($dataImplode);
+            if($id == !NULL ){
                 Peserta_didik::findOrfail($id)->update([
                     
                     'rfid_id' => $rfidRequest,
@@ -82,11 +86,18 @@ class SetupPeserta_didikController extends Controller
                 $delete = DB::table('user_rfid')->delete();
             
                 $notification = array(
-                'message' => 'Update RFID Berhasil',
-                'alert-type' => 'success'
+                    Alert::success('Data Peserta Didik', 'Berhasil Berhasil Disimpan')
             );
 
             return redirect()->route('lihat.peserta_didik')->with($notification);
+            }else{
+                $notification = array(
+                    Alert::error('Gagal Menyimpan Data', 'rfid_id sudah digunakan')
+            );
+
+            return redirect()->route('lihat.peserta_didik')->with($notification);
+            }
+                
 
 
             

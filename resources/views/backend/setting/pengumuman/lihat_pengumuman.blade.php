@@ -72,17 +72,17 @@
 										<th style="width: 8px;">No</th>
 										<th>Judul</th>
 										<th>Isi Pengumuman</th>
-										<
+										
 										<th>Aksi</th>
 										
 									</tr>
 								</thead>
 								<tbody>
-								@foreach($semuaROmbel as $key => $item)
+								@foreach($pengumuman as $key => $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td>{{$item->rombongan_belajar_id}}</td>
-										<td>{{$item->guru_id}}</td>
+										<td>{{$item->judul}}</td>
+										<td>{{$item->isi_pengumuman}}</td>
 										
 								
 									

@@ -1,7 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
-<!-- <script src="{{asset('adminbackend/assets/download/js/jquery.min.js')}}"></script>  -->
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  -->
+<script src="{{asset('admin/assets/download/js/jquery.min.js')}}"></script> 
 
 @section('title')
    Lihat Rombongan Belajar 

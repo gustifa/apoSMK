@@ -32,7 +32,7 @@ class SetupUserRfidController extends Controller
     
     public function getrfid($rfid_id){
 
-        $getrfid = UserRfidSiswa::all();
+        $getrfid = UserRfidSiswa::select('rfid_id')->orderBy('updated_at', 'DESC')->get();
         // dd($getAnggotaRombel);
         return json_encode($getrfid);
      }
