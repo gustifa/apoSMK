@@ -9,11 +9,33 @@
    $datarombel = App\Models\Rombongan_belajar::all();
 @endphp
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="{{asset('admin/assets/js/jquery.min.js')}}"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script> -->
 <!--start page wrapper -->
+<script type="text/javascript">
+  $(document).on('click','#search',function(){
+    var rombongan_belajar_id = $('#rombongan_belajar_id').val();
+     $.ajax({
+      url: "{{ route('student.exam.fee.classwise.get')}}",
+      type: "get",
+      data: {'rombongan_belajar_id':rombongan_belajar_id},
+      beforeSend: function() {       
+      },
+      success: function (data) {
+        var source = $("#document-template").html();
+        var template = Handlebars.compile(source);
+        var html = template(data);
+        $('#DocumentResults').html(html);
+        $('[data-toggle="tooltip"]').tooltip();
+      }
+    });
+  });
+
+</script>
       <div class="page-wrapper">
          <div class="page-content">
 
@@ -93,25 +115,6 @@
       </div>
       <!--end page wrapper -->
 
-<script type="text/javascript">
-  $(document).on('click','#search',function(){
-    var rombongan_belajar_id = $('#rombongan_belajar_id').val();
-     $.ajax({
-      url: "{{ route('student.exam.fee.classwise.get')}}",
-      type: "get",
-      data: {'rombongan_belajar_id':rombongan_belajar_id},
-      beforeSend: function() {       
-      },
-      success: function (data) {
-        var source = $("#document-template").html();
-        var template = Handlebars.compile(source);
-        var html = template(data);
-        $('#DocumentResults').html(html);
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-    });
-  });
 
-</script>
 
 @endsection

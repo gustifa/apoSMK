@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Rombel;
 use App\Models\Kelas;
 use App\Models\Jurusan;
@@ -30,13 +31,13 @@ class SetupRombelController extends Controller
         // $totalrombel = Rombongan_belajar::find('10 TJKT1');
         // $total = count($totalrombel);
         // dd($total);
-        $rombel_1 = Rombongan_belajar::select('nama')->where('nama', '10 TJKT1')->get();
+        // $rombel_1 = Rombongan_belajar::select('nama')->where('nama', '10 TJKT1')->get();
         // dd( $rombel_1);
         // $kelas_id = Kelas::find();
-        $anggotaRombel = Anggota_rombel::find($rombel_1);
-        $countanggotaRombel;
+        // $anggotaRombel = Anggota_rombel::find($rombel_1);
+        // $countanggotaRombel;
         // $countRombel = count(Rombongan_belajar::where('nama', '10 TJKT1')->get());
-        dd(count($anggotaRombel));
+        // dd(count($anggotaRombel));
         
 
         return view('backend.setup.rombel.lihat_rombel', compact('dataRombel','kelas', 'jurusan', 'group','dataGuru','userRfid', 'dataRombongan_belajar'));
@@ -53,10 +54,11 @@ class SetupRombelController extends Controller
 
     public function SimpanRombel(Request $request){
         
-        // $validatedData = $request->validate([
-        //         'nama' => 'required|unique:rombel,nama',
+    //    $request->validate([
+    //             'nama' => 'required|unique:rombongan_belajar,nama',
+    //             'guru_id' => 'required|unique:rombongan_belajar,guru_id',
                 
-        //     ]);
+    //         ]);
         $jurusan = $request->jurusan_id;
         $kelas = $request->kelas_id;
         $group = $request->group_id;
@@ -64,26 +66,34 @@ class SetupRombelController extends Controller
         $kode_jurusan = $request->kode_jurusan;
         $nama_group = $request->nama_group;
 
+        $nama_rombel = Rombongan_belajar::where('kelas_id', $kelas )->where('jurusan_id', $jurusan)->where('group_id', $group)->get();
+
         
         // $namaRombel = $request->nama;
         
         // dd($namaRombel);
+            // if(!$nama_rombel){
+                $data = new Rombongan_belajar();
+                // $data->nama =  $nama_kelas;
+                $data->jurusan_id = $jurusan;
+                $data->kelas_id = $kelas;
+                $data->group_id = $group;
+                $data->guru_id = $request->guru_id;
+                $data->nama = $nama_kelas. ' '.$kode_jurusan.$nama_group;
+                $data->save();
 
-            $data = new Rombongan_belajar();
-            // $data->nama =  $nama_kelas;
-            $data->jurusan_id = $jurusan;
-            $data->kelas_id = $kelas;
-            $data->group_id = $group;
-            $data->guru_id = $request->guru_id;
-            $data->nama = $nama_kelas. ' '.$kode_jurusan.$nama_group;
-            $data->save();
+                $notification = array(
+                    Alert::success('Rombel '.$data->nama. ' & Walas '.$data->walas->nama , 'Berhasil ditambahkan')
+                );
 
-            $notification = array(
-                'message' => 'Rombel Berhasil ditambahkan',
-                'alert-type' => 'success'
-            );
+                return redirect()->route('lihat.rombel')->with($notification);
+            // }else{
+            //     $notification = array(
+            //         Alert::error('Rombel ', 'Gagal ditambahkan')
+            //     );
 
-            return redirect()->route('lihat.rombel')->with($notification);
+            //     return redirect()->route('lihat.rombel')->with($notification);
+            // }
         }
 
         public function EditRombel($id){

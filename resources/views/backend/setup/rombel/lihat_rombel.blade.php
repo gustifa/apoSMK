@@ -138,7 +138,7 @@
 										<!-- <th>Name</th> -->
 										<th>Kelas</th>
 										<th>Nama Walas</th>
-										<th>Jumlah Peserta Didik</th>
+										<!-- <th>Jumlah Peserta Didik</th> -->
 										<th>Aksi</th>
 									</tr>
 								</thead>
@@ -149,12 +149,12 @@
 										<!-- <td>{{$item->nama}}</td> -->
 										<td>{{$item->kelas->nama}} {{$item->jurusan->kode}}{{$item->group->nama}}</td>
 											<td>{{$item->walas->nama}}</td>
-										<td>
+										<!-- <td>
 											<span class="badge bg-success">12</span>
-										</td>
+										</td> -->
 										<td style="width: 20px;">
 											<a class="btn btn-info" href=""><i class='bx bx-edit mr-1'></i></a>
-											<a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a>
+											<!-- <a class="btn btn-danger" href="" id="delete"><i class='bx bx-x-circle mr-1'></i></a> -->
 
 										</td>
 										
@@ -263,6 +263,46 @@
         });
      });
 
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                rombongan_belajar_id: {
+                    required : true,
+                },
+
+                rfid_id: {
+                    required : true,
+                },  
+
+
+            },
+            messages :{
+                rombongan_belajar_id: {
+                    required : 'Silahkan Pilih Jurusan',
+                },
+
+                rfid_id: {
+                    required : 'RFID Tidak Boleh Kosong',
+                },
+                
+            },
+            errorElement : 'span', 
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+    
 </script>
 
 @endsection
