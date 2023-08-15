@@ -6,7 +6,7 @@
 <div class="page-wrapper">
 			<div class="page-content">
 			<div class="container mt-4">
-        <div class="mb-3">{!! DNS2D::getBarcodeHTML('444cxvxcvcx5645656', 'QRCODE') !!}</div>
+        <!-- <div class="mb-3">{!! DNS2D::getBarcodeHTML('444cxvxcvcx5645656', 'QRCODE') !!}</div> -->
 
     </div>
 
