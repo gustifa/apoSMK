@@ -15,7 +15,7 @@ class LaporanPresensiSholatController extends Controller
         return view('admin.laporan.presensi_sholat.semua_presensi_sholat', compact('semuaROmbel'));
     }
 
-    public function ExamFeeClassData(Request $request){
+    public function laporanAllAjax(Request $request){
          $rombongan_belajar_id = $request->rombongan_belajar_id;
          if ($rombongan_belajar_id !='') {
             $where[] = ['rombongan_belajar_id','like',$rombongan_belajar_id.'%'];

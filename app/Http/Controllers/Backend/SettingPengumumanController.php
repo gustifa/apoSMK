@@ -23,11 +23,12 @@ class SettingPengumumanController extends Controller
             $dataPengumuman->created_at = Carbon::now();
             $dataPengumuman->save();
 
-            $notification = array(
-                        Alert::success('Pengumuman '.$dataPengumuman->isi_pengumuman, 'Berhasil ditambahkan')
-                    );
+            // $notification = array(
+            //             Alert::success('Pengumuman '.$dataPengumuman->isi_pengumuman, 'Berhasil ditambahkan')
+            //         );
+            Alert::success('Pengumuman '.$dataPengumuman->isi_pengumuman, 'Berhasil ditambahkan');
 
-            return redirect()->route('lihat.pengumuman')->with($notification);
+            return redirect()->route('lihat.pengumuman');
 
 
     }

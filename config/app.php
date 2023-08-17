@@ -186,6 +186,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Package Service Providers...
