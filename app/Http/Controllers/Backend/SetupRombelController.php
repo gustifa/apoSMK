@@ -82,11 +82,11 @@ class SetupRombelController extends Controller
                 $data->nama = $nama_kelas. ' '.$kode_jurusan.$nama_group;
                 $data->save();
 
-                $notification = array(
-                    Alert::success('Rombel '.$data->nama. ' & Walas '.$data->walas->nama , 'Berhasil ditambahkan')
-                );
+               
+                    Alert::success('Rombel '.$data->nama. ' & Walas '.$data->walas->nama , 'Berhasil ditambahkan');
+            
 
-                return redirect()->route('lihat.rombel')->with($notification);
+                return redirect()->route('lihat.rombel');
             // }else{
             //     $notification = array(
             //         Alert::error('Rombel ', 'Gagal ditambahkan')
