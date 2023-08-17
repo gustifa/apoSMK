@@ -8,113 +8,111 @@
 @php
    $datarombel = App\Models\Rombongan_belajar::all();
 @endphp
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<script src="{{asset('admin/assets/js/jquery.min.js')}}"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script> -->
-<!--start page wrapper -->
-<script type="text/javascript">
-  $(document).on('click','#search',function(){
-    var rombongan_belajar_id = $('#rombongan_belajar_id').val();
-     $.ajax({
-      url: "{{ route('student.exam.fee.classwise.get')}}",
-      type: "get",
-      data: {'rombongan_belajar_id':rombongan_belajar_id},
-      beforeSend: function() {       
-      },
-      success: function (data) {
-        var source = $("#document-template").html();
-        var template = Handlebars.compile(source);
-        var html = template(data);
-        $('#DocumentResults').html(html);
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-    });
-  });
-
-</script>
-      <div class="page-wrapper">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+ 
+<div class="page-wrapper">
          <div class="page-content">
 
-            <!--breadcrumb-->
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-               <div class="breadcrumb-title pe-3">Laporan Presensi</div>
-               <div class="ps-3">
-                  <nav aria-label="breadcrumb">
-                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Semua Rombel</li>
-                     </ol>
-                  </nav>
-               </div>
+            
 
+           <div class="card">
+
+               <div class="card-body">
+                              <div class="row">
+               <div class="col-md-5">Sample Data - Total Records - <b><span id="total_records"></span></b></div>
+                  <div class="col-md-5">
+                   <div class="input-group input-daterange">
+                       <input type="text" name="from_date" id="from_date" readonly class="form-control" />
+                       <div class="input-group-addon"> s/d </div>
+                       <input type="text"  name="to_date" id="to_date" readonly class="form-control" />
+                   </div>
+                  </div>
+               <div class="col-md-2">
+                <button type="button" name="filter" id="filter" class="btn btn-info btn-sm">Filter</button>
+                <button type="button" name="refresh" id="refresh" class="btn btn-warning btn-sm">Refresh</button>
+               </div>
+            </div>
+            <hr />
+                  <div class="table-responsive">
+                     <table class="table table-striped table-bordered" style="width:100%">
+                   <thead>
+                    <tr>
+                     <th width="35%">RFID</th>
+                     <th width="50%">Status</th>
+                     <th width="15%">Waktu Presensi</th>
+                    </tr>
+                   </thead>
+                   <tbody>
+                   
+                   </tbody>
+                  </table>
+               {{ csrf_field() }}
+              </div>
+             </div>
 
             </div>
-            <!--end breadcrumb-->
-            
-            <div class="mb-3">
-                              <select id="rombongan_belajar_id" name="rombongan_belajar_id" class="form-select mb-3" aria-label="Default select example">
-                                 <option value="" selected="" disabled="">Pilih Rombel</option>
-                                 @foreach($datarombel as $item)
-                                 <option value="{{$item->rombongan_belajar_id}}">{{$item->nama}}</option>
-                                 @endforeach
-                              </select>
-                           </div>
-
-                                
-<div class="mb-3">
-     <a id="search" class="btn btn-primary" name="search"> Search</a>
-</div>
-
-<!--  ////////////////// Registration Fee table /////////////  -->
-
- <div class="row">
-   <div class="col-md-12">
-      <div id="DocumentResults">
-
-   <script id="document-template" type="text/x-handlebars-template">
-
-   <table class="table table-bordered table-striped" style="width: 100%">
-   <thead>
-      <tr>
-        @{{{thsource}}}
-      </tr>
-    </thead>
-    <tbody>
-      @{{#each this}}
-      <tr>
-         @{{{tdsource}}}   
-      </tr>
-      @{{/each}}
-    </tbody>
-   </table>
-    </script>
-
-    
-         
-      </div>      
-   </div>
-   
- </div>
- 
-
-
-    
-
-            <!-- Awala Datatable -->
-            
-            <!-- Akhir Datatable -->   
-
-
-            
          </div>
       </div>
       <!--end page wrapper -->
 
+<script>
+$(document).ready(function(){
+
+ var date = new Date();
+
+ $('.input-daterange').datepicker({
+  todayBtn: 'linked',
+  format: 'yyyy-mm-dd',
+  autoclose: true
+ });
+
+ var _token = $('input[name="_token"]').val();
+
+ fetch_data();
+
+ function fetch_data(from_date = '', to_date = ''){
+   $.ajax({
+      url:"{{ route('daterange.fetch_data') }}",
+      method:"POST",
+      data:{from_date:from_date, to_date:to_date, _token:_token},
+      dataType:"json",
+      success:function(data){
+       var output = '';
+       $('#total_records').text(data.length);
+       for(var count = 0; count < data.length; count++){
+        output += '<tr>';
+        output += '<td>' + data[count].rfid_id + '</td>';
+        output += '<td>' + data[count].presensi + '</td>';
+        output += '<td>' + data[count].date + '</td></tr>';
+       }
+       $('tbody').html(output);
+    }
+   })
+}
+
+    $('#filter').click(function(){
+     var from_date = $('#from_date').val();
+     var to_date = $('#to_date').val();
+     if(from_date != '' &&  to_date != '')
+     {
+      fetch_data(from_date, to_date);
+     }
+     else
+     {
+      alert('Data Filter Belum ditentukan');
+     }
+    });
+
+    $('#refresh').click(function(){
+     $('#from_date').val('');
+     $('#to_date').val('');
+     fetch_data();
+    });
+
+
+});
+</script>
 
 
 @endsection

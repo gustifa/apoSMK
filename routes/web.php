@@ -329,6 +329,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::controller(LaporanPresensiSholatController::class)->group(function(){
         Route::get('/all','laporanAll')->name('laporan.all');
         Route::get('/exam/fee/classwisedata', 'ExamFeeClassData')->name('student.exam.fee.classwise.get');
+        Route::post('/fetch_data', 'fetch_data')->name('daterange.fetch_data');
         });
 
     }); //End Group

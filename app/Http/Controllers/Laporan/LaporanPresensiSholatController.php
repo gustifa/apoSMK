@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rombongan_belajar;
 use App\Models\Anggota_rombel;
+use DB;
 
 class LaporanPresensiSholatController extends Controller
 {
@@ -41,4 +42,17 @@ class LaporanPresensiSholatController extends Controller
         return response()->json(@$html);
 
     }// end method 
+
+    function fetch_data(Request $request){
+     if($request->ajax()){
+      if($request->from_date != '' && $request->to_date != ''){
+       $data = DB::table('presensi_sholat')
+         ->whereBetween('date', array($request->from_date, $request->to_date))
+         ->get();
+      }else{
+       $data = DB::table('presensi_sholat')->orderBy('date', 'desc')->get();
+      }
+      echo json_encode($data);
+     }
+    }
 }

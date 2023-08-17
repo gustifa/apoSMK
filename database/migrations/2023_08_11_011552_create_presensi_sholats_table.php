@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('rfid_id')->nullable();
             $table->string('nisn')->nullable();
             $table->string('presensi')->default(0);
+            $table->string('status_presensi')->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
             $table->primary('id');

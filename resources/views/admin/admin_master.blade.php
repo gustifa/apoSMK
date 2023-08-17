@@ -30,6 +30,8 @@
 		<link href="{{asset('admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 	<link rel="stylesheet" href="{{asset('admin/assets/download/css/toastr.css')}}" />
 	<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" > -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+
 	
 	<title>SIPO SMK | @yield('title')</title>
 </head>
@@ -93,6 +95,7 @@
 	<script src="{{asset('admin/assets/social/js/docs.js')}}"></script>
 	<!-- <script src="{{asset('admin/assets/social/js/jquery.js')}}"></script> -->
 	<script src="{{asset('admin/assets/js/bootstrap.bundle.min.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
 	
 	  <script>
 		  $(function() {
