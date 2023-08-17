@@ -31,12 +31,9 @@ class SetupAgamaController extends Controller
 	    	$data->nama = $request->nama;
 	    	$data->save();
 
-	    	$notification = array(
-	    		'message' => 'Agama Berhasil ditambahkan',
-	    		'alert-type' => 'success'
-	    	);
+	    	Alert::success('Data Agama ', 'Berhasil ditambahkan');
 
-	    	return redirect()->route('lihat.agama')->Alert::success('Success Title', 'Success Message');
+	    	return redirect()->route('lihat.agama');
 	    }
 
 	    public function EditAgama($agama_id){
@@ -51,12 +48,9 @@ class SetupAgamaController extends Controller
 	    	$data->nama = $request->nama;
 	    	$data->save();
 
-	    	$notification = array(
-	    		'message' => 'Agama Berhasil diperbaharui',
-	    		'alert-type' => 'success'
-	    	);
+	    	Alert::success('Data Agama ', 'Berhasil diperbaharui');
 
-	    	return redirect()->route('lihat.agama')->with($notification);
+	    	return redirect()->route('lihat.agama');
     	}
 
 	    public function HapusAgama($agama_id){

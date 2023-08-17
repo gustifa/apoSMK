@@ -17,6 +17,7 @@ use App\Imports\ImportPeserta_didik;
 use Maatwebsite\Excel\Facades\Excel;
 use App\DataTables\Peserta_didikDataTable;
 use DB;
+use \Milon\Barcode\DNS1D;
 use Carbon\Carbon;
 
 class SetupPeserta_didikController extends Controller
@@ -178,15 +179,18 @@ class SetupPeserta_didikController extends Controller
 
     public function ImportPeserta_didik(Request $request){
 
-        $notification = array(
-                'message' => 'Peserta Didik Berhasil diimport',
-                'alert-type' => 'success'
-            );
+         Alert::success('Peserta Didik ', 'Berhasil diimport');
 
         $import = Excel::import(new ImportPeserta_didik, $request->file('file')->store('files'));
         //dd($import);
-        return redirect()->route('lihat.peserta_didik')->with($notification);
+        return redirect()->route('lihat.peserta_didik');
 
 
+    }
+
+
+    public function barcodePesertaDidik(){
+        $dataPeserta_didik = Anggota_rombel::all();
+       return view('backend.setup.peserta_didik.barcode_peserta_didik', compact('dataPeserta_didik')); 
     }
 }

@@ -8,11 +8,27 @@
 <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">	
+				<!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+               <div class="breadcrumb-title pe-3">Setting Peserta Didik</div>
+               <div class="ps-3">
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Lihat Peserta Didik</li>
+                     </ol>
+                  </nav>
+               </div>
+
+
+            </div>
+            <!--end breadcrumb-->
 
 				<!-- Awal Moodal Import-->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import Peserta Didik</button>
+												<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import Data</button>
 												<ul class="dropdown-menu" style="margin: 0px;">
 													<li><a class="dropdown-item" href="{{route('download.template.user.rfid')}}">Download Template</a>
 													</li>

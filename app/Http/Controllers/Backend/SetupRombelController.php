@@ -65,35 +65,41 @@ class SetupRombelController extends Controller
         $nama_kelas = $request->nama_kelas;
         $kode_jurusan = $request->kode_jurusan;
         $nama_group = $request->nama_group;
+        $nama = $nama_kelas. ' '.$kode_jurusan.$nama_group; 
+        $walas = $request->guru_id;
 
-        $nama_rombel = Rombongan_belajar::where('kelas_id', $kelas )->where('jurusan_id', $jurusan)->where('group_id', $group)->get();
-
+        $nama_rombel = Rombongan_belajar::where('nama',$nama )->first();
+        $walas = Rombongan_belajar::where('guru_id',$walas )->first();
+        // dd($nama_rombel);
         
         // $namaRombel = $request->nama;
         
         // dd($namaRombel);
-            // if(!$nama_rombel){
-                $data = new Rombongan_belajar();
-                // $data->nama =  $nama_kelas;
-                $data->jurusan_id = $jurusan;
-                $data->kelas_id = $kelas;
-                $data->group_id = $group;
-                $data->guru_id = $request->guru_id;
-                $data->nama = $nama_kelas. ' '.$kode_jurusan.$nama_group;
-                $data->save();
+                if(!$nama_rombel){
+                    if(!$walas){
+                        $data = new Rombongan_belajar();
+                        // $data->nama =  $nama_kelas;
+                        $data->jurusan_id = $jurusan;
+                        $data->kelas_id = $kelas;
+                        $data->group_id = $group;
+                        $data->guru_id = $request->guru_id;
+                        $data->nama = $nama_kelas. ' '.$kode_jurusan.$nama_group;
+                        $data->save();
 
-               
-                    Alert::success('Rombel '.$data->nama. ' & Walas '.$data->walas->nama , 'Berhasil ditambahkan');
+                       
+                            Alert::success('Rombel '.$data->nama. ' & Walas '.$data->walas->nama , 'Berhasil ditambahkan');
+                    
+
+                        return redirect()->route('lihat.rombel');
+                    }else{
+                        Alert::error('Walas Sudah Ada', 'Gagal disimpan');
+                        return redirect()->route('lihat.rombel');
+                    }
+                }else{
+                    Alert::error('Rombel Sudah Ada', 'Gagal disimpan');
+                    return redirect()->route('lihat.rombel');
+                }
             
-
-                return redirect()->route('lihat.rombel');
-            // }else{
-            //     $notification = array(
-            //         Alert::error('Rombel ', 'Gagal ditambahkan')
-            //     );
-
-            //     return redirect()->route('lihat.rombel')->with($notification);
-            // }
         }
 
         public function EditRombel($id){

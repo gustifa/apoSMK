@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WaktuSholat;
+use Alert;
 
 class SetupWaktuSholatController extends Controller
 {
@@ -19,12 +20,8 @@ class SetupWaktuSholatController extends Controller
             'waktu_mulai' => $request->waktu_mulai,
             'waktu_selesai' => $request->waktu_selesai,
         ]);
-        $notification = array(
-            'message' => 'Waktu Sholat Berhasil ditambahkan',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('lihat.waktu.sholat')->with($notification);
+        Alert::success('Waktu Sholat ', 'Berhasil ditambahkan');
+        return redirect()->route('lihat.waktu.sholat');
     }
 
     public function editWaktuSholat($id){
@@ -41,12 +38,10 @@ class SetupWaktuSholatController extends Controller
             $data->waktu_selesai = $request->waktu_selesai;
             $data->save();
 
-            $notification = array(
-                'message' => 'Waktu Sholat Berhasil diperbaharui',
-                'alert-type' => 'success'
-            );
+            Alert::success('Waktu Sholat ', 'Berhasil diperbaharui');
 
-            return redirect()->route('lihat.waktu.sholat')->with($notification);
+
+            return redirect()->route('lihat.waktu.sholat');
         }
 
 

@@ -15,6 +15,7 @@ use App\Models\Peserta_didik;
 use App\DataTables\GuruDataTable;
 use App\Imports\ImportGuru;
 use DB;
+use Alert;
 
 class SetupGuruController extends Controller
 {
@@ -42,12 +43,9 @@ class SetupGuruController extends Controller
             $data->agama_id = $request->agama_id;
             $data->save();
 
-            $notification = array(
-                'message' => 'Data Guru Berhasil ditambahkan',
-                'alert-type' => 'success'
-            );
+             Alert::success('Data Guru ', 'Berhasil Ditambahkan');
 
-            return redirect()->route('lihat.guru')->with($notification);
+            return redirect()->route('lihat.guru');
         }
 
         public function TambahGuru(){
@@ -72,12 +70,8 @@ class SetupGuruController extends Controller
             $data->nama = $request->nama;
             $data->save();
 
-            $notification = array(
-                'message' => 'Guru Berhasil diperbaharui',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('lihat.agama')->with($notification);
+             Alert::success('Data Guru ', 'Berhasil diperbaharui');
+            return redirect()->route('lihat.agama');
         }
 
         public function HapusGuru($id){
@@ -222,13 +216,9 @@ class SetupGuruController extends Controller
 
 
     public function importGuru(Request $request){
-        $notification = array(
-                'message' => 'Guru Berhasil diimport',
-                'alert-type' => 'success'
-            );
-
+        Alert::success('Data PTK', 'Berhasil Diimport');
         Excel::import(new ImportGuru, $request->file('file')->store('files'));
-        return redirect()->route('lihat.guru')->with($notification);
+        return redirect()->route('lihat.guru');
 
 
     }

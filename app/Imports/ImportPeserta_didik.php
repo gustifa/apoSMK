@@ -17,7 +17,7 @@ class ImportPeserta_didik implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Peserta_didik([
-            'peserta_didik_id' => $row['peserta_didik_id'],
+            // 'peserta_didik_id' => $row['peserta_didik_id'],
             'nama' => $row['nama'],
             'no_induk' => $row['no_induk'],
             'nisn' => $row['nisn'],

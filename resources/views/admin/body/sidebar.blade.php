@@ -139,7 +139,13 @@
 						<div class="menu-title">Hak Akses</div>
 					</a>
 					<ul>
-						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>User RFID</a>
+						<li> <a href="{{route('lihat.user')}}"><i class="bx bx-right-arrow-alt"></i>RFID</a>
+						</li>
+						
+	
+					</ul>
+					<ul>
+						<li> <a href="{{route('barcode.peserta_didik')}}"><i class="bx bx-right-arrow-alt"></i>Barcode Siswa</a>
 						</li>
 						
 	

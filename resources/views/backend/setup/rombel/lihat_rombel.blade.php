@@ -18,6 +18,22 @@
 <!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
+				<!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+               <div class="breadcrumb-title pe-3">Setting Rombel</div>
+               <div class="ps-3">
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Lihat Rombel</li>
+                     </ol>
+                  </nav>
+               </div>
+
+
+            </div>
+            <!--end breadcrumb-->
 				
 
 	<!-- Awal Moodal -->
@@ -36,7 +52,7 @@
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<div class="modal-body">
-				<form action="{{ route('simpan.rombel') }}" method="POST">
+				<form id="myForm" action="{{ route('simpan.rombel') }}" method="POST">
             @csrf
 
 									<!-- <div class="mb-3">
@@ -131,7 +147,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table id="example" class="table table-striped table-bordered" style="width:100%">
+							<table id="example2" class="table table-striped table-bordered" style="width:100%">
 								<thead>
 									<tr>
 										<th style="width: 8px;">No</th>
@@ -269,23 +285,39 @@
     $(document).ready(function (){
         $('#myForm').validate({
             rules: {
-                rombongan_belajar_id: {
+                kelas_id: {
                     required : true,
                 },
 
-                rfid_id: {
+                jurusan_id: {
+                    required : true,
+                }, 
+
+                group_id: {
+                    required : true,
+                }, 
+
+                guru_id: {
                     required : true,
                 },  
 
 
             },
             messages :{
-                rombongan_belajar_id: {
+                kelas_id: {
+                    required : 'Silahkan Pilih Kelas',
+                },
+
+                jurusan_id: {
                     required : 'Silahkan Pilih Jurusan',
                 },
 
-                rfid_id: {
-                    required : 'RFID Tidak Boleh Kosong',
+                group_id: {
+                    required : 'Silahkan Pilih Group',
+                },
+
+                guru_id: {
+                    required : 'Silahkan Pilih Walas',
                 },
                 
             },

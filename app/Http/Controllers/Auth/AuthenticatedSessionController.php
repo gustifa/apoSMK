@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Alert;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -36,10 +37,7 @@ class AuthenticatedSessionController extends Controller
         $username = $data->name;
 
         $request->session()->regenerate();
-        $notification = array(
-            'message' => 'Pengguna '.$username. ' Berhasil Login',
-            'alert-type' => 'success',
-        );
+        Alert::success('Pengguna '.$username, ' Berhasil Login');
         $url = '';
         if ($request->user()->role === 'admin') {
             $url = 'admin/dashboard';
@@ -51,7 +49,7 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
 
-        return redirect()->intended($url)->with($notification);
+        return redirect()->intended($url);
     }
 
     /**
@@ -68,15 +66,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         
         Auth::guard('web')->logout();
+        Alert::success('Pengguna '.$username, ' Logout');
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        $notification = array(
-            'message' => 'Pengguna '.$username. ' Berhasil Login',
-            'alert-type' => 'success',
-        );
-
-        return redirect('/login')->with($notification);
+        
+        return redirect('/login');
     }
 }
