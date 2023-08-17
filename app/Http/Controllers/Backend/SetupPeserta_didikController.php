@@ -85,17 +85,15 @@ class SetupPeserta_didikController extends Controller
 
                 $delete = DB::table('user_rfid')->delete();
             
-                $notification = array(
-                    Alert::success('Data Peserta Didik', 'Berhasil Berhasil Disimpan')
-            );
-
-            return redirect()->route('lihat.peserta_didik')->with($notification);
+               
+                Alert::success('Data Peserta Didik', 'Berhasil Berhasil Disimpan');
+        
+            return redirect()->route('lihat.peserta_didik');
             }else{
-                $notification = array(
-                    Alert::error('Gagal Menyimpan Data', 'rfid_id sudah digunakan')
-            );
+                
+                Alert::error('Gagal Menyimpan Data', 'rfid_id sudah digunakan');
 
-            return redirect()->route('lihat.peserta_didik')->with($notification);
+            return redirect()->route('lihat.peserta_didik');
             }
                 
 
