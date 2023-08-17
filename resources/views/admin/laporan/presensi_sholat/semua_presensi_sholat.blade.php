@@ -20,7 +20,7 @@
 
                <div class="card-body">
                               <div class="row">
-               <div class="col-md-5">Sample Data - Total Records - <b><span id="total_records"></span></b></div>
+               <div class="col-md-5">Total Data Presensi - <b><span id="total_records"></span></b></div>
                   <div class="col-md-5">
                    <div class="input-group input-daterange">
                        <input type="text" name="from_date" id="from_date" readonly class="form-control" />
