@@ -30,7 +30,7 @@
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Import Data</button>
 												<ul class="dropdown-menu" style="margin: 0px;">
-													<li><a class="dropdown-item" href="{{route('download.template.user.rfid')}}">Download Template</a>
+													<li><a class="dropdown-item" href="{{route('download.template.peserta_didik')}}">Download Template</a>
 													</li>
 													<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Import </a>
 													</li>

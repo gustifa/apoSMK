@@ -275,6 +275,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::post('/import/peserta-didik','ImportPeserta_didik')->name('import.peserta_didik');
             Route::get('/peserta-didik/json','getPesertaDidik')->name('get.peserta.didik');
             Route::get('/peserta-didik-barcode','barcodePesertaDidik')->name('barcode.peserta_didik');
+            Route::get('/download/template-peserta-didik','downloadTemplatePesertaDidik')->name('download.template.peserta_didik');
 
         });
 

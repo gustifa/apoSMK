@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('peserta_didik', function (Blueprint $table) {
             $table->uuid('peserta_didik_id');
             $table->string('nama');
-            $table->string('no_induk');
-            $table->string('nisn')->nullable();
+            $table->string('no_induk')->unique();
+            $table->string('nisn')->nullable()->unique();
             $table->string('nik', 16)->unique()->nullable();
             $table->string('jenis_kelamin');
-            $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
-            $table->integer('agama_id');
-            $table->string('status');
-            $table->integer('anak_ke');
+            $table->string('tempat_lahir')->nullable();
+            $table->string('tanggal_lahir')->nullable();
+            $table->integer('agama_id')->nullable();
+            $table->string('status')->nullable();
+            $table->integer('anak_ke')->nullable();
             $table->string('alamat')->nullable();
             $table->string('rt')->nullable();
             $table->string('rw')->nullable();

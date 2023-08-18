@@ -87,7 +87,7 @@ class SetupPeserta_didikController extends Controller
                 $delete = DB::table('user_rfid')->delete();
             
                
-                Alert::success('Data Peserta Didik', 'Berhasil Berhasil Disimpan');
+                Alert::success('Data Peserta Didik ', 'Berhasil Berhasil Disimpan');
         
             return redirect()->route('lihat.peserta_didik');
             }else{
@@ -103,12 +103,12 @@ class SetupPeserta_didikController extends Controller
         }
 
 
-    public function DownloadTemplatePeserta_didik()
+    public function downloadTemplatePesertaDidik()
     {
-        $path = public_path('/file/excel/template/template_user_rfid.xlsx');
-        $name = basename($path);
-        $headers = ["Content-Type:   application/vnd.ms-excel; charset=utf-8"];
-        return response()->download($path, $name, $headers);
+        $path = public_path('file/excel/template/template_peserta_didik.xls');
+        // $name = basename($path);
+        // $headers = ["Content-Type:   application/vnd.ms-excel; charset=utf-8"];
+        return response()->download($path);
     }
 
     public function AllDeletePeserta_didik(){
@@ -178,8 +178,7 @@ class SetupPeserta_didikController extends Controller
     //     }
 
     public function ImportPeserta_didik(Request $request){
-
-         Alert::success('Peserta Didik ', 'Berhasil diimport');
+        Alert::success('Peserta Didik ', 'Berhasil diimport');
 
         $import = Excel::import(new ImportPeserta_didik, $request->file('file')->store('files'));
         //dd($import);

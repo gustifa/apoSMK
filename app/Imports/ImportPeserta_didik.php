@@ -5,6 +5,8 @@ namespace App\Imports;
 use App\Models\Peserta_didik;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+// use Maatwebsite\Excel\Concerns\WithValidation;
+
 use App\Traits\GenUuid;
 
 class ImportPeserta_didik implements ToModel, WithHeadingRow
@@ -14,6 +16,19 @@ class ImportPeserta_didik implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+//     public function rules(): array{
+//         return [
+//             'nama' => 'unique'
+//         ];
+//     }
+
+// public function customValidationMessages()
+// {
+//     return [
+//         'nama.unique' => 'Correo ya esta en uso.',
+//     ];
+// }
+
     public function model(array $row)
     {
         return new Peserta_didik([
