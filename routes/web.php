@@ -331,7 +331,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/all','laporanAll')->name('laporan.all');
         Route::get('/exam/fee/classwisedata', 'ExamFeeClassData')->name('student.exam.fee.classwise.get');
         Route::post('/fetch_data', 'fetch_data')->name('daterange.fetch_data');
+        Route::get('/presensi-sholat','laporanPresensiSholat')->name('laporan.presensi.sholat');
+        Route::get('/cetak-tanggal','laporanCetakTanggal')->name('laporan.cetak.tanggal');
+        Route::get('/cetak-per-tanggal/{presensi}/{tgl_awal}/{tgl_akhir}','laporanCetakPerTanggal')->name('laporan.cetak.per-tanggal');
+        Route::get('/presensi-sholat-tanggal','laporanPresensiSholatTanggal')->name('laporan.presensi.sholat.tanggal');
         });
+
 
     }); //End Group
 

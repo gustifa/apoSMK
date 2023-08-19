@@ -37,4 +37,8 @@ class PresensiSholat extends Model
     public function rombel(){
         return $this->belongsTo(Rombel::class, 'Kelas', 'id');
     }
+
+    public function anggota_rombel(){
+        return $this->belongsTo(Anggota_rombel::class, 'rfid_id', 'peserta_didik_id');
+    }
 }

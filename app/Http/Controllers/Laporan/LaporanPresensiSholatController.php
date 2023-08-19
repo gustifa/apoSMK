@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rombongan_belajar;
 use App\Models\Anggota_rombel;
+use App\Models\PresensiSholat;
+use Yajra\DataTables\Facades\Datatables;
 use DB;
+use Carbon\Carbon;
 
 class LaporanPresensiSholatController extends Controller
 {
@@ -55,4 +58,101 @@ class LaporanPresensiSholatController extends Controller
       echo json_encode($data);
      }
     }
+
+
+    public function laporanPresensiSholat(Request $request){
+        if ($request->ajax()) {
+            $data = PresensiSholat::all();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('rfid_id', function ($query) {
+                   return $query->peserta_didik->nama;
+                })
+                
+
+                ->addColumn('date', function ($query) {
+                    return $query->date;  
+                })
+                ->addColumn('created_at', function ($query) {
+                    return $query->created_at;  
+                })
+
+                // ->addColumn('action', function($row){
+                //     $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                //     return $actionBtn;
+                // })
+                ->addColumn('presensi', function ($query) {
+                    if($query->presensi == '2'){
+                       return 'Sholat Zhuhur' ;  
+                    }else{
+                        return 'Sholat Ashar' ;
+                    }
+                     
+                })
+
+                ->filter(function ($instance) use ($request) {
+                        if ($request->get('presensi') == '2' || $request->get('presensi') == '22') {
+                            $instance->where('presensi', $request->get('presensi'));
+                        }
+                        if (!empty($request->get('search'))) {
+                             $instance->where(function($w) use($request){
+                                $search = $request->get('search');
+                                $w->orWhere('presensi', 'LIKE', "%$search%")
+                                ->orWhere('email', 'LIKE', "%$search%");
+                            });
+                        }
+                    })
+                ->rawColumns(['presensi'])
+
+                ->make(true);
+        }
+        
+
+        return view('admin.laporan.presensi_sholat.semua_presensi_sholat', compact('dataRombongan_belajar'));
+
+        // if ($request->ajax()) {
+ 
+        //     if ($request->input('start_date') && $request->input('end_date')) {
+ 
+        //         $start_date = Carbon::parse($request->input('start_date'));
+        //         $end_date = Carbon::parse($request->input('end_date'));
+ 
+        //         if ($end_date->greaterThan($start_date)) {
+        //             $students = PresensiSholat::whereBetween('created_at', [$start_date, $end_date])->get();
+        //         } else {
+        //             $students = PresensiSholat::latest()->get();
+        //         }
+        //     } else {
+        //         $students = PresensiSholat::latest()->get();
+        //     }
+ 
+        //     return response()->json([
+        //         'students' => $students
+        //     ]);
+        // } else {
+        //     abort(403);
+        // }
+    }
+
+    public function laporanPresensiSholatTanggal(){
+        $dataLaporan = PresensiSholat::all();
+        return view('admin.laporan.presensi_sholat.per_tanggal', compact('dataLaporan'));
+    }
+
+    public function laporanCetakTanggal(){
+        return view('admin.laporan.presensi_sholat.cetak_laporan_per_tanggal');
+    }
+
+     public function laporanCetakPerTanggal($presensi, $tgl_awal, $tgl_akhir){
+        $awal =$tgl_awal;
+        $akhir = $tgl_akhir;
+        $pre = $presensi; 
+        // dd("Presensi: " .$presensi, "tgl Awal: " .$tgl_awal, "Tgl Akhir: ".$tgl_akhir);
+        $dataLaporan = PresensiSholat::whereBetween('date', [$tgl_awal, $tgl_akhir])->where('presensi', $presensi)->get();
+         return view('admin.laporan.presensi_sholat.per_tanggal', compact('dataLaporan','awal', 'akhir','pre'));
+
+
+     }
+
+
 }
