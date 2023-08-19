@@ -35,6 +35,7 @@ return new class extends Migration
             $table->integer('status_sekolah')->nullable();
             $table->integer('sinkron')->default(0);
             $table->string('logo_sekolah')->nullable();
+            $table->string('logo_provinsi')->nullable();
             $table->timestamps();
             $table->primary('sekolah_id');
         });

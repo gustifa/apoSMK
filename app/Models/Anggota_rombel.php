@@ -20,7 +20,7 @@ class Anggota_rombel extends Model
     }
 
     public function peserta_didik(){
-        return $this->belongsTo(Peserta_didik::class, 'peserta_didik_id', 'peserta_didik_id');
+        return $this->belongsTo(Peserta_didik::class, 'peserta_didik_id', 'peserta_didik_id', 'rfid_id');
     }
 
     public function jurusan(){

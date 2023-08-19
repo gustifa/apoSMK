@@ -149,6 +149,25 @@
 												<img id ="showImage"src="{{(!empty($adminData->logo_sekolah)) ? url('upload/sekolah_images/'.$adminData->logo_sekolah): url('upload/no_image.jpg')}}" alt="Admin" style="width: 100px; height: 100px;">
 											</div>
 										</div>
+
+										<!-- logo Provinsi Awal -->
+										<div class="row mb-3">
+											<div class="col-sm-3">
+												<h6 class="mb-0">Logo Provinsi</h6>
+											</div>
+											<div class="col-sm-9 text-secondary">
+												<input type="file" name="logo_provinsi" class="form-control" id="imageProvinsi">
+											</div>
+										</div>
+
+										<div class="row mb-3">
+											<div class="col-sm-3">
+											</div>
+											<div class="col-sm-9 text-secondary">
+												<img id ="showImageProvinsi"src="{{(!empty($adminData->logo_provinsi)) ? url('upload/sekolah_images/'.$adminData->logo_provinsi): url('upload/no_image.jpg')}}" alt="Admin" style="width: 100px; height: 100px;">
+											</div>
+										</div>
+										<!-- logo Provinsi Akhir -->
 										
 										<div class="row">
 											<div class="col-sm-3"></div>
@@ -173,6 +192,20 @@
 			var reader = new FileReader();
 			reader.onload = function(e){
 				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		})
+
+	});
+
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#imageProvinsi').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImageProvinsi').attr('src',e.target.result);
 			}
 			reader.readAsDataURL(e.target.files['0']);
 		})

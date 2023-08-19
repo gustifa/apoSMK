@@ -35,8 +35,13 @@ class SekolahController extends Controller
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('upload/sekolah_images'),$filename);
             $data['logo_sekolah'] = $filename;
-        }
+        }else if($request->file('logo_provinsi')) {
+            $file = $request->file('logo_provinsi');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/sekolah_images'),$filename);
+            $data['logo_provinsi'] = $filename;
 
+        }
         $notification = array(
             'message' => 'Admin Profile Update Succesfully',
             'alert-type' => 'success',

@@ -45,6 +45,10 @@ hr {
 }
 </style>
 </head>
+@php
+        $implodeId = App\Models\Sekolah::select('sekolah_id')->get()->implode('sekolah_id');
+        $adminData = App\Models\Sekolah::find($implodeId);
+@endphp
 <body>
 
 
@@ -52,8 +56,7 @@ hr {
   <tr>
     <td>
       <h2>
-        <?php $image_path = '/upload/smk.png'; ?>
-        <img src="{{ public_path() . $image_path }}" width="100" height="100">
+        <img id ="showImage"src="{{(!empty($adminData->logo_sekolah)) ? url('upload/sekolah_images/'.$adminData->logo_sekolah): url('upload/no_image.jpg')}}" alt="Admin" style="width: 100px; height: 100px;">
 
       </h2>
     </td>
@@ -70,8 +73,7 @@ hr {
     </td>
     <td>
       <h2>
-        <?php $image_path = '/upload/smk.png'; ?>
-        <img src="{{ public_path() . $image_path }}" width="100" height="100">
+        <img id ="showImageProvinsi"src="{{(!empty($adminData->logo_provinsi)) ? url('upload/sekolah_images/'.$adminData->logo_provinsi): url('upload/no_image.jpg')}}" alt="Admin" style="width: 100px; height: 100px;">
 
       </h2>
     </td> 
@@ -92,6 +94,7 @@ hr {
   <tr>
     <th width="5%">No</th>
     <th width="45%">Nama Peserta Didik</th>
+    <!-- <th width="45%">Kelas</th> -->
     <th width="35%">Waktu Presensi</th>
     <th width="15%">Sholat</th>
   </tr>
@@ -99,6 +102,7 @@ hr {
   <tr>
     <td>{{$key+1}}</td>
     <td><b>{{$item->peserta_didik->nama}}</b></td>
+    <!-- <td><b>{{$item->peserta_didik_id}}</b></td> -->
     <td>{{$item->created_at}}</td>
     @if($item->presensi == '2')
     <td>Zhuhur</td>
