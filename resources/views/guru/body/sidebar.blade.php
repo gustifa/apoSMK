@@ -155,7 +155,7 @@
 					</a>
 					<ul>
 						</li>
-						<li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Rekap</a>
+						<li> <a href="{{route('laporan.presensi.walas')}}"><i class="bx bx-right-arrow-alt"></i>Rekap</a>
 						</li>
 						<li> <a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i>Ambil Presensi</a>
 						</li>

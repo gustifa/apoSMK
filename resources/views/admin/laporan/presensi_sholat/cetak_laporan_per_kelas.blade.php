@@ -31,13 +31,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-label">
-                                            <label>Filter Presensi</label>
+                                            <label>Filter Kelas</label>
                                         </div>
                                         <div class="input-group mb-3">
-                                        <select name="presensi" id="presensi" class="form-select form-control" >
-                                            <option selected="" disabled="">Filter Presensi</option>
-                                            <option value="2">Zhuhur</option>
-                                            <option value="22">Ashar</option>
+                                        <select name="rombongan_belajar_id" id="rombongan_belajar_id" class="form-select form-control" >
+                                            <option selected="" disabled="">Filter Kelas</option>
+                                            @foreach($dataRombel as $item)
+                                            <option value="{{$item->rombongan_belajar_id}}">{{$item->nama}}</option>
+                                            @endforeach
                                         </select>
                                         </div>
                                     </div>
@@ -59,7 +60,7 @@
                                     </div>
 
                                     <div class="input-group mb-3">
-                                        <a class="btn btn-primary form-control" href="" onclick="this.href='/laporan/cetak-per-tanggal/'+document.getElementById('presensi').value+ '/' +document.getElementById('tgl_awal').value+ '/' +document.getElementById('tgl_akhir').value" target="_blank">Cetak Per Tanggal</a>
+                                        <a class="btn btn-primary form-control" href="" onclick="this.href='/laporan/cetak-per-kelas/'+document.getElementById('rombongan_belajar_id').value+ '/' +document.getElementById('tgl_awal').value+ '/' +document.getElementById('tgl_akhir').value" target="_blank">Cetak Per Tanggal</a>
                                         <!-- <button class="btn btn-primary form-control" type="submit">Cetak</button> -->
                                     </div>
                                 </div>
@@ -68,7 +69,6 @@
 				    </div>
 				</div>
 				<!-- </div> -->
-
 				
 
 	</div>

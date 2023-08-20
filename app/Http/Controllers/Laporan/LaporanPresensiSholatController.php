@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Rombongan_belajar;
 use App\Models\Anggota_rombel;
 use App\Models\PresensiSholat;
+use App\Models\Peserta_didik;
 use Yajra\DataTables\Facades\Datatables;
 use DB;
 use Carbon\Carbon;
@@ -135,14 +136,17 @@ class LaporanPresensiSholatController extends Controller
     }
 
     public function laporanPresensiSholatTanggal(){
-        $dataLaporan = PresensiSholat::all();
+        $dataRombel = Rombongan_belajar::all();
         return view('admin.laporan.presensi_sholat.per_tanggal', compact('dataLaporan'));
     }
+
+
 
     public function laporanCetakTanggal(){
         return view('admin.laporan.presensi_sholat.cetak_laporan_per_tanggal');
     }
 
+    
      public function laporanCetakPerTanggal($presensi, $tgl_awal, $tgl_akhir){
         $awal =$tgl_awal;
         $akhir = $tgl_akhir;
@@ -153,6 +157,24 @@ class LaporanPresensiSholatController extends Controller
 
 
      }
+
+     public function laporanCetakKelas(){
+        $dataRombel = Rombongan_belajar::all();
+        $peserta_didik = Peserta_didik::all();
+        return view('admin.laporan.presensi_sholat.cetak_laporan_per_kelas', compact('dataRombel'));
+    }
+
+    public function laporanCetakPerKelas($rombongan_belajar_id, $tgl_awal, $tgl_akhir){
+        $awal =$tgl_awal;
+        $akhir = $tgl_akhir;
+        $pre = $rombongan_belajar_id; 
+        // dd("Presensi: " .$rombongan_belajar_id, "tgl Awal: " .$tgl_awal, "Tgl Akhir: ".$tgl_akhir);
+        $dataLaporan = PresensiSholat::whereBetween('date', [$tgl_awal, $tgl_akhir])->where('presensi', $presensi)->get();
+         return view('admin.laporan.presensi_sholat.per_tanggal', compact('dataLaporan','awal', 'akhir','pre'));
+
+
+     }
+
 
 
 }

@@ -175,15 +175,20 @@
 						</div>
 						<div class="menu-title">Laporan</div>
 					</a>
-					<ul>
+					<!-- <ul>
 						<li> <a href="{{route('laporan.all')}}"><i class="bx bx-right-arrow-alt"></i>Semua Rombel</a>
 						</li>
-					</ul>
+					</ul> -->
 					<ul>
 						<li> <a href="{{route('laporan.cetak.tanggal')}}"><i class="bx bx-right-arrow-alt"></i>Per Tanggal</a>
 						</li>
 					</ul>
+
 					<ul>
+						<li> <a href="{{route('laporan.cetak.kelas')}}"><i class="bx bx-right-arrow-alt"></i>Per Kelas</a>
+						</li>
+					</ul>
+					<!-- <ul>
 						<li> <a href="{{route('export.userrfid')}}"><i class="bx bx-right-arrow-alt"></i>Export UserRFID</a>
 						
 					</ul>
@@ -191,7 +196,7 @@
 					<ul>
 						<li> <a href="{{route('export.guru')}}"><i class="bx bx-right-arrow-alt"></i>Export Guru</a>
 						
-					</ul>
+					</ul> -->
 
 
 					<!-- <ul>

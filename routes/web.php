@@ -34,6 +34,7 @@ use App\Http\Controllers\Backend\SettingPengumumanController;
 use App\Http\Controllers\Laporan\LaporanPresensiSholatController;
 
 use App\Http\Controllers\Guru\GuruController;
+use App\Http\Controllers\Guru\Laporan\laporanPresensiWalasController;
 use App\Http\Controllers\Siswa\SiswaController;
 
 use App\Http\Controllers\Backend\Presensi\PresensiSholatController;
@@ -333,7 +334,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/fetch_data', 'fetch_data')->name('daterange.fetch_data');
         Route::get('/presensi-sholat','laporanPresensiSholat')->name('laporan.presensi.sholat');
         Route::get('/cetak-tanggal','laporanCetakTanggal')->name('laporan.cetak.tanggal');
+        Route::get('/cetak-kelas','laporanCetakKelas')->name('laporan.cetak.kelas');
         Route::get('/cetak-per-tanggal/{presensi}/{tgl_awal}/{tgl_akhir}','laporanCetakPerTanggal')->name('laporan.cetak.per-tanggal');
+        Route::get('/cetak-per-kelas/{rombongan_belajar_id}/{tgl_awal}/{tgl_akhir}','laporanCetakPerKelas')->name('laporan.cetak.per-kelas');
         Route::get('/presensi-sholat-tanggal','laporanPresensiSholatTanggal')->name('laporan.presensi.sholat.tanggal');
         });
 
@@ -391,6 +394,12 @@ Route::middleware(['auth','role:guru'])->group(function(){
            Route::get('/bobot-pelanggaran-siswa/tambah','tambahBobotPelanggaranSiswa')->name('tambah.bobot.pelanggaran.siswa');
            Route::post('/bobot-pelanggaran-siswa/simpan','simpanBobotPelanggaranSiswa')->name('simpan.bobot.pelanggaran.siswa');
         });
+
+        Route::controller(laporanPresensiWalasController::class)->group(function(){
+           Route::get('/laporan-presensi-walas','laporanPresensiWalas')->name('laporan.presensi.walas');
+           Route::get('/laporan-walas-all/{peserta_didik_id}','laporanWalasAll')->name('laporan.walas.all');
+        });
+
 
         
 
