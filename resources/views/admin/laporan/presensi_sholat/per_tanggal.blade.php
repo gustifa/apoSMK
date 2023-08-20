@@ -115,7 +115,7 @@ hr {
    
 </table>
 <br> <br>
-  <i style="font-size: 14px; float: right;">Print Data : {{ date("d M Y") }}</i>
+  <i style="font-size: 14px; float: right;">Tanggal Cetak : {{ date("d M Y") }}</i>
 
 
 </body>
