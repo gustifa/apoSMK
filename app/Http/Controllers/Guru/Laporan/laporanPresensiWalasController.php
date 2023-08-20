@@ -26,13 +26,16 @@ class laporanPresensiWalasController extends Controller
     }
 
     public function laporanWalasAll($peserta_didik_id){
-
-        $peserta_didikId = Peserta_didik::select('rfid_id', 'peserta_didik_id')->where('peserta_didik_id', $peserta_didik_id)->get();
+        $user = Auth::user()->guru_id;
+        $walas = Rombongan_belajar::where('guru_id', $user )->get();
+        $implode_rombel = $walas->implode('nama');
+        $peserta_didikId = Peserta_didik::select('rfid_id', 'peserta_didik_id', 'nama')->where('peserta_didik_id', $peserta_didik_id)->get();
         $implodePesertaDidik =$peserta_didikId->implode('rfid_id');
+        $namaPesertaDidik =$peserta_didikId->implode('nama');
 
         $dataLaporan = PresensiSholat::where('rfid_id', $implodePesertaDidik)->get();
 
-        return view('guru.laporan.presensi_sholat.cetak_semua_laporan', compact('dataLaporan',));
+        return view('guru.laporan.presensi_sholat.cetak_semua_laporan', compact('dataLaporan', 'namaPesertaDidik', 'implode_rombel'));
 
     }
 }

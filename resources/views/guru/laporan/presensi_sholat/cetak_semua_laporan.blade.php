@@ -2,6 +2,10 @@
 <html>
 <head>
 <style>
+h2{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
 #judul {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -85,21 +89,24 @@ hr {
 
 @endphp 
 <h2 align="center">Laporan Presensi Sholat Zhuhur & Ashar</h2>
+<p align="center">{{$namaPesertaDidik}} Kelas {{$implode_rombel}}</p>
   
 <table id="customers">
   <tr>
     <th width="5%">No</th>
-    <th width="45%">Nama Peserta Didik</th>
+    <!-- <th width="45%">Nama Peserta Didik</th> -->
     <!-- <th width="45%">Kelas</th> -->
-    <th width="35%">Waktu Presensi</th>
+    <th width="35%">Tanggal Presensi</th>
+    <th width="35%">Jam Presensi</th>
     <th width="15%">Sholat</th>
   </tr>
   @foreach($dataLaporan as $key => $item)
   <tr>
     <td>{{$key+1}}</td>
-    <td><b>{{$item->peserta_didik->nama}}</b></td>
+    <!-- <td><b>{{$item->peserta_didik->nama}}</b></td> -->
     <!-- <td><b>{{$item->peserta_didik_id}}</b></td> -->
-    <td>{{$item->created_at}}</td>
+    <td>{{$item->created_at->format('d-m-Y')}}</td>
+    <td>{{$item->created_at->format('H:i:s')}}</td>
     @if($item->presensi == '2')
     <td>Zhuhur</td>
     @else
